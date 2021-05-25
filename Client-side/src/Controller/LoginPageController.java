@@ -1,11 +1,14 @@
 package Controller;
 
+import Model.PageLoader;
 import javafx.animation.RotateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
+
+import java.io.IOException;
 
 public class LoginPageController {
 
@@ -35,6 +38,11 @@ public class LoginPageController {
     }
 
     public void signUp(MouseEvent mouseEvent) {
+        try {
+            new PageLoader().load("SignUpPage");
+        } catch (IOException e) {
+            System.err.println("~ page not found!");
+        }
     }
 
     public void logIn(MouseEvent mouseEvent) {
