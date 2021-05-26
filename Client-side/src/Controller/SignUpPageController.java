@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.PageLoader;
+import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -8,19 +9,24 @@ import javafx.scene.input.MouseEvent;
 import java.io.IOException;
 
 public class SignUpPageController {
+    private boolean theQuestionIsChosen = false;
+
     public TextField usernameFiled;
     public ImageView showPasswordImage;
     public ImageView blackCloseButton;
     public ImageView redCloseButton;
     public Button nextButton;
     public TextField answerFiled;
-    public MenuButton questionList;
     public Label wrongUsername;
     public Label wrongPassword;
     public Label wrongConfirm;
     public TextField shownPasswordField;
     public PasswordField hiddenPasswordField;
     public PasswordField confirmPasswordField;
+    public SplitMenuButton questionList;
+    public MenuItem question1;
+    public MenuItem question2;
+    public MenuItem question3;
 
 
     public void showRedCloseButton(MouseEvent mouseEvent) {
@@ -55,6 +61,13 @@ public class SignUpPageController {
             alert.showAndWait();
             return;
         }
+        if (!theQuestionIsChosen) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please choose a question and answer it!", ButtonType.CANCEL);
+            alert.showAndWait();
+            return;
+        }
+
+        String question = questionList.getText();
 
         wrongConfirm.setVisible(false);
         wrongUsername.setVisible(false);
@@ -72,7 +85,6 @@ public class SignUpPageController {
             wrongConfirm.setVisible(true);
             everyThingIsOk = false;
         }
-
         if (everyThingIsOk) {
             try {
                 new PageLoader().load("MakeProfilePage");
@@ -94,4 +106,18 @@ public class SignUpPageController {
         }
     }
 
+    public void changeMainQuestion1(ActionEvent actionEvent) {
+        questionList.setText(question1.getText());
+        theQuestionIsChosen = true;
+    }
+
+    public void changeMainQuestion2(ActionEvent actionEvent) {
+        questionList.setText(question2.getText());
+        theQuestionIsChosen = true;
+    }
+
+    public void changeMainQuestion3(ActionEvent actionEvent) {
+        questionList.setText(question3.getText());
+        theQuestionIsChosen = true;
+    }
 }
