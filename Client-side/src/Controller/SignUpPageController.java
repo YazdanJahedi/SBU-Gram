@@ -1,16 +1,11 @@
 package Controller;
 
 import Model.PageLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 
-import java.io.File;
 import java.io.IOException;
 
 public class SignUpPageController {
@@ -20,7 +15,6 @@ public class SignUpPageController {
     public ImageView showPasswordImage;
     public ImageView blackCloseButton;
     public ImageView redCloseButton;
-
 
 
     public void showRedCloseButton(MouseEvent mouseEvent) {

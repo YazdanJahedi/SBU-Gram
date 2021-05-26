@@ -25,7 +25,7 @@ public class PageLoader {
         stage.setHeight(HEIGHT);
         stage.initStyle(StageStyle.DECORATED); //the three buttons on top of stage will be shown
         stage.setResizable(false); //the resizable button is enabled. if your design is responsive this must be true
-        stage.getIcons().add(new Image(Paths.get("/Images/final-logo.png").toUri().toString()));
+        stage.getIcons().add(new Image(Paths.get("src/Images/logos/S-logo.png").toUri().toString()));
 
         MakeProfilePageController.stage = primaryStage;
     }
