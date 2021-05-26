@@ -32,14 +32,9 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <TextField fx:id="usernameFiled" layoutX="122.0" layoutY="267.0" maxHeight="25.0" maxWidth="165.0" minHeight="25.0" minWidth="165.0" prefHeight="25.0" prefWidth="165.0" promptText="Username *" />
-      <PasswordField fx:id="passwordFiled1" layoutX="122.0" layoutY="324.0" maxHeight="25.0" maxWidth="165.0" minHeight="25.0" minWidth="165.0" prefHeight="25.0" prefWidth="165.0" promptText="Password *" />
-      <PasswordField fx:id="passwordField2" layoutX="122.0" layoutY="380.0" maxHeight="25.0" maxWidth="165.0" minHeight="25.0" minWidth="165.0" prefHeight="25.0" prefWidth="165.0" promptText="Confirm Password" />
-      <ImageView fx:id="showPasswordImage" fitHeight="23.0" fitWidth="42.0" layoutX="259.0" layoutY="327.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Images/buttons/showPassword.png" />
-         </image>
-      </ImageView>
+      <TextField fx:id="usernameFiled" layoutX="122.0" layoutY="267.0" maxHeight="25.0" maxWidth="165.0" minHeight="25.0" minWidth="165.0" prefHeight="25.0" prefWidth="165.0" promptText="Username" />
+      <PasswordField fx:id="hiddenPasswordField" layoutX="122.0" layoutY="324.0" maxHeight="25.0" maxWidth="165.0" minHeight="25.0" minWidth="165.0" prefHeight="25.0" prefWidth="165.0" promptText="Password" />
+      <PasswordField fx:id="confirmPasswordField" layoutX="122.0" layoutY="380.0" maxHeight="25.0" maxWidth="165.0" minHeight="25.0" minWidth="165.0" prefHeight="25.0" prefWidth="165.0" promptText="Confirm Password" />
       <ImageView fx:id="blackCloseButton" fitHeight="32.0" fitWidth="32.0" layoutX="365.0" layoutY="3.0" onMouseEntered="#showRedCloseButton" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/buttons/close-black.png" />
@@ -51,14 +46,23 @@
          </image>
       </ImageView>
       <Button fx:id="nextButton" layoutX="177.0" layoutY="535.0" mnemonicParsing="false" onMouseClicked="#nextPage" text="Next!" textFill="#273d80" />
-      <Label layoutX="127.0" layoutY="435.0" text="Reset password question :" />
-      <TextField fx:id="answerFiled" layoutX="77.0" layoutY="485.0" maxHeight="25.0" maxWidth="277.0" minHeight="25.0" minWidth="165.0" prefHeight="25.0" prefWidth="277.0" promptText="Your answer ..." />
-      <MenuButton layoutX="78.0" layoutY="455.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="275.0" text="Answer one of these questions">
+      <Label layoutX="127.0" layoutY="443.0" text="Reset password question :" />
+      <TextField fx:id="answerFiled" layoutX="77.0" layoutY="486.0" maxHeight="25.0" maxWidth="277.0" minHeight="25.0" minWidth="165.0" prefHeight="25.0" prefWidth="277.0" promptText="Your answer ..." />
+      <MenuButton fx:id="questionList" layoutX="78.0" layoutY="460.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="275.0" text="Answer one of these questions">
         <items>
           <MenuItem mnemonicParsing="false" text="What is your favorite food?" />
           <MenuItem mnemonicParsing="false" text="What is the name of your best friend?" />
             <MenuItem mnemonicParsing="false" text="What is the name of your first teacher?" />
         </items>
       </MenuButton>
+      <Label fx:id="wrongUsername" layoutX="115.0" layoutY="298.0" text="This username is taken before" textFill="#ee0707" />
+      <Label fx:id="wrongPassword" layoutX="87.0" layoutY="355.0" text="Password must be at least 8 characters" textFill="RED" />
+      <Label fx:id="wrongConfirm" layoutX="126.0" layoutY="411.0" text="Password is not the same!" textFill="#eb0000" />
+      <TextField fx:id="shownPasswordField" layoutX="122.0" layoutY="324.0" maxHeight="25.0" maxWidth="165.0" minHeight="25.0" minWidth="165.0" prefHeight="25.0" prefWidth="165.0" promptText="Password" visible="false" />
+      <ImageView fx:id="showPasswordImage" fitHeight="23.0" fitWidth="42.0" layoutX="259.0" layoutY="327.0" onMouseClicked="#showPassword" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/buttons/showPassword.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>

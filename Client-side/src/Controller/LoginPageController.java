@@ -1,6 +1,5 @@
 package Controller;
 
-import Model.PageLoader;
 import javafx.animation.RotateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -8,6 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 
+import Model.PageLoader;
 import java.io.IOException;
 
 public class LoginPageController {
@@ -20,8 +20,6 @@ public class LoginPageController {
     public Hyperlink signUpButton;
     public ImageView showPasswordImage;
     public ImageView SBU_logo;
-
-    // -------- todo :
     public Label wrongPasswordLabel;
     public Hyperlink resetPasswordLink;
     public Label resetPasswordLabel;

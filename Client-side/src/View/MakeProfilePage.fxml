@@ -8,7 +8,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-
 <Pane maxHeight="600.0" maxWidth="400.0" minHeight="600.0" minWidth="400.0" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #D7EBFF;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MakeProfilePageController">
    <children>
       <ImageView fitHeight="77.0" fitWidth="113.0" layoutX="143.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
@@ -32,6 +31,11 @@
       <TextField fx:id="lastNameFiled" layoutX="114.0" layoutY="284.0" maxHeight="25.0" maxWidth="165.0" minHeight="25.0" minWidth="165.0" prefHeight="25.0" prefWidth="165.0" promptText="Last name" />
       <TextField fx:id="bioField" layoutX="62.0" layoutY="418.0" prefHeight="25.0" prefWidth="277.0" promptText="Bio" />
       <DatePicker fx:id="birthDate" layoutX="113.0" layoutY="331.0" maxHeight="25.0" maxWidth="165.0" minHeight="25.0" minWidth="165.0" prefHeight="25.0" prefWidth="165.0" promptText="Date of birth" />
-      <Label layoutX="62.0" layoutY="398.0" text="You can write a short Bio about yourself :" />
+      <Label layoutX="63.0" layoutY="398.0" text="You can write a short Bio about yourself :" />
+      <ImageView fx:id="blackBackButton" fitHeight="35.0" fitWidth="35.0" layoutX="20.0" layoutY="14.0" onMouseClicked="#goBack"  pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/buttons/back-button.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
