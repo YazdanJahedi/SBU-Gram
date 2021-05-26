@@ -30,7 +30,7 @@
       <TextField fx:id="shownPasswordField" layoutX="105.0" layoutY="354.0" maxHeight="25.0" maxWidth="192.0" minHeight="25.0" minWidth="192.0" prefHeight="25.0" prefWidth="192.0" promptText="Password" visible="false" />
       <ImageView fx:id="showPasswordImage" fitHeight="19.0" fitWidth="24.0" layoutX="274.0" layoutY="360.0" onMouseClicked="#showPassword" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Images/show-pass/showPassword.png" />
+            <Image url="@../Images/buttons/showPassword.png" />
          </image>
       </ImageView>
       <Label fx:id="wrongPasswordLabel" layoutX="100.0" layoutY="455.0" text="Incorrect username or password!" textFill="RED" />

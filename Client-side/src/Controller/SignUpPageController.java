@@ -14,9 +14,6 @@ import java.io.File;
 import java.io.IOException;
 
 public class SignUpPageController {
-    public TextField firstNameField;
-    public TextField lastNameFiled;
-    public DatePicker birthDayField;
     public TextField usernameFiled;
     public PasswordField passwordFiled1;
     public PasswordField passwordField2;
@@ -42,17 +39,11 @@ public class SignUpPageController {
         }
     }
 
-
-
-// -----------------------------------------
-
-    public static Stage stage;
-
-    public void createAccount(MouseEvent mouseEvent) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Open Resource File");
-        fileChooser.setInitialDirectory(new File("/"));
-        File file = fileChooser.showOpenDialog(stage);
-
+    public void nextPage(MouseEvent mouseEvent) {
+        try {
+            new PageLoader().load("MakeProfilePage");
+        } catch (IOException e) {
+            System.err.println("~ page nto found!");
+        }
     }
 }

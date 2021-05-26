@@ -21,17 +21,17 @@
             <Image url="@../Images/page-design/downDesign.png" />
          </image>
       </ImageView>
-      <Button layoutX="179.0" layoutY="158.0" mnemonicParsing="false" text="add profile photo" />
-      <Button layoutX="171.0" layoutY="533.0" mnemonicParsing="false" text="Done !" />
-      <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="93.0" layoutY="141.0" pickOnBounds="true" preserveRatio="true">
+      <Button fx:id="addProfileImageButton" layoutX="179.0" layoutY="158.0" mnemonicParsing="false" onMouseClicked="#addProfileImage" text="add profile photo" />
+      <Button fx:id="doneButton" layoutX="171.0" layoutY="533.0" mnemonicParsing="false" onMouseClicked="#createAccount" text="Done !" />
+      <ImageView fx:id="profileImage" fitHeight="60.0" fitWidth="60.0" layoutX="93.0" layoutY="141.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/blank-profile/blankProfilePic.png" />
          </image>
       </ImageView>
-      <TextField layoutX="116.0" layoutY="235.0" maxHeight="25.0" maxWidth="165.0" minHeight="25.0" minWidth="165.0" prefHeight="25.0" prefWidth="165.0" promptText="First name" />
-      <TextField layoutX="114.0" layoutY="284.0" maxHeight="25.0" maxWidth="165.0" minHeight="25.0" minWidth="165.0" prefHeight="25.0" prefWidth="165.0" promptText="Last name" />
-      <TextField layoutX="62.0" layoutY="418.0" prefHeight="25.0" prefWidth="277.0" promptText="Bio" />
-      <DatePicker layoutX="113.0" layoutY="331.0" maxHeight="25.0" maxWidth="165.0" minHeight="25.0" minWidth="165.0" prefHeight="25.0" prefWidth="165.0" promptText="Data of birth" />
+      <TextField fx:id="firstNameField" layoutX="116.0" layoutY="235.0" maxHeight="25.0" maxWidth="165.0" minHeight="25.0" minWidth="165.0" prefHeight="25.0" prefWidth="165.0" promptText="First name" />
+      <TextField fx:id="lastNameFiled" layoutX="114.0" layoutY="284.0" maxHeight="25.0" maxWidth="165.0" minHeight="25.0" minWidth="165.0" prefHeight="25.0" prefWidth="165.0" promptText="Last name" />
+      <TextField fx:id="bioField" layoutX="62.0" layoutY="418.0" prefHeight="25.0" prefWidth="277.0" promptText="Bio" />
+      <DatePicker fx:id="birthDate" layoutX="113.0" layoutY="331.0" maxHeight="25.0" maxWidth="165.0" minHeight="25.0" minWidth="165.0" prefHeight="25.0" prefWidth="165.0" promptText="Date of birth" />
       <Label layoutX="62.0" layoutY="398.0" text="You can write a short Bio about yourself :" />
    </children>
 </Pane>
