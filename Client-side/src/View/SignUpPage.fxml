@@ -19,12 +19,12 @@
    <children>
       <ImageView fitHeight="117.0" fitWidth="410.0" layoutX="-9.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Images/login-page/upDesign.png" />
+            <Image url="@../Images/page-design/upDesign.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="117.0" fitWidth="166.0" layoutX="123.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Images/final-logo.png" />
+            <Image url="@../Images/final-logo.png" />
          </image>
       </ImageView>
       <Label layoutX="99.0" layoutY="200.0" text="Create your accout :" textFill="#0e3f6f">
@@ -37,21 +37,20 @@
       <PasswordField fx:id="passwordField2" layoutX="122.0" layoutY="380.0" maxHeight="25.0" maxWidth="165.0" minHeight="25.0" minWidth="165.0" prefHeight="25.0" prefWidth="165.0" promptText="Confirm Password" />
       <ImageView fx:id="showPasswordImage" fitHeight="23.0" fitWidth="42.0" layoutX="259.0" layoutY="327.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Images/login-page/showPassword.png" />
+            <Image url="@../Images/show-pass/showPassword.png" />
          </image>
       </ImageView>
       <ImageView fx:id="blackCloseButton" fitHeight="32.0" fitWidth="32.0" layoutX="365.0" layoutY="3.0" onMouseEntered="#showRedCloseButton" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Images/signUp-page/close-black.png" />
+            <Image url="@../Images/close-button/close-black.png" />
          </image>
       </ImageView>
       <ImageView fx:id="redCloseButton" fitHeight="32.0" fitWidth="32.0" layoutX="365.0" layoutY="3.0" onMouseClicked="#closePage" onMouseExited="#showBlackCloseButton" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
-            <Image url="@Images/signUp-page/close-red.png" />
+            <Image url="@../Images/close-button/close-red.png" />
          </image>
       </ImageView>
       <Button layoutX="177.0" layoutY="535.0" mnemonicParsing="false" text="Next!" textFill="#273d80" />
-      <Label text="Label" />
       <Label layoutX="127.0" layoutY="435.0" text="Reset password question :" />
       <TextField fx:id="answerFiled" layoutX="77.0" layoutY="485.0" maxHeight="25.0" maxWidth="277.0" minHeight="25.0" minWidth="165.0" prefHeight="25.0" prefWidth="277.0" promptText="Your answer ..." />
       <MenuButton layoutX="78.0" layoutY="455.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="275.0" text="Answer one of these questions">

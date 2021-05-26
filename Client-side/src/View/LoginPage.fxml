@@ -14,7 +14,7 @@
    <children>
       <ImageView fx:id="SBU_logo" fitHeight="188.0" fitWidth="294.0" layoutX="59.0" layoutY="26.0" onMouseClicked="#logoMovement" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Images/final-logo.png" />
+            <Image url="@../Images/final-logo.png" />
          </image>
       </ImageView>
       <Label layoutX="132.0" layoutY="224.0" text="SBU gram">
@@ -28,9 +28,9 @@
       <Label layoutX="19.0" layoutY="552.0" text="Don't have an account?" />
       <Hyperlink fx:id="signUpButton" layoutX="170.0" layoutY="549.0" onMouseClicked="#signUp" text="sign up" />
       <TextField fx:id="shownPasswordField" layoutX="105.0" layoutY="354.0" maxHeight="25.0" maxWidth="192.0" minHeight="25.0" minWidth="192.0" prefHeight="25.0" prefWidth="192.0" promptText="Password" visible="false" />
-      <ImageView fx:id="showPasswordImage" fitHeight="19.0" fitWidth="17.0" layoutX="275.0" layoutY="358.0" onMouseClicked="#showPassword" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="showPasswordImage" fitHeight="19.0" fitWidth="24.0" layoutX="274.0" layoutY="360.0" onMouseClicked="#showPassword" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@Images/login-page/showPassword.png" />
+            <Image url="@../Images/show-pass/showPassword.png" />
          </image>
       </ImageView>
       <Label fx:id="wrongPasswordLabel" layoutX="100.0" layoutY="455.0" text="Incorrect username or password!" textFill="RED" />
