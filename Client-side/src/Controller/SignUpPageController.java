@@ -7,7 +7,10 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 
 public class SignUpPageController {
@@ -17,11 +20,11 @@ public class SignUpPageController {
     public TextField usernameFiled;
     public PasswordField passwordFiled1;
     public PasswordField passwordField2;
-    public Button createAccountButton;
     public ImageView showPasswordImage;
     public ImageView blackCloseButton;
     public ImageView redCloseButton;
-    public TextField answerField;
+
+
 
     public void showRedCloseButton(MouseEvent mouseEvent) {
         redCloseButton.setVisible(true);
@@ -40,4 +43,16 @@ public class SignUpPageController {
     }
 
 
+
+// -----------------------------------------
+
+    public static Stage stage;
+
+    public void createAccount(MouseEvent mouseEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Resource File");
+        fileChooser.setInitialDirectory(new File("/"));
+        File file = fileChooser.showOpenDialog(stage);
+
+    }
 }

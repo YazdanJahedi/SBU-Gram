@@ -1,4 +1,5 @@
 package Model;
+import Controller.SignUpPageController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -25,6 +26,8 @@ public class PageLoader {
         stage.initStyle(StageStyle.DECORATED); //the three buttons on top of stage will be shown
         stage.setResizable(false); //the resizable button is enabled. if your design is responsive this must be true
         stage.getIcons().add(new Image(Paths.get("/src/View/Images/final-logo.png").toUri().toString()));
+
+        SignUpPageController.stage = primaryStage;
     }
 
     public void setRoot(String fxml) throws IOException {
