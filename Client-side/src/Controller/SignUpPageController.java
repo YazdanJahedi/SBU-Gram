@@ -40,10 +40,45 @@ public class SignUpPageController {
     }
 
     public void nextPage(MouseEvent mouseEvent) {
-        try {
-            new PageLoader().load("MakeProfilePage");
-        } catch (IOException e) {
-            System.err.println("~ page nto found!");
+        boolean everyThingIsOk = true;
+        String username = usernameFiled.getText();
+        String password;
+        if (hiddenPasswordField.isVisible())
+            password = hiddenPasswordField.getText();
+        else
+            password = shownPasswordField.getText();
+        String confirmPassword = confirmPasswordField.getText();
+        String answer = answerFiled.getText();
+
+        if (username.equals("") || password.equals("") || confirmPassword.equals("") || answer.equals("")) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please complete all fields", ButtonType.CANCEL);
+            alert.showAndWait();
+            return;
+        }
+
+        wrongConfirm.setVisible(false);
+        wrongUsername.setVisible(false);
+        wrongPassword.setVisible(false);
+
+        if (username.equals("ali")) {
+            wrongUsername.setVisible(true);
+            everyThingIsOk = false;
+        }
+        if (password.length() < 8) {
+            wrongPassword.setVisible(true);
+            everyThingIsOk = false;
+        }
+        if (!password.equals(confirmPassword)) {
+            wrongConfirm.setVisible(true);
+            everyThingIsOk = false;
+        }
+
+        if (everyThingIsOk) {
+            try {
+                new PageLoader().load("MakeProfilePage");
+            } catch (IOException e) {
+                System.err.println("~ page nto found!");
+            }
         }
     }
 
