@@ -1,6 +1,7 @@
 package Controller;
 
-import Model.PageLoader;
+import Model.Main;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -8,13 +9,17 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.Socket;
+
+import Model.PageLoader;
 
 public class MakeProfilePageController {
-    public static Stage stage;
+    private final Socket socket = Main.getSocket();
+
+    @FXML
     public Button addProfileImageButton;
     public ImageView profileImage;
     public Button doneButton;
@@ -32,7 +37,7 @@ public class MakeProfilePageController {
 //                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
 //                new FileChooser.ExtensionFilter("PNG", "*.png"));
 
-        File file = fileChooser.showOpenDialog(stage);
+        File file = fileChooser.showOpenDialog(PageLoader.getPrimaryStage());
 
         if(file != null){
             Image newProfile = new Image("file:"+file.getAbsolutePath());

@@ -1,16 +1,22 @@
 package Controller;
 
-import Model.PageLoader;
+import Model.Main;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
+import java.net.Socket;
+
+import Model.PageLoader;
 
 public class SignUpPageController {
+    private final Socket socket = Main.getSocket();
     private boolean theQuestionIsChosen = false;
 
+    @FXML
     public TextField usernameFiled;
     public ImageView showPasswordImage;
     public ImageView blackCloseButton;
@@ -41,7 +47,7 @@ public class SignUpPageController {
         try {
             new PageLoader().load("LoginPage");
         } catch (IOException e) {
-            System.err.println("~ page not found");
+            System.err.println("~ LoginPage not found");
         }
     }
 
