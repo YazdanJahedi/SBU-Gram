@@ -13,7 +13,6 @@ import java.net.Socket;
 import Model.PageLoader;
 
 public class SignUpPageController {
-    private final Socket socket = Main.getSocket();
     private boolean theQuestionIsChosen = false;
 
     @FXML

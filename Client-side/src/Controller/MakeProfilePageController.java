@@ -17,7 +17,6 @@ import java.net.Socket;
 import Model.PageLoader;
 
 public class MakeProfilePageController {
-    private final Socket socket = Main.getSocket();
 
     @FXML
     public Button addProfileImageButton;

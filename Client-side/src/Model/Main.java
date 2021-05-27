@@ -9,31 +9,32 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 public class Main extends Application {
-    private static Socket socket = null;
+    //--------------------------------------------------------------------
+
+    private static Socket socket;
+    private static ObjectOutputStream out ;
+    private static ObjectInputStream in;
+
+    static {
+        try {
+            socket = new Socket("127.0.0.1" , 8080);
+            System.out.println("* Client connected to server successfully");
+            out = new ObjectOutputStream(socket.getOutputStream());
+            in = new ObjectInputStream(socket.getInputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static Socket getSocket() {
         return socket;
     }
 
     public static ObjectInputStream getObjectInputStream() {
-        ObjectInputStream in = null;
-        try {
-            in = new ObjectInputStream(socket.getInputStream());
-            System.out.println("MAIN :: getObject\"In\"putStream done well");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         return in;
     }
 
     public static ObjectOutputStream getObjectOutputStream() {
-        ObjectOutputStream out = null;
-        try {
-            out = new ObjectOutputStream(socket.getOutputStream());
-            System.out.println("MAIN :: getObject\"OUT\"putStream done well");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         return out;
     }
 
@@ -41,8 +42,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) {
-        PageLoader.initStage(stage); //this is only needed when you start program
-        //and need a new stage. all scenes will be loaded on this stage
+        // all scenes will be loaded on this stage
+        PageLoader.initStage(stage);
+
         try {
             new PageLoader().load("LoginPage");
         } catch (IOException e) {
@@ -63,13 +65,6 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        try {
-            socket = new Socket("127.0.0.1", 8080);
-            System.out.println("* connected to server!");
-        } catch (IOException e) {
-            System.err.println("~ Client couldn't connect to the server");
-            return;
-        }
         launch(args);
     }
 }
