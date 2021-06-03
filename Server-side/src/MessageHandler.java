@@ -1,5 +1,7 @@
 import Messages.ClientMessages.LogInMessage;
+import Messages.ClientMessages.SignUpMessage;
 import Messages.Message;
+import Messages.ServerMessages.CreateAccountMessage;
 import Messages.ServerMessages.FindUserMessage;
 
 public class MessageHandler {
@@ -18,5 +20,12 @@ public class MessageHandler {
             }
         }
         return new FindUserMessage(false);
+    }
+
+    public static Message SignupHandler(SignUpMessage signUpMessage){
+        if(dataBase.getData().containsKey(signUpMessage.getUsername())){
+            return new CreateAccountMessage(false);
+        }
+        return new CreateAccountMessage(true);
     }
 }

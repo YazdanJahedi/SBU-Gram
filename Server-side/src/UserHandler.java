@@ -1,6 +1,5 @@
 import Messages.ClientMessages.*;
 import Messages.Message;
-import Messages.ServerMessages.FindUserMessage;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -21,7 +20,6 @@ public class UserHandler implements Runnable {
     @Override
     public void run() {
         while (!socket.isClosed()) {
-
             Message message = null;
             try {
                 message = (Message) in.readObject();
@@ -30,15 +28,16 @@ public class UserHandler implements Runnable {
                 System.err.println("Message couldn't be gotten");
             }
 
+
             if (message instanceof LogInMessage) {
-
                 Message answer = MessageHandler.loginHandler((LogInMessage) message);
-
                 try {
                     out.writeObject(answer);
                 } catch (IOException e) {
-                    System.err.println("true FindUserMessage couldn't be sent!");
+                    System.err.println("FindUserMessage couldn't be sent!");
                 }
+
+            } if (message instanceof SignUpMessage){
 
             }
         }
