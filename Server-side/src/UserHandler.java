@@ -6,11 +6,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.Set;
 
 public class UserHandler implements Runnable {
-    // DataBase dataBase;
-    Set<String> s = DataBase.s;
+    DataBase dataBase = DataBase.getInstance();
     Socket socket;
     ObjectInputStream in;
     ObjectOutputStream out;
@@ -24,7 +22,6 @@ public class UserHandler implements Runnable {
     @Override
     public void run() {
         while (!socket.isClosed()) {
-//asdasdfasdfasdfasdfasdfasdfasdfasdf
 
             Message message = null;
             try {
@@ -38,7 +35,7 @@ public class UserHandler implements Runnable {
                 System.out.println("the message was : Login message.");
 
                 LogInMessage logInMessage = (LogInMessage) message;
-                if (s.contains(logInMessage.getUsername())) {
+                if (dataBase.getData().containsKey(logInMessage.getUsername())) {
                     try {
                         out.writeObject(new FindUserMessage(true));
                         System.out.println("user is found!");
