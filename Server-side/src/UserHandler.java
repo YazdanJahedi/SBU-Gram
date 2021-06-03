@@ -8,7 +8,6 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 public class UserHandler implements Runnable {
-    DataBase dataBase = DataBase.getInstance();
     Socket socket;
     ObjectInputStream in;
     ObjectOutputStream out;
@@ -32,24 +31,15 @@ public class UserHandler implements Runnable {
             }
 
             if (message instanceof LogInMessage) {
-                System.out.println("the message was : Login message.");
 
-                LogInMessage logInMessage = (LogInMessage) message;
-                if (dataBase.getData().containsKey(logInMessage.getUsername())) {
-                    try {
-                        out.writeObject(new FindUserMessage(true));
-                        System.out.println("user is found!");
-                    } catch (IOException e) {
-                        System.err.println("true FindUserMessage couldn't be sent!");
-                    }
-                } else {
-                    try {
-                        out.writeObject(new FindUserMessage(false));
-                        System.out.println("~ user not found!");
-                    } catch (IOException e) {
-                        System.err.println("false FindUserMessage couldn't be sent!");
-                    }
+                Message answer = MessageHandler.loginHandler((LogInMessage) message);
+
+                try {
+                    out.writeObject(answer);
+                } catch (IOException e) {
+                    System.err.println("true FindUserMessage couldn't be sent!");
                 }
+
             }
         }
     }
