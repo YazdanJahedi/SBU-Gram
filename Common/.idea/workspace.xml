@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b57bdbcf-3d41-4a25-b48d-9bd6675f4e9e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client-side/out/production/Client-side/Controller/LoginPageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Client-side/out/production/Client-side/Controller/LoginPageController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client-side/src/Controller/LoginPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client-side/src/Controller/LoginPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Messages/ClientMessages/LogInMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Messages/ClientMessages/LogInMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Messages/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Messages/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Messages/ServerMessages/FindUserMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Messages/ServerMessages/FindUserMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server-side/out/production/Server-side/UserHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Server-side/out/production/Server-side/UserHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server-side/src/UserHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Server-side/src/UserHandler.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1tHzZqmKXImwBei64zFo1vjhMwl" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b57bdbcf-3d41-4a25-b48d-9bd6675f4e9e" name="Default Changelist" comment="" />
+      <created>1622440861433</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1622440861433</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

@@ -3,13 +3,13 @@ package Messages.ServerMessages;
 import Messages.Message;
 
 public class FindUserMessage implements Message {
-    boolean userFound;
+    private final boolean isUserFound;
 
     public FindUserMessage(boolean userFound) {
-        this.userFound = userFound;
+        this.isUserFound = userFound;
     }
 
     public boolean isUserFound() {
-        return userFound;
+        return isUserFound;
     }
 }

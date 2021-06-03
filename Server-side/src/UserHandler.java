@@ -1,4 +1,5 @@
-import Messages.ClientMessages.LogInMessage;
+import Messages.ClientMessages.*;
+import Messages.Message;
 import Messages.ServerMessages.FindUserMessage;
 
 import java.io.IOException;
@@ -23,40 +24,36 @@ public class UserHandler implements Runnable {
     @Override
     public void run() {
         while (!socket.isClosed()) {
-//            Object o = null;
+//asdasdfasdfasdfasdfasdfasdfasdfasdf
 
-            String username = null;
+            Message message = null;
             try {
-//                o = in.readObject();
-                username =(String) in.readObject();
-                System.out.println("username is gotten");
+                message = (Message) in.readObject();
+                System.out.println("Message is gotten");
             } catch (Exception e) {
-                System.err.println("Error1");
+                System.err.println("Message couldn't be gotten");
             }
 
-            System.out.println("here~~~~~~~~~");
-//            if(o instanceof LogInMessage){
-//                System.out.println("the message was : Login message.");
+            if (message instanceof LogInMessage) {
+                System.out.println("the message was : Login message.");
 
-//                LogInMessage l = (LogInMessage)o;
-            if (s.contains(username)) {
-                try {
-//                        out.writeObject(new FindUserMessage(true));
-                    out.writeObject("true");
-                    System.out.println("true message is sent");
-                } catch (IOException e) {
-                    System.err.println("Error2");
-                }
-            } else {
-                try {
-//                        out.writeObject(new FindUserMessage(false));
-                    out.writeObject("false");
-                    System.out.println("false message is sent");
-                } catch (IOException e) {
-                    System.err.println("Error3");
+                LogInMessage logInMessage = (LogInMessage) message;
+                if (s.contains(logInMessage.getUsername())) {
+                    try {
+                        out.writeObject(new FindUserMessage(true));
+                        System.out.println("user is found!");
+                    } catch (IOException e) {
+                        System.err.println("true FindUserMessage couldn't be sent!");
+                    }
+                } else {
+                    try {
+                        out.writeObject(new FindUserMessage(false));
+                        System.out.println("~ user not found!");
+                    } catch (IOException e) {
+                        System.err.println("false FindUserMessage couldn't be sent!");
+                    }
                 }
             }
-//            }
         }
     }
 }

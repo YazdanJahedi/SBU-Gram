@@ -10,11 +10,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 
-import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.net.Socket;
 
 import Model.PageLoader;
 
@@ -70,38 +68,31 @@ public class LoginPageController {
 
     public void logIn(MouseEvent mouseEvent) {
         String username = usernameField.getText();
-//        String password;
-//        if (shownPasswordField.isVisible())
-//            password = shownPasswordField.getText();
-//        else
-//            password = hiddenPasswordField.getText();
+        String password;
+        if (shownPasswordField.isVisible())
+            password = shownPasswordField.getText();
+        else
+            password = hiddenPasswordField.getText();
 
         try {
-            out.writeObject(username);
-//            out.writeObject(new LogInMessage(username, password));
-//            System.out.println("log in message is sent!");
-            System.out.println("user name is sent");
+            out.writeObject(new LogInMessage(username , password));
+            System.out.println("logIn message is sent!");
         } catch (IOException e) {
             System.err.println("~ log in page -> lonIn method -> send longInMessage : ERROR");
         }
 
-//        FindUserMessage findUserMessage = null;
-        String answer = null;
+        FindUserMessage findUserMessage = null;
         try {
-//            Object o = in.readObject();
-//            findUserMessage = (FindUserMessage) o;
-            answer =(String) in.readObject();
-            System.out.println("answer is :" + answer);
+            findUserMessage = (FindUserMessage) in.readObject();
+            System.out.println("Is user found?  :" + findUserMessage.isUserFound());
             System.out.println("----------------");
-//            System.out.println("FindUserMessage is received");
         } catch (Exception e) {
             System.err.println("~ log in page -> lonIn method -> read FindUserMessage : ERROR");
         }
 
 //        assert findUserMessage != null;
-        assert answer != null;
-        if (answer.equals("true")) {
-            // and also wasn't "" (empty field) ...
+        assert findUserMessage != null;
+        if (findUserMessage.isUserFound()) {
             wrongPasswordLabel.setVisible(false);
             resetPasswordLabel.setVisible(false);
             resetPasswordLink.setVisible(false);
