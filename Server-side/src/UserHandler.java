@@ -11,6 +11,8 @@ public class UserHandler implements Runnable {
     ObjectInputStream in;
     ObjectOutputStream out;
 
+    String username;
+
     public UserHandler(Socket socket) throws IOException {
         this.socket = socket;
         in = new ObjectInputStream(socket.getInputStream());
@@ -26,10 +28,12 @@ public class UserHandler implements Runnable {
                 System.out.println("Message is gotten");
             } catch (Exception e) {
                 System.err.println("Message couldn't be gotten");
+                break;
             }
 
 
             if (message instanceof LogInMessage) {
+                username = ((LogInMessage) message).getUsername();
                 Message answer = MessageHandler.loginHandler((LogInMessage) message);
                 try {
                     out.writeObject(answer);
@@ -37,9 +41,21 @@ public class UserHandler implements Runnable {
                     System.err.println("FindUserMessage couldn't be sent!");
                 }
 
-            } if (message instanceof SignUpMessage){
-
+            } else if (message instanceof SignUpMessage){
+                username = ((SignUpMessage) message).getUsername();
+                Message answer = MessageHandler.SignupHandler((SignUpMessage) message);
+                try {
+                    out.writeObject(answer);
+                } catch (IOException e) {
+                    System.err.println("CreateAccountMessage couldn't be sent!");
+                }
             }
+        }
+
+        try {
+            socket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

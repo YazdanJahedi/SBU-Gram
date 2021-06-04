@@ -1,11 +1,13 @@
 public class User {
     final String username;
     final String password;
+    final String theQuestion;
     final String answerOfTheQuestion;
 
-    public User(String username, String password, String answerOfTheQuestion) {
+    public User(String username, String password,String theQuestion  ,String answerOfTheQuestion) {
         this.username = username;
         this.password = password;
+        this.theQuestion = theQuestion;
         this.answerOfTheQuestion = answerOfTheQuestion;
     }
 

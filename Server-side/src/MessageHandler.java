@@ -22,10 +22,17 @@ public class MessageHandler {
         return new FindUserMessage(false);
     }
 
-    public static Message SignupHandler(SignUpMessage signUpMessage){
-        if(dataBase.getData().containsKey(signUpMessage.getUsername())){
+    public static Message SignupHandler(SignUpMessage signUpMessage) {
+        if (dataBase.getData().containsKey(signUpMessage.getUsername())) {
             return new CreateAccountMessage(false);
         }
+        dataBase.getData().
+                put(signUpMessage.getUsername(),
+                        new User(signUpMessage.getUsername(),
+                                signUpMessage.getPassword(), signUpMessage.getTheQuestion()
+                                    ,signUpMessage.getAnswerOfTheQuestion()));
+
+        System.out.println(signUpMessage.getUsername() + " 's account is created!");
         return new CreateAccountMessage(true);
     }
 }
