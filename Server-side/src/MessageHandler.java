@@ -1,7 +1,9 @@
 import Messages.ClientMessages.LogInMessage;
 import Messages.ClientMessages.MakeResetPasswordPageMessage;
+import Messages.ClientMessages.SendResetAnswerMessage;
 import Messages.ClientMessages.SignUpMessage;
 import Messages.Message;
+import Messages.ServerMessages.CheckResetAnswerMessage;
 import Messages.ServerMessages.CreateAccountMessage;
 import Messages.ServerMessages.FindUserMessage;
 import Messages.ServerMessages.SendResetQuestionMessage;
@@ -63,5 +65,12 @@ public class MessageHandler {
             return new SendResetQuestionMessage(true , dataBase.getData().get(username).theQuestion);
 
         return new SendResetQuestionMessage(false , "");
+    }
+
+    public static Message SendAnswerHandler(SendResetAnswerMessage sendResetAnswerMessage , String username){
+        if (sendResetAnswerMessage.getAnswer().equals(dataBase.getData().get(username).getAnswerOfTheQuestion()))
+            return new CheckResetAnswerMessage(true , dataBase.getData().get(username).getPassword());
+
+        return new CheckResetAnswerMessage(false , "");
     }
 }

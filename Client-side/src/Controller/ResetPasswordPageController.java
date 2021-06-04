@@ -1,6 +1,8 @@
 package Controller;
 
 import Messages.ClientMessages.MakeResetPasswordPageMessage;
+import Messages.ClientMessages.SendResetAnswerMessage;
+import Messages.ServerMessages.CheckResetAnswerMessage;
 import Messages.ServerMessages.SendResetQuestionMessage;
 import Model.Main;
 import Model.PageLoader;
@@ -57,30 +59,43 @@ public class ResetPasswordPageController {
     //
 
     public void enterUsername(MouseEvent mouseEvent) throws IOException, ClassNotFoundException {
-            out.writeObject(new MakeResetPasswordPageMessage(usernameField.getText()));
-            SendResetQuestionMessage sendResetQuestionMessage = (SendResetQuestionMessage) in.readObject();
-            if (sendResetQuestionMessage.isUserFound()){
-                usernameField.setVisible(false);
-                enterButton.setVisible(false);
-                enterUsernameLabel.setVisible(false);
-                wrongUsernameLabel.setVisible(false);
-                questionLabel.setText(sendResetQuestionMessage.getTheQuestion());
-                questionLabel.setAlignment(Pos.CENTER);
-                beforeQuestionLabel.setVisible(true);
-                questionLabel.setVisible(true);
-                answerField.setVisible(true);
-                resetButton.setVisible(true);
-            } else {
-                wrongUsernameLabel.setVisible(true);
-                beforeQuestionLabel.setVisible(false);
-                questionLabel.setVisible(false);
-                answerField.setVisible(false);
-            }
+        out.writeObject(new MakeResetPasswordPageMessage(usernameField.getText()));
+        SendResetQuestionMessage sendResetQuestionMessage = (SendResetQuestionMessage) in.readObject();
+        if (sendResetQuestionMessage.isUserFound()) {
+            usernameField.setVisible(false);
+            enterButton.setVisible(false);
+            enterUsernameLabel.setVisible(false);
+            wrongUsernameLabel.setVisible(false);
+            questionLabel.setText(sendResetQuestionMessage.getTheQuestion());
+            questionLabel.setAlignment(Pos.CENTER);
+            beforeQuestionLabel.setVisible(true);
+            questionLabel.setVisible(true);
+            answerField.setVisible(true);
+            resetButton.setVisible(true);
+        } else {
+            wrongUsernameLabel.setVisible(true);
+            beforeQuestionLabel.setVisible(false);
+            questionLabel.setVisible(false);
+            answerField.setVisible(false);
+        }
     }
 
-    
-    public void resetPassword(MouseEvent mouseEvent) {
 
+    public void resetPassword(MouseEvent mouseEvent) throws IOException, ClassNotFoundException {
+        out.writeObject(new SendResetAnswerMessage(answerField.getText()));
+        CheckResetAnswerMessage checkResetAnswerMessage = (CheckResetAnswerMessage) in.readObject();
+
+        if (checkResetAnswerMessage.isAnswerTrue()) {
+            beforePasswordLabel.setVisible(true);
+            passwordLiable.setText(checkResetAnswerMessage.getPassword());
+            passwordLiable.setAlignment(Pos.CENTER);
+            passwordLiable.setVisible(true);
+            wrongAnswerLabel.setVisible(false);
+        } else {
+             wrongAnswerLabel.setVisible(true);
+             beforePasswordLabel.setVisible(false);
+             passwordLiable.setVisible(false);
+        }
     }
 
 }

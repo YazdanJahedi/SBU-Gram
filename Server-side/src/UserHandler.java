@@ -42,6 +42,8 @@ public class UserHandler implements Runnable {
             } else if (message instanceof MakeResetPasswordPageMessage){
                 username = ((MakeResetPasswordPageMessage) message).getUsername();
                 answer = MessageHandler.makeResetPasswordPage((MakeResetPasswordPageMessage)message, username);
+            } else if(message instanceof SendResetAnswerMessage){
+                answer = MessageHandler.SendAnswerHandler((SendResetAnswerMessage) message , username);
             }
 
 
