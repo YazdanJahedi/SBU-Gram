@@ -11,7 +11,7 @@ public class UserHandler implements Runnable {
     ObjectInputStream in;
     ObjectOutputStream out;
 
-    String username;
+    String username = null;
 
     public UserHandler(Socket socket) throws IOException {
         this.socket = socket;
@@ -25,7 +25,7 @@ public class UserHandler implements Runnable {
             Message message = null;
             try {
                 message = (Message) in.readObject();
-                System.out.println("Message is gotten");
+                System.out.println("a client has sent a message...");
             } catch (Exception e) {
                 System.err.println("Message couldn't be gotten");
                 break;

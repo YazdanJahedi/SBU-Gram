@@ -86,6 +86,7 @@ public class SignUpPageController {
 
     public void nextPage(MouseEvent mouseEvent) throws IOException, ClassNotFoundException {
         boolean everyThingIsOk = true;
+
         String username = usernameFiled.getText();
         String password;
         if (hiddenPasswordField.isVisible())
@@ -97,12 +98,12 @@ public class SignUpPageController {
         String answer = answerFiled.getText();
 
         if (username.equals("") || password.equals("") || confirmPassword.equals("") || answer.equals("")) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Please complete all fields", ButtonType.CANCEL);
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please complete all fields!", ButtonType.CANCEL);
             alert.showAndWait();
             return;
         }
         if (!theQuestionIsChosen) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Please choose a question and answer it!", ButtonType.CANCEL);
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please choose a question then answer it!", ButtonType.CANCEL);
             alert.showAndWait();
             return;
         }
@@ -113,18 +114,20 @@ public class SignUpPageController {
         wrongUsername.setVisible(false);
         wrongPassword.setVisible(false);
 
-        out.writeObject(new SignUpMessage(username , password , question , answer));
+        out.writeObject(new SignUpMessage(username, password, confirmPassword, question, answer));
         CreateAccountMessage createAccountMessage = (CreateAccountMessage) in.readObject();
 
-        if (createAccountMessage.isUsernameValid()) {
+        if (!createAccountMessage.isUsernameValid()) {
             wrongUsername.setVisible(true);
             everyThingIsOk = false;
         }
-        if (password.length() < 8) {
+
+        if (!createAccountMessage.isPasswordValid()) {
             wrongPassword.setVisible(true);
             everyThingIsOk = false;
         }
-        if (!password.equals(confirmPassword)) {
+
+        if (!createAccountMessage.isConfirmPasswordValid()) {
             wrongConfirm.setVisible(true);
             everyThingIsOk = false;
         }

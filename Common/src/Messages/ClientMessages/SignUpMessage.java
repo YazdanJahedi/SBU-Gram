@@ -5,12 +5,14 @@ import Messages.Message;
 public class SignUpMessage implements Message {
     private final String username;
     private final String password;
+    private final String confirmPassword;
     private final String theQuestion;
     private final String answerOfTheQuestion;
 
-    public SignUpMessage(String username, String password ,String theQuestion , String answerOfTheQuestion) {
+    public SignUpMessage(String username, String password ,String confirmPassword ,String theQuestion , String answerOfTheQuestion) {
         this.username = username;
         this.password = password;
+        this.confirmPassword = confirmPassword;
         this.answerOfTheQuestion = answerOfTheQuestion;
         this.theQuestion = theQuestion;
     }
@@ -31,4 +33,7 @@ public class SignUpMessage implements Message {
         return answerOfTheQuestion;
     }
 
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
 }
