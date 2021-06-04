@@ -1,8 +1,10 @@
 import Messages.ClientMessages.LogInMessage;
+import Messages.ClientMessages.MakeResetPasswordPageMessage;
 import Messages.ClientMessages.SignUpMessage;
 import Messages.Message;
 import Messages.ServerMessages.CreateAccountMessage;
 import Messages.ServerMessages.FindUserMessage;
+import Messages.ServerMessages.SendResetQuestionMessage;
 
 public class MessageHandler {
     static DataBase dataBase = DataBase.getInstance();
@@ -25,7 +27,6 @@ public class MessageHandler {
         System.out.println("--------------------");
         return new FindUserMessage(false);
     }
-
 
     public static Message SignupHandler(SignUpMessage signUpMessage) {
         System.out.println("the message was : SignUP message");
@@ -55,5 +56,12 @@ public class MessageHandler {
         }
         System.out.println("------------------");
         return answer;
+    }
+
+    public static Message makeResetPasswordPage(MakeResetPasswordPageMessage makeResetPasswordPageMessage , String username){
+        if (dataBase.getData().containsKey(makeResetPasswordPageMessage.getUsername()))
+            return new SendResetQuestionMessage(true , dataBase.getData().get(username).theQuestion);
+
+        return new SendResetQuestionMessage(false , "");
     }
 }

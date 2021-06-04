@@ -1,6 +1,7 @@
 package Controller;
 
 import Messages.ClientMessages.LogInMessage;
+import Messages.ClientMessages.MakeResetPasswordPageMessage;
 import Messages.ServerMessages.FindUserMessage;
 import Model.Main;
 import javafx.animation.RotateTransition;
@@ -67,9 +68,6 @@ public class LoginPageController {
     }
 
 
-    //
-
-
     public void logIn(MouseEvent mouseEvent) {
         String username = usernameField.getText();
         String password;
@@ -94,7 +92,6 @@ public class LoginPageController {
             System.err.println("~ log in page -> lonIn method -> read FindUserMessage : ERROR");
         }
 
-//        assert findUserMessage != null;
         assert findUserMessage != null;
         if (findUserMessage.isUserFound()) {
             wrongPasswordLabel.setVisible(false);

@@ -1,7 +1,11 @@
 package Controller;
 
+import Messages.ClientMessages.MakeResetPasswordPageMessage;
+import Messages.ServerMessages.SendResetQuestionMessage;
+import Model.Main;
 import Model.PageLoader;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -9,10 +13,17 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 public class ResetPasswordPageController {
+    ObjectInputStream in = Main.getObjectInputStream();
+    ObjectOutputStream out = Main.getObjectOutputStream();
 
     @FXML
+    public Label enterUsernameLabel;
+    public TextField usernameField;
+    public Button enterButton;
     public Button resetButton;
     public ImageView blackBackButton;
     public ImageView redBackButton;
@@ -23,7 +34,6 @@ public class ResetPasswordPageController {
     public Label questionLabel;
     public Label wrongAnswerLabel;
     public Label wrongUsernameLabel;
-
 
     public void showRedBackButton(MouseEvent mouseEvent) {
         redBackButton.setVisible(true);
@@ -42,4 +52,35 @@ public class ResetPasswordPageController {
             System.err.println("~ Login Page is not found!");
         }
     }
+
+
+    //
+
+    public void enterUsername(MouseEvent mouseEvent) throws IOException, ClassNotFoundException {
+            out.writeObject(new MakeResetPasswordPageMessage(usernameField.getText()));
+            SendResetQuestionMessage sendResetQuestionMessage = (SendResetQuestionMessage) in.readObject();
+            if (sendResetQuestionMessage.isUserFound()){
+                usernameField.setVisible(false);
+                enterButton.setVisible(false);
+                enterUsernameLabel.setVisible(false);
+                wrongUsernameLabel.setVisible(false);
+                questionLabel.setText(sendResetQuestionMessage.getTheQuestion());
+                questionLabel.setAlignment(Pos.CENTER);
+                beforeQuestionLabel.setVisible(true);
+                questionLabel.setVisible(true);
+                answerField.setVisible(true);
+                resetButton.setVisible(true);
+            } else {
+                wrongUsernameLabel.setVisible(true);
+                beforeQuestionLabel.setVisible(false);
+                questionLabel.setVisible(false);
+                answerField.setVisible(false);
+            }
+    }
+
+    
+    public void resetPassword(MouseEvent mouseEvent) {
+
+    }
+
 }

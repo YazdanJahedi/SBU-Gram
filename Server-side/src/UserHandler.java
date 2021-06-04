@@ -32,24 +32,25 @@ public class UserHandler implements Runnable {
             }
 
 
+            Message answer = null;
             if (message instanceof LogInMessage) {
                 username = ((LogInMessage) message).getUsername();
-                Message answer = MessageHandler.loginHandler((LogInMessage) message);
-                try {
-                    out.writeObject(answer);
-                } catch (IOException e) {
-                    System.err.println("FindUserMessage couldn't be sent!");
-                }
-
+                answer = MessageHandler.loginHandler((LogInMessage) message);
             } else if (message instanceof SignUpMessage){
                 username = ((SignUpMessage) message).getUsername();
-                Message answer = MessageHandler.SignupHandler((SignUpMessage) message);
-                try {
-                    out.writeObject(answer);
-                } catch (IOException e) {
-                    System.err.println("CreateAccountMessage couldn't be sent!");
-                }
+                answer = MessageHandler.SignupHandler((SignUpMessage) message);
+            } else if (message instanceof MakeResetPasswordPageMessage){
+                username = ((MakeResetPasswordPageMessage) message).getUsername();
+                answer = MessageHandler.makeResetPasswordPage((MakeResetPasswordPageMessage)message, username);
             }
+
+
+            try {
+                out.writeObject(answer);
+            } catch (IOException e) {
+                System.err.println("CreateAccountMessage couldn't be sent!");
+            }
+
         }
 
         try {
