@@ -59,7 +59,11 @@ public class LoginPageController {
     }
 
     public void resetPassword(MouseEvent mouseEvent) {
-        // todo : load new page
+        try {
+            new PageLoader().load("ResetPasswordPage");
+        } catch (IOException e) {
+            System.err.println("~ resetPassword page is not found!");
+        }
     }
 
 
