@@ -6,12 +6,17 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class UserHandler implements Runnable {
     Socket socket;
     ObjectInputStream in;
     ObjectOutputStream out;
 
-    String username = null;
+    DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+
+    String username = "USER";
 
     public UserHandler(Socket socket) throws IOException {
         this.socket = socket;
@@ -25,9 +30,9 @@ public class UserHandler implements Runnable {
             Message message = null;
             try {
                 message = (Message) in.readObject();
-                System.out.println("a client has sent a message...");
             } catch (Exception e) {
-                System.err.println("Message couldn't be gotten");
+                System.out.println( username +" closed the program");
+                System.out.println("time : " +dateFormatter.format(LocalDateTime.now())+"\n");
                 break;
             }
 

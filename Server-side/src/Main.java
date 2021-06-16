@@ -8,7 +8,7 @@ public class Main {
         System.out.println("server is started!");
         while (true) {
             Socket socket = serverSocket.accept();
-            System.out.println("* Client connected!");
+            System.out.println("* a new user is connected to the server!\n");
             new Thread(new UserHandler(socket)).start();
         }
     }
