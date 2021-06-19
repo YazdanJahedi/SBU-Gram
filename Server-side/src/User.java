@@ -11,13 +11,11 @@ public class User {
         this.answerOfTheQuestion = answerOfTheQuestion;
     }
 
-    Object profileImage;
-    String firstName;
-    String lastName;
-    String bio;
-
-    // todo :   ? string or date class ?
-    String birthDate;
+    Object profileImage = null;
+    String firstName = "";
+    String lastName = "";
+    String bio = "";
+    String birthDate = "";
 
     // todo : user[]  -> followers and followings
 

@@ -27,12 +27,13 @@ public class UserHandler implements Runnable {
     @Override
     public void run() {
         while (!socket.isClosed()) {
+
             Message message = null;
             try {
                 message = (Message) in.readObject();
             } catch (Exception e) {
-                System.out.println( username +" closed the program");
-                System.out.println("time : " +dateFormatter.format(LocalDateTime.now())+"\n");
+                System.out.println(username + " closed the program");
+                System.out.println("time : " + dateFormatter.format(LocalDateTime.now()) + "\n");
                 break;
             }
 
@@ -41,21 +42,25 @@ public class UserHandler implements Runnable {
             if (message instanceof LogInMessage) {
                 username = ((LogInMessage) message).getUsername();
                 answer = MessageHandler.loginHandler((LogInMessage) message);
-            } else if (message instanceof SignUpMessage){
+            } else if (message instanceof SignUpMessage) {
                 username = ((SignUpMessage) message).getUsername();
                 answer = MessageHandler.SignupHandler((SignUpMessage) message);
-            } else if (message instanceof MakeResetPasswordPageMessage){
+            } else if (message instanceof MakeResetPasswordPageMessage) {
                 username = ((MakeResetPasswordPageMessage) message).getUsername();
-                answer = MessageHandler.makeResetPasswordPage((MakeResetPasswordPageMessage)message, username);
-            } else if(message instanceof SendResetAnswerMessage){
-                answer = MessageHandler.SendAnswerHandler((SendResetAnswerMessage) message , username);
+                answer = MessageHandler.makeResetPasswordPage((MakeResetPasswordPageMessage) message, username);
+            } else if (message instanceof SendResetAnswerMessage) {
+                answer = MessageHandler.SendAnswerHandler((SendResetAnswerMessage) message, username);
+            }
+
+            else if (message instanceof ChangeProfileMessage) {
+                answer = MessageHandler.changeProfileHandler((ChangeProfileMessage) message, username);
             }
 
 
             try {
                 out.writeObject(answer);
             } catch (IOException e) {
-                System.err.println("CreateAccountMessage couldn't be sent!");
+                System.err.println("~~ the server's answer to the client is not sent!");
             }
 
         }

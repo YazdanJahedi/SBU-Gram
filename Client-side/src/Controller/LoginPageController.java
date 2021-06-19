@@ -1,7 +1,6 @@
 package Controller;
 
 import Messages.ClientMessages.LogInMessage;
-import Messages.ClientMessages.MakeResetPasswordPageMessage;
 import Messages.ServerMessages.FindUserMessage;
 import Model.Main;
 import javafx.animation.RotateTransition;

@@ -1,12 +1,6 @@
-import Messages.ClientMessages.LogInMessage;
-import Messages.ClientMessages.MakeResetPasswordPageMessage;
-import Messages.ClientMessages.SendResetAnswerMessage;
-import Messages.ClientMessages.SignUpMessage;
 import Messages.Message;
-import Messages.ServerMessages.CheckResetAnswerMessage;
-import Messages.ServerMessages.CreateAccountMessage;
-import Messages.ServerMessages.FindUserMessage;
-import Messages.ServerMessages.SendResetQuestionMessage;
+import Messages.ClientMessages.*;
+import Messages.ServerMessages.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -75,5 +69,26 @@ public class MessageHandler {
             return new CheckResetAnswerMessage(true, dataBase.getData().get(username).getPassword());
 
         return new CheckResetAnswerMessage(false, "");
+    }
+
+    public static Message changeProfileHandler(ChangeProfileMessage changeProfileMessage, String username) {
+        User user = dataBase.getData().get(username);
+        if (user != null) {
+            user.setFirstName(changeProfileMessage.getFirstName());
+            user.setLastName(changeProfileMessage.getLastName());
+            user.setBio(changeProfileMessage.getBio());
+            user.setBirthDate(changeProfileMessage.getBirthDate());
+            user.setProfileImage(changeProfileMessage.getProfileImage());
+            System.out.println(username + " changed his/her profile information");
+            System.out.println("first name : \"" + changeProfileMessage.getFirstName() + "\"");
+            System.out.println("last name : \"" + changeProfileMessage.getLastName() + "\"");
+            System.out.println("bio : \"" + changeProfileMessage.getBio() + "\"");
+            System.out.println("birth date : \"" + changeProfileMessage.getBirthDate() + "\"");
+            System.out.println("time : " + dateFormatter.format(LocalDateTime.now()) + "\n");
+            return new IsProfileChangedMessage(true);
+        }
+        System.out.println(username + " 's try to change his/her profile is failed");
+        System.out.println("time : " + dateFormatter.format(LocalDateTime.now()) + "\n");
+        return new IsProfileChangedMessage(false);
     }
 }
