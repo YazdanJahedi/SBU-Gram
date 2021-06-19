@@ -6,17 +6,16 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class MessageHandler {
-    static DataBase dataBase = DataBase.getInstance();
-    static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+    private final static DataBase dataBase = DataBase.getInstance();
+    private final static DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 
-    public static String closeMessage(String username) {
-        String closeMessage = "";
-        closeMessage += "* " + username + " closed the program";
-        closeMessage += "time : " + dateFormatter.format(LocalDateTime.now()) + "\n";
-        return closeMessage;
+
+    public static synchronized void closeMessage(String username) {
+        System.out.println("* " + username + " closed the program");
+        System.out.println("time : " + dateFormatter.format(LocalDateTime.now()) + "\n");
     }
 
-    public static Message loginHandler(LogInMessage logInMessage) {
+    public static synchronized Message loginHandler(LogInMessage logInMessage) {
         System.out.println(logInMessage.getUsername() + " wants to login ...");
 
         if (dataBase.getData().containsKey(logInMessage.getUsername())) {
@@ -28,13 +27,14 @@ public class MessageHandler {
                 return new FindUserMessage(true);
             }
         }
+
         System.out.println(logInMessage.getUsername() + " 's username or password is incorrect");
         System.out.println("time : " + dateFormatter.format(LocalDateTime.now()) + "\n");
 
         return new FindUserMessage(false);
     }
 
-    public static Message SignupHandler(SignUpMessage signUpMessage) {
+    public static synchronized Message SignupHandler(SignUpMessage signUpMessage) {
         System.out.println(signUpMessage.getUsername() + " wants to Sign up...");
         CreateAccountMessage answer = new CreateAccountMessage();
 
@@ -64,21 +64,21 @@ public class MessageHandler {
         return answer;
     }
 
-    public static Message makeResetPasswordPage(MakeResetPasswordPageMessage makeResetPasswordPageMessage, String username) {
+    public static synchronized Message makeResetPasswordPage(MakeResetPasswordPageMessage makeResetPasswordPageMessage, String username) {
         if (dataBase.getData().containsKey(makeResetPasswordPageMessage.getUsername()))
-            return new SendResetQuestionMessage(true, dataBase.getData().get(username).theQuestion);
+            return new SendResetQuestionMessage(true, dataBase.getData().get(username).getTheQuestion());
 
         return new SendResetQuestionMessage(false, "");
     }
 
-    public static Message SendAnswerHandler(SendResetAnswerMessage sendResetAnswerMessage, String username) {
+    public static synchronized Message SendAnswerHandler(SendResetAnswerMessage sendResetAnswerMessage, String username) {
         if (sendResetAnswerMessage.getAnswer().equals(dataBase.getData().get(username).getAnswerOfTheQuestion()))
             return new CheckResetAnswerMessage(true, dataBase.getData().get(username).getPassword());
 
         return new CheckResetAnswerMessage(false, "");
     }
 
-    public static Message changeProfileHandler(ChangeProfileMessage changeProfileMessage, String username) {
+    public static synchronized Message changeProfileHandler(ChangeProfileMessage changeProfileMessage, String username) {
         User user = dataBase.getData().get(username);
         if (user != null) {
             user.setFirstName(changeProfileMessage.getFirstName());
@@ -86,16 +86,20 @@ public class MessageHandler {
             user.setBio(changeProfileMessage.getBio());
             user.setBirthDate(changeProfileMessage.getBirthDate());
             user.setProfileImage(changeProfileMessage.getProfileImage());
+
             System.out.println(username + " changed his/her profile information");
             System.out.println("first name : \"" + changeProfileMessage.getFirstName() + "\"");
             System.out.println("last name : \"" + changeProfileMessage.getLastName() + "\"");
             System.out.println("bio : \"" + changeProfileMessage.getBio() + "\"");
             System.out.println("birth date : \"" + changeProfileMessage.getBirthDate() + "\"");
             System.out.println("time : " + dateFormatter.format(LocalDateTime.now()) + "\n");
+
             return new IsProfileChangedMessage(true);
         }
+
         System.out.println(username + " 's try to change his/her profile is failed");
         System.out.println("time : " + dateFormatter.format(LocalDateTime.now()) + "\n");
+
         return new IsProfileChangedMessage(false);
     }
 }

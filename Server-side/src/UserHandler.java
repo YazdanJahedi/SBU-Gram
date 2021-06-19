@@ -8,13 +8,13 @@ import java.net.Socket;
 
 
 public class UserHandler implements Runnable {
-    Socket socket;
-    ObjectInputStream in;
-    ObjectOutputStream out;
+    private final Socket socket;
+    private ObjectInputStream in;
+    private ObjectOutputStream out;
 
     String username = "USER";
 
-    
+
     public UserHandler(Socket socket) {
         this.socket = socket;
         try {
@@ -33,7 +33,7 @@ public class UserHandler implements Runnable {
             try {
                 message = (Message) in.readObject();
             } catch (Exception e) {
-                System.out.println(MessageHandler.closeMessage(username));
+                MessageHandler.closeMessage(username);
                 break;
             }
 

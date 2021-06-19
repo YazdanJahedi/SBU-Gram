@@ -1,21 +1,21 @@
 public class User {
-    final String username;
-    final String password;
-    final String theQuestion;
-    final String answerOfTheQuestion;
+    private final String username;
+    private final String password;
+    private final String theQuestion;
+    private final String answerOfTheQuestion;
 
-    public User(String username, String password,String theQuestion  ,String answerOfTheQuestion) {
+    public User(String username, String password, String theQuestion, String answerOfTheQuestion) {
         this.username = username;
         this.password = password;
         this.theQuestion = theQuestion;
         this.answerOfTheQuestion = answerOfTheQuestion;
     }
 
-    Object profileImage = null;
-    String firstName = "";
-    String lastName = "";
-    String bio = "";
-    String birthDate = "";
+    private Object profileImage = null;
+    private String firstName = "";
+    private String lastName = "";
+    private String bio = "";
+    private String birthDate = "";
 
     // todo : user[]  -> followers and followings
 
@@ -45,6 +45,10 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getTheQuestion() {
+        return theQuestion;
     }
 
     public String getAnswerOfTheQuestion() {
