@@ -8,23 +8,26 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+
 public class Main extends Application {
-    //--------------------------------------------------------------------
+    private final static int PORT = 8080;
+    private final static String HOST_IP = "127.0.0.1";
 
     private static Socket socket;
-    private static ObjectOutputStream out ;
+    private static ObjectOutputStream out;
     private static ObjectInputStream in;
 
     static {
         try {
-            socket = new Socket("127.0.0.1" , 8080);
-            System.out.println("* Client connected to server successfully");
+            socket = new Socket(HOST_IP , PORT);
+            System.out.println("* you connected to server successfully\n");
             out = new ObjectOutputStream(socket.getOutputStream());
             in = new ObjectInputStream(socket.getInputStream());
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("~ ERROR: your connection to the server is failed");
         }
     }
+
 
     public static Socket getSocket() {
         return socket;

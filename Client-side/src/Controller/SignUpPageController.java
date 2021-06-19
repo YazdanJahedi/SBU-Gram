@@ -1,8 +1,11 @@
 package Controller;
 
+import Model.Main;
+import Model.PageLoader;
+
 import Messages.ClientMessages.SignUpMessage;
 import Messages.ServerMessages.CreateAccountMessage;
-import Model.Main;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -12,13 +15,11 @@ import javafx.scene.input.MouseEvent;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.net.Socket;
 
-import Model.PageLoader;
 
 public class SignUpPageController {
-    ObjectInputStream in = Main.getObjectInputStream();
-    ObjectOutputStream out = Main.getObjectOutputStream();
+    private final ObjectInputStream IN = Main.getObjectInputStream();
+    private final ObjectOutputStream OUT = Main.getObjectOutputStream();
 
     private boolean theQuestionIsChosen = false;
 
@@ -84,7 +85,7 @@ public class SignUpPageController {
         theQuestionIsChosen = true;
     }
 
-    public void nextPage(MouseEvent mouseEvent) throws IOException, ClassNotFoundException {
+    public void nextPage(MouseEvent mouseEvent) {
         boolean everyThingIsOk = true;
 
         String username = usernameFiled.getText();
@@ -114,19 +115,28 @@ public class SignUpPageController {
         wrongUsername.setVisible(false);
         wrongPassword.setVisible(false);
 
-        out.writeObject(new SignUpMessage(username, password, confirmPassword, question, answer));
-        CreateAccountMessage createAccountMessage = (CreateAccountMessage) in.readObject();
+        try {
+            OUT.writeObject(new SignUpMessage(username, password, confirmPassword, question, answer));
+        } catch (IOException e) {
+            System.err.println("~ ERROR: SignUpMessage is not sent");
+        }
 
+        CreateAccountMessage createAccountMessage = null;
+        try {
+            createAccountMessage = (CreateAccountMessage) IN.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("~ ERROR: answer of SingUpMessage is not received");
+        }
+
+        assert createAccountMessage != null;
         if (!createAccountMessage.isUsernameValid()) {
             wrongUsername.setVisible(true);
             everyThingIsOk = false;
         }
-
         if (!createAccountMessage.isPasswordValid()) {
             wrongPassword.setVisible(true);
             everyThingIsOk = false;
         }
-
         if (!createAccountMessage.isConfirmPasswordValid()) {
             wrongConfirm.setVisible(true);
             everyThingIsOk = false;
@@ -136,7 +146,7 @@ public class SignUpPageController {
             try {
                 new PageLoader().load("MakeProfilePage");
             } catch (IOException e) {
-                System.err.println("~ MakeProfilePage is not found!");
+                System.err.println("~ ERROR: MakeProfilePage is not found");
             }
         }
     }

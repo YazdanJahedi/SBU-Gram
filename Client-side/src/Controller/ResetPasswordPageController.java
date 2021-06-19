@@ -1,11 +1,13 @@
 package Controller;
 
+import Model.Main;
+import Model.PageLoader;
+
 import Messages.ClientMessages.MakeResetPasswordPageMessage;
 import Messages.ClientMessages.SendResetAnswerMessage;
 import Messages.ServerMessages.CheckResetAnswerMessage;
 import Messages.ServerMessages.SendResetQuestionMessage;
-import Model.Main;
-import Model.PageLoader;
+
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -18,9 +20,10 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+
 public class ResetPasswordPageController {
-    ObjectInputStream in = Main.getObjectInputStream();
-    ObjectOutputStream out = Main.getObjectOutputStream();
+    private final ObjectInputStream IN = Main.getObjectInputStream();
+    private final ObjectOutputStream OUT = Main.getObjectOutputStream();
 
     @FXML
     public Label enterUsernameLabel;
@@ -37,6 +40,7 @@ public class ResetPasswordPageController {
     public Label wrongAnswerLabel;
     public Label wrongUsernameLabel;
 
+
     public void showRedBackButton(MouseEvent mouseEvent) {
         redBackButton.setVisible(true);
         blackBackButton.setVisible(false);
@@ -51,16 +55,25 @@ public class ResetPasswordPageController {
         try {
             new PageLoader().load("LogInPage");
         } catch (IOException e) {
-            System.err.println("~ Login Page is not found!");
+            System.err.println("~ ERROR: LogInPage is not found!");
         }
     }
 
+    public void enterUsername(MouseEvent mouseEvent) {
+        try {
+            OUT.writeObject(new MakeResetPasswordPageMessage(usernameField.getText()));
+        } catch (IOException e) {
+            System.err.println("~ ERROR: MakeResetPasswordPageMessages is not sent");
+        }
 
-    //
+        SendResetQuestionMessage sendResetQuestionMessage = null;
+        try {
+            sendResetQuestionMessage = (SendResetQuestionMessage) IN.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("~ ERROR: answer of MakeResetPasswordPageMessage is not received");
+        }
 
-    public void enterUsername(MouseEvent mouseEvent) throws IOException, ClassNotFoundException {
-        out.writeObject(new MakeResetPasswordPageMessage(usernameField.getText()));
-        SendResetQuestionMessage sendResetQuestionMessage = (SendResetQuestionMessage) in.readObject();
+        assert sendResetQuestionMessage != null;
         if (sendResetQuestionMessage.isUserFound()) {
             usernameField.setVisible(false);
             enterButton.setVisible(false);
@@ -80,11 +93,21 @@ public class ResetPasswordPageController {
         }
     }
 
+    public void resetPassword(MouseEvent mouseEvent) {
+        try {
+            OUT.writeObject(new SendResetAnswerMessage(answerField.getText()));
+        } catch (IOException e) {
+            System.err.println(" ERROR: SendResetAnswerMessage is not sent");
+        }
 
-    public void resetPassword(MouseEvent mouseEvent) throws IOException, ClassNotFoundException {
-        out.writeObject(new SendResetAnswerMessage(answerField.getText()));
-        CheckResetAnswerMessage checkResetAnswerMessage = (CheckResetAnswerMessage) in.readObject();
+        CheckResetAnswerMessage checkResetAnswerMessage = null;
+        try {
+            checkResetAnswerMessage = (CheckResetAnswerMessage) IN.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("~ ERROR: answer of SendResetAnswerMessage is not received");
+        }
 
+        assert checkResetAnswerMessage != null;
         if (checkResetAnswerMessage.isAnswerTrue()) {
             beforePasswordLabel.setVisible(true);
             passwordLiable.setText(checkResetAnswerMessage.getPassword());
@@ -92,9 +115,9 @@ public class ResetPasswordPageController {
             passwordLiable.setVisible(true);
             wrongAnswerLabel.setVisible(false);
         } else {
-             wrongAnswerLabel.setVisible(true);
-             beforePasswordLabel.setVisible(false);
-             passwordLiable.setVisible(false);
+            wrongAnswerLabel.setVisible(true);
+            beforePasswordLabel.setVisible(false);
+            passwordLiable.setVisible(false);
         }
     }
 

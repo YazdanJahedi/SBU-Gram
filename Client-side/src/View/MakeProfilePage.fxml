@@ -20,7 +20,7 @@
             <Image url="@../Images/page-design/downDesign.png" />
          </image>
       </ImageView>
-      <Button fx:id="addProfileImageButton" layoutX="179.0" layoutY="158.0" mnemonicParsing="false" onMouseClicked="#addProfileImage" text="add profile photo" />
+      <Button fx:id="addProfileImageButton" layoutX="179.0" layoutY="158.0" mnemonicParsing="false" onMouseClicked="#chooseProfileImage" text="add profile photo" />
       <Button fx:id="doneButton" layoutX="171.0" layoutY="533.0" mnemonicParsing="false" onMouseClicked="#changeProfile" text="Done !" />
       <ImageView fx:id="profileImage" fitHeight="60.0" fitWidth="60.0" layoutX="93.0" layoutY="141.0" pickOnBounds="true" preserveRatio="true">
          <image>

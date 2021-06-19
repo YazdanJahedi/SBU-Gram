@@ -1,8 +1,11 @@
 package Controller;
 
+import Model.Main;
+import Model.PageLoader;
+
 import Messages.ClientMessages.LogInMessage;
 import Messages.ServerMessages.FindUserMessage;
-import Model.Main;
+
 import javafx.animation.RotateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -14,11 +17,10 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import Model.PageLoader;
 
 public class LoginPageController {
-    ObjectInputStream in = Main.getObjectInputStream();
-    ObjectOutputStream out = Main.getObjectOutputStream();
+    private final ObjectInputStream IN = Main.getObjectInputStream();
+    private final ObjectOutputStream OUT = Main.getObjectOutputStream();
 
     @FXML
     public PasswordField hiddenPasswordField;
@@ -31,6 +33,7 @@ public class LoginPageController {
     public Label wrongPasswordLabel;
     public Hyperlink resetPasswordLink;
     public Label resetPasswordLabel;
+
 
     public void logoMovement(MouseEvent mouseEvent) {
         RotateTransition logo = new RotateTransition(new Duration(700), SBU_logo);
@@ -66,7 +69,6 @@ public class LoginPageController {
         }
     }
 
-
     public void logIn(MouseEvent mouseEvent) {
         String username = usernameField.getText();
         String password;
@@ -75,20 +77,18 @@ public class LoginPageController {
         else
             password = hiddenPasswordField.getText();
 
+
         try {
-            out.writeObject(new LogInMessage(username , password));
-            System.out.println("logIn message is sent!");
+            OUT.writeObject(new LogInMessage(username, password));
         } catch (IOException e) {
-            System.err.println("~ log in page -> lonIn method -> send longInMessage : ERROR");
+            System.err.println("~ ERROR: LogInMessage is not sent");
         }
 
         FindUserMessage findUserMessage = null;
         try {
-            findUserMessage = (FindUserMessage) in.readObject();
-            System.out.println("Is user found?  :" + findUserMessage.isUserFound());
-            System.out.println("----------------");
+            findUserMessage = (FindUserMessage) IN.readObject();
         } catch (Exception e) {
-            System.err.println("~ log in page -> lonIn method -> read FindUserMessage : ERROR");
+            System.err.println("~ ERROR: answer of LogInMessage is not received");
         }
 
         assert findUserMessage != null;
