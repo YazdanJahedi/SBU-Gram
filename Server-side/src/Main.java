@@ -3,12 +3,30 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        ServerSocket serverSocket = new ServerSocket(8080);
-        System.out.println("server is started!");
+    private final static int PORT = 8080;
+
+    public static void main(String[] args)  {
+        ServerSocket serverSocket;
+        try {
+            serverSocket = new ServerSocket(PORT);
+        } catch (IOException e) {
+            System.err.println("~ ERROR: server socket can not be opened");
+            System.err.println("~ Please try again to open the server");
+            return;
+        }
+
+        System.out.println("*** the server socket is opened!\n\n");
         while (true) {
-            Socket socket = serverSocket.accept();
-            System.out.println("* a new user is connected to the server!\n");
+            Socket socket = null;
+            try {
+                socket = serverSocket.accept();
+            } catch (IOException e) {
+                System.err.println("~ server couldn't accept a client");
+            }
+
+            System.out.println("* a new client is connected to the server!\n");
+
+            assert socket != null;
             new Thread(new UserHandler(socket)).start();
         }
     }

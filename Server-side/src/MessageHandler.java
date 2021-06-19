@@ -9,6 +9,13 @@ public class MessageHandler {
     static DataBase dataBase = DataBase.getInstance();
     static final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 
+    public static String closeMessage(String username) {
+        String closeMessage = "";
+        closeMessage += "* " + username + " closed the program";
+        closeMessage += "time : " + dateFormatter.format(LocalDateTime.now()) + "\n";
+        return closeMessage;
+    }
+
     public static Message loginHandler(LogInMessage logInMessage) {
         System.out.println(logInMessage.getUsername() + " wants to login ...");
 

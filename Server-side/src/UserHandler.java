@@ -6,34 +6,34 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class UserHandler implements Runnable {
     Socket socket;
     ObjectInputStream in;
     ObjectOutputStream out;
 
-    DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-
     String username = "USER";
 
-    public UserHandler(Socket socket) throws IOException {
+    
+    public UserHandler(Socket socket) {
         this.socket = socket;
-        in = new ObjectInputStream(socket.getInputStream());
-        out = new ObjectOutputStream(socket.getOutputStream());
+        try {
+            in = new ObjectInputStream(socket.getInputStream());
+            out = new ObjectOutputStream(socket.getOutputStream());
+        } catch (IOException e) {
+            System.err.println("~ ERROR: the server can't make streams to the client side");
+        }
     }
 
     @Override
     public void run() {
         while (!socket.isClosed()) {
 
-            Message message = null;
+            Message message;
             try {
                 message = (Message) in.readObject();
             } catch (Exception e) {
-                System.out.println(username + " closed the program");
-                System.out.println("time : " + dateFormatter.format(LocalDateTime.now()) + "\n");
+                System.out.println(MessageHandler.closeMessage(username));
                 break;
             }
 
@@ -50,9 +50,7 @@ public class UserHandler implements Runnable {
                 answer = MessageHandler.makeResetPasswordPage((MakeResetPasswordPageMessage) message, username);
             } else if (message instanceof SendResetAnswerMessage) {
                 answer = MessageHandler.SendAnswerHandler((SendResetAnswerMessage) message, username);
-            }
-
-            else if (message instanceof ChangeProfileMessage) {
+            } else if (message instanceof ChangeProfileMessage) {
                 answer = MessageHandler.changeProfileHandler((ChangeProfileMessage) message, username);
             }
 
@@ -60,7 +58,7 @@ public class UserHandler implements Runnable {
             try {
                 out.writeObject(answer);
             } catch (IOException e) {
-                System.err.println("~~ the server's answer to the client is not sent!");
+                System.err.println("~ERROR: the server's answer is not sent to the client");
             }
 
         }
@@ -68,7 +66,7 @@ public class UserHandler implements Runnable {
         try {
             socket.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("~ ERROR: the server-side socket of " + username + " can't be closed");
         }
     }
 }
