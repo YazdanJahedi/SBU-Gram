@@ -96,7 +96,11 @@ public class LoginPageController {
             wrongPasswordLabel.setVisible(false);
             resetPasswordLabel.setVisible(false);
             resetPasswordLink.setVisible(false);
-            // todo : load new page
+            try {
+                new PageLoader().load("Homepage");
+            } catch (IOException e) {
+                System.err.println("~ ERROR: HomePage is not found");
+            }
         } else {
             wrongPasswordLabel.setVisible(true);
             resetPasswordLabel.setVisible(true);
