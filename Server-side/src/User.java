@@ -11,7 +11,7 @@ public class User {
         this.answerOfTheQuestion = answerOfTheQuestion;
     }
 
-    private Object profileImage = null;
+    private String profileImage = "";
     private String firstName = "";
     private String lastName = "";
     private String bio = "";
@@ -35,7 +35,7 @@ public class User {
         this.birthDate = birthDate;
     }
 
-    public void setProfileImage(Object profileImage) {
+    public void setProfileImage(String profileImage) {
         this.profileImage = profileImage;
     }
 

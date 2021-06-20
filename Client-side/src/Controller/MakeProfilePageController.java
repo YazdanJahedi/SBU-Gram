@@ -68,13 +68,11 @@ public class MakeProfilePageController {
         String birthDate = "";
         if (birthDateField.getValue() != null)
             birthDate = birthDateField.getValue().toString();
-
-        // todo :
-        //  Image profImage = profileImage.getImage();
+        String profileImagePath = profileImage.getImage().getUrl();
 
         try {
             // todo :
-            OUT.writeObject(new ChangeProfileMessage(firstName, lastName, bio, birthDate, new String("123")/*profImage*/));
+            OUT.writeObject(new ChangeProfileMessage(firstName, lastName, bio, birthDate, profileImagePath));
         } catch (IOException e) {
             System.err.println("~ ERROR: ChangeProfileMessage is not sent");
         }

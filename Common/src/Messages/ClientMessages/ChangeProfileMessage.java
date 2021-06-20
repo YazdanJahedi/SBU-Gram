@@ -3,26 +3,26 @@ package Messages.ClientMessages;
 import Messages.Message;
 
 public class ChangeProfileMessage implements Message {
-    private final String FirstName;
-    private final String LastName;
+    private final String firstName;
+    private final String lastName;
     private final String bio;
     private final String birthDate;
-    private final Object profileImage;
+    private final String profileImage;
 
-    public ChangeProfileMessage(String firstName, String lastName, String bio, String birthDate, Object profileImage) {
-        FirstName = firstName;
-        LastName = lastName;
+    public ChangeProfileMessage(String firstName, String lastName, String bio, String birthDate, String profileImage) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.bio = bio;
         this.birthDate = birthDate;
         this.profileImage = profileImage;
     }
 
     public String getFirstName() {
-        return FirstName;
+        return firstName;
     }
 
     public String getLastName() {
-        return LastName;
+        return lastName;
     }
 
     public String getBio() {
@@ -33,7 +33,7 @@ public class ChangeProfileMessage implements Message {
         return birthDate;
     }
 
-    public Object getProfileImage() {
+    public String getProfileImage() {
         return profileImage;
     }
 }

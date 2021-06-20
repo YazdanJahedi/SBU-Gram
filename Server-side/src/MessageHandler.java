@@ -90,6 +90,7 @@ public class MessageHandler {
             System.out.println(username + " changed his/her profile information");
             System.out.println("first name : \"" + changeProfileMessage.getFirstName() + "\"");
             System.out.println("last name : \"" + changeProfileMessage.getLastName() + "\"");
+            System.out.println("profile image path : " + changeProfileMessage.getProfileImage());
             System.out.println("bio : \"" + changeProfileMessage.getBio() + "\"");
             System.out.println("birth date : \"" + changeProfileMessage.getBirthDate() + "\"");
             System.out.println("time : " + dateFormatter.format(LocalDateTime.now()) + "\n");
