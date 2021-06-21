@@ -44,34 +44,34 @@
         <content>
             <Pane style="-fx-background-color: #D7EBFF;">
                <children>
-                  <ImageView fx:id="profileImage" fitHeight="110.0" fitWidth="110.0" layoutX="22.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="usernameLabel" layoutX="12.0" layoutY="16.0" prefHeight="22.0" prefWidth="284.0" text="username" textFill="#0e0ec3">
+                  <ImageView fx:id="profileImage" fitHeight="110.0" fitWidth="110.0" layoutX="22.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="usernameLabel" layoutX="22.0" layoutY="16.0" prefHeight="22.0" prefWidth="269.0" text="username" textFill="#0e0ec3">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Label>
-                  <Label fx:id="nameLabel" layoutX="22.0" layoutY="157.0" prefHeight="17.0" prefWidth="196.0" text="name" />
-                  <Label fx:id="birthDateLabel" layoutX="272.0" layoutY="157.0" prefHeight="17.0" prefWidth="109.0" text="birth date" />
-                  <Label fx:id="bioLabel" layoutX="22.0" layoutY="184.0" prefHeight="18.0" prefWidth="358.0" text="bio">
+                  <Label fx:id="nameLabel" layoutX="22.0" layoutY="151.0" prefHeight="17.0" prefWidth="196.0" text="name" />
+                  <Label fx:id="birthDateLabel" layoutX="272.0" layoutY="151.0" prefHeight="17.0" prefWidth="109.0" text="birth date" />
+                  <Label fx:id="bioLabel" layoutX="22.0" layoutY="174.0" prefHeight="18.0" prefWidth="358.0" text="bio">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="172.0" layoutY="73.0" text="Followers" textFill="#0e0ec3">
+                  <Label layoutX="172.0" layoutY="72.0" text="Followers" textFill="#0e0ec3">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="292.0" layoutY="73.0" text="Followings" textFill="#0e0ec3">
+                  <Label layoutX="292.0" layoutY="72.0" text="Followings" textFill="#0e0ec3">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="followersNumberLabel" layoutX="171.0" layoutY="101.0" prefHeight="17.0" prefWidth="68.0" text="num1" />
-                  <Label fx:id="followingsNumberLabel" layoutX="292.0" layoutY="101.0" prefHeight="17.0" prefWidth="74.0" text="num2" />
-                  <Button fx:id="changeProfileButton" layoutX="28.0" layoutY="221.0" mnemonicParsing="false" onContextMenuRequested="#changeProfile" prefHeight="25.0" prefWidth="147.0" text="Change profile" textFill="#0e0ec3" />
+                  <Label fx:id="followersNumberLabel" layoutX="171.0" layoutY="100.0" prefHeight="17.0" prefWidth="68.0" text="num1" />
+                  <Label fx:id="followingsNumberLabel" layoutX="292.0" layoutY="100.0" prefHeight="17.0" prefWidth="74.0" text="num2" />
+                  <Button fx:id="changeProfileButton" layoutX="28.0" layoutY="206.0" mnemonicParsing="false" onContextMenuRequested="#changeProfile" prefHeight="25.0" prefWidth="147.0" text="Change profile" textFill="#0e0ec3" />
                   <Button fx:id="logOutButton" layoutX="310.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#logOut" text="LOG OUT" textFill="#171212" />
-                  <Button fx:id="deleteAccountButton" layoutX="226.0" layoutY="222.0" mnemonicParsing="false" onContextMenuRequested="#deleteAccount" prefHeight="25.0" prefWidth="147.0" text="Delete account" textFill="#d30e0e" />
+                  <Button fx:id="deleteAccountButton" layoutX="226.0" layoutY="207.0" mnemonicParsing="false" onContextMenuRequested="#deleteAccount" prefHeight="25.0" prefWidth="147.0" text="Delete account" textFill="#d30e0e" />
                </children>
             </Pane>
         </content>
