@@ -32,10 +32,5 @@
       <TextField fx:id="bioField" layoutX="62.0" layoutY="418.0" prefHeight="25.0" prefWidth="277.0" promptText="Bio" />
       <DatePicker fx:id="birthDateField" layoutX="113.0" layoutY="331.0" maxHeight="25.0" maxWidth="165.0" minHeight="25.0" minWidth="165.0" prefHeight="25.0" prefWidth="165.0" promptText="Date of birth" />
       <Label layoutX="63.0" layoutY="398.0" text="You can write a short Bio about yourself :" />
-      <ImageView fx:id="blackBackButton" fitHeight="35.0" fitWidth="35.0" layoutX="20.0" layoutY="14.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Images/buttons/back-button.png" />
-         </image>
-      </ImageView>
    </children>
 </Pane>

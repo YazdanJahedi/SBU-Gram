@@ -69,9 +69,9 @@
                   </Label>
                   <Label fx:id="followersNumberLabel" layoutX="171.0" layoutY="100.0" prefHeight="17.0" prefWidth="68.0" text="num1" />
                   <Label fx:id="followingsNumberLabel" layoutX="292.0" layoutY="100.0" prefHeight="17.0" prefWidth="74.0" text="num2" />
-                  <Button fx:id="changeProfileButton" layoutX="24.0" layoutY="206.0" mnemonicParsing="false" onContextMenuRequested="#changeProfile" prefHeight="25.0" prefWidth="147.0" text="Change profile" textFill="#0e0ec3" />
+                  <Button fx:id="changeProfileButton" layoutX="24.0" layoutY="206.0" mnemonicParsing="false" onMouseClicked="#changeProfile" prefHeight="25.0" prefWidth="147.0" text="Change profile" textFill="#0e0ec3" />
                   <Button fx:id="logOutButton" layoutX="310.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#logOut" text="LOG OUT" textFill="#171212" />
-                  <Button fx:id="deleteAccountButton" layoutX="228.0" layoutY="207.0" mnemonicParsing="false" onContextMenuRequested="#deleteAccount" prefHeight="25.0" prefWidth="147.0" text="Delete account" textFill="#d30e0e" />
+                  <Button fx:id="deleteAccountButton" layoutX="228.0" layoutY="207.0" mnemonicParsing="false" onMouseClicked="#deleteAccount" prefHeight="25.0" prefWidth="147.0" text="Delete account" textFill="#d30e0e" />
                </children>
             </Pane>
         </content>

@@ -7,9 +7,7 @@ import Messages.ClientMessages.ChangeProfileMessage;
 import Messages.ServerMessages.IsProfileChangedMessage;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -33,7 +31,6 @@ public class MakeProfilePageController {
     public TextField lastNameFiled;
     public TextField bioField;
     public DatePicker birthDateField;
-    public ImageView blackBackButton;
 
 
     public void chooseProfileImage(MouseEvent mouseEvent) {
@@ -53,21 +50,13 @@ public class MakeProfilePageController {
         }
     }
 
-    public void goBack(MouseEvent mouseEvent) {
-        try {
-            new PageLoader().load("SignUpPage");
-        } catch (IOException e) {
-            System.err.println("~ page not found!");
-        }
-    }
-
     public void changeProfile(MouseEvent mouseEvent) {
         String firstName = firstNameField.getText();
         String lastName = lastNameFiled.getText();
         String bio = bioField.getText();
         String birthDate = "";
         if (birthDateField.getValue() != null)
-            birthDate = birthDateField.getValue().toString();
+            birthDate = birthDateField.getValue().toString().replaceAll("-" , "/");
         String profileImagePath = profileImage.getImage().getUrl();
 
         try {
@@ -87,11 +76,14 @@ public class MakeProfilePageController {
 
         assert isProfileChangedMessage != null;
         if (isProfileChangedMessage.isProfileChanged()) {
-            // todo :  better : load directly the time line page ...
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION , "Your profile information is changed successfully!" , ButtonType.OK);
+            alert.showAndWait();
+
             try {
-                new PageLoader().load("LoginPage");
+                new PageLoader().load("HomePage");
             } catch (IOException e) {
-                System.err.println("~ ERROR: LoginPage is not found!");
+                System.err.println("~ ERROR: HomePage is not found!");
             }
         } else {
             System.err.println("~ your profile is not changed");

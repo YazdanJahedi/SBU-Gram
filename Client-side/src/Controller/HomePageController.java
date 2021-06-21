@@ -8,9 +8,7 @@ import Model.PageLoader;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ContextMenuEvent;
@@ -89,10 +87,15 @@ public class HomePageController {
         }
     }
 
-    public void changeProfile(ContextMenuEvent contextMenuEvent) {
+    public void changeProfile(MouseEvent mouseEvent) {
+        try {
+            new PageLoader().load("MakeProfilePage");
+        } catch (IOException e) {
+            System.err.println("~ ERROR: MakeProfilePage is not found");
+        }
     }
 
-    public void deleteAccount(ContextMenuEvent contextMenuEvent) {
+    public void deleteAccount(MouseEvent mouseEvent) {
     }
 
     public void goToMyProfileTab(Event event) {
