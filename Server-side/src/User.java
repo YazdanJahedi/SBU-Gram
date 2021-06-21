@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
     private final String username;
     private final String password;
@@ -16,8 +19,6 @@ public class User {
     private String lastName = "";
     private String bio = "";
     private String birthDate = "";
-
-    // todo : user[]  -> followers and followings
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -71,7 +72,12 @@ public class User {
         return birthDate;
     }
 
-    public Object getProfileImage() {
+    public String getProfileImage() {
         return profileImage;
     }
+
+
+    public List<User> followers = new ArrayList<>();
+    public List<User> followings = new ArrayList<>();
+
 }

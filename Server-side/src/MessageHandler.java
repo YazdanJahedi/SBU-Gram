@@ -1,6 +1,7 @@
 import Messages.Message;
 import Messages.ClientMessages.*;
 import Messages.ServerMessages.*;
+import Messages.ServerMessages.HomePageMessages.SetProfileInformationMessage;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -102,5 +103,19 @@ public class MessageHandler {
         System.out.println("time : " + dateFormatter.format(LocalDateTime.now()) + "\n");
 
         return new IsProfileChangedMessage(false);
+    }
+
+    public static synchronized Message setProfileInformation(String username) {
+        User user = dataBase.getData().get(username);
+        return new SetProfileInformationMessage(
+                user.getUsername(),
+                user.getProfileImage(),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getBio(),
+                user.getBirthDate(),
+                Integer.toString(user.followers.size()),
+                Integer.toString(user.followings.size())
+        );
     }
 }

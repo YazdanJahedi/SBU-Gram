@@ -1,4 +1,5 @@
 import Messages.ClientMessages.*;
+import Messages.ClientMessages.HomePageMessages.AskSetProfileInformationMessage;
 import Messages.Message;
 
 import java.io.IOException;
@@ -52,6 +53,8 @@ public class UserHandler implements Runnable {
                 answer = MessageHandler.SendAnswerHandler((SendResetAnswerMessage) message, username);
             } else if (message instanceof ChangeProfileMessage) {
                 answer = MessageHandler.changeProfileHandler((ChangeProfileMessage) message, username);
+            } else if (message instanceof AskSetProfileInformationMessage){
+                answer = MessageHandler.setProfileInformation(username);
             }
 
 
