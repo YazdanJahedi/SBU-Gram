@@ -112,7 +112,7 @@
                   <Button fx:id="changeProfileButton" layoutX="24.0" layoutY="236.0" mnemonicParsing="false" onMouseClicked="#changeProfile" prefHeight="25.0" prefWidth="147.0" text="Change profile" textFill="#0e0ec3" />
                   <Button fx:id="logOutButton" layoutX="310.0" layoutY="45.0" mnemonicParsing="false" onMouseClicked="#logOut" text="LOG OUT" textFill="#171212" />
                   <Button fx:id="deleteAccountButton" layoutX="228.0" layoutY="237.0" mnemonicParsing="false" onMouseClicked="#deleteAccount" prefHeight="25.0" prefWidth="147.0" text="Delete account" textFill="#d30e0e" />
-                  <ListView layoutY="269.0" maxHeight="300.0" maxWidth="400.0" minHeight="300.0" minWidth="400.0" prefHeight="300.0" prefWidth="400.0" />
+                  <ListView fx:id="userPostsList" layoutY="269.0" maxHeight="300.0" maxWidth="400.0" minHeight="300.0" minWidth="400.0" prefHeight="300.0" prefWidth="400.0" />
                   <Label layoutX="159.0" layoutY="5.0" text="My Profile" textFill="#091fae">
                      <font>
                         <Font size="19.0" />

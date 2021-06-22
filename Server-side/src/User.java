@@ -99,7 +99,7 @@ public class User {
     public List<Post> getUserPost() {
         return userPost;
     }
-    
+
 
     public List<User> followers = new ArrayList<>();
     public List<User> followings = new ArrayList<>();

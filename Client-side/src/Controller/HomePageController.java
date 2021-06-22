@@ -5,6 +5,8 @@ import Messages.ServerMessages.HomePageMessages.SetProfileInformationMessage;
 import Model.Main;
 import Model.PageLoader;
 
+import Posts.Post;
+import javafx.collections.FXCollections;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -23,8 +25,8 @@ public class HomePageController {
     private final ObjectInputStream IN = Main.getObjectInputStream();
     private final ObjectOutputStream OUT = Main.getObjectOutputStream();
 
-    // --------------------------------------------------------------------------------------------------
-
+    // ------------------------------------------------------------------------------------------------
+    // TIME LINE TAB :
 
     @FXML
     public Tab homeTab;
@@ -33,7 +35,8 @@ public class HomePageController {
     }
 
 
-    // --------------------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------------------
+    // DIRECT MESSAGES TAB :
 
 
     @FXML
@@ -43,7 +46,10 @@ public class HomePageController {
     }
 
 
-    // --------------------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------------------
+    // SEND POST TAB :
+
+    private Post currentPost = new Post();
 
     @FXML
     public Tab sendPostTab;
@@ -79,13 +85,29 @@ public class HomePageController {
     }
 
     public void publishPost(MouseEvent mouseEvent) {
+        currentPost.setTitle(postTitleField.getText());
+        currentPost.setCaption(captionTextField.getText());
+        currentPost.setPostImagePath(postImage.getImage().getUrl());
+
+
+        // todo ....
+        //save the post in arraylist
+//        posts.add(currentPost);
+
+
+        currentPost = new Post();
+
+        postTitleField.setText("");
+        captionTextField.setText("");
+        postImage.setImage(new Image("file:/Users/macbookpro/Desktop/University/CE Term2/AP/projects/SBU-Gram/Client-side/src/Images/blank-profile/blankPic.png"));
     }
 
     public void goToNewPostTab(Event event) {
     }
 
 
-    // --------------------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------------------
+    // SEARCH TAB :
 
 
     @FXML
@@ -95,7 +117,8 @@ public class HomePageController {
     }
 
 
-    // --------------------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------------------
+    // MY PROFILE TAB :
 
 
     @FXML
@@ -110,6 +133,7 @@ public class HomePageController {
     public Button logOutButton;
     public Button changeProfileButton;
     public Button deleteAccountButton;
+    public ListView<Post> userPostsList;
 
 
     public void logOut(MouseEvent mouseEvent) {
@@ -155,6 +179,11 @@ public class HomePageController {
         nameLabel.setText(answer.getFirstName() + " " + answer.getLastName());
         birthDateLabel.setText(answer.getBirthDate());
         bioLabel.setText(answer.getBio());
+
+        //show the arraylist in listview
+//        userPostsList.setItems(FXCollections.observableArrayList(posts));
+//        userPostsList.setCellFactory(postList -> new PostItem());
+
 
     }
 }
