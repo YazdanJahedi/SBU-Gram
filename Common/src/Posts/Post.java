@@ -1,5 +1,8 @@
 package Posts;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Post {
     private String profileImagePath ;
     private String postImagePath;
@@ -8,10 +11,11 @@ public class Post {
     private String username;
     private String caption;
     private String dateAndTime;
+
     private Integer likesCounter = 0;
     private Integer repostsCounter = 0;
 
-    // todo : comments
+    private List<String> comments = new ArrayList<>();
 
 
     public Post() {
@@ -53,6 +57,10 @@ public class Post {
         this.repostsCounter = repostsCounter;
     }
 
+    public void setComments(List<String> comments) {
+        this.comments = comments;
+    }
+
     public String getProfileImagePath() {
         return profileImagePath;
     }
@@ -88,4 +96,9 @@ public class Post {
     public Integer getRepostsCounter() {
         return repostsCounter;
     }
+
+    public List<String> getComments() {
+        return comments;
+    }
+
 }
