@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="450.0" maxWidth="400.0" minHeight="450.0" minWidth="400.0" prefHeight="450.0" prefWidth="400.0" style="-fx-background-color: #88ddff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.PostItem">
+<AnchorPane maxHeight="450.0" maxWidth="400.0" minHeight="450.0" minWidth="400.0" prefHeight="450.0" prefWidth="400.0" style="-fx-background-color: #88ddff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PostItemController">
    <children>
       <Hyperlink fx:id="usernameLabel" layoutX="297.0" layoutY="95.0" onMouseClicked="#showUserProfile" prefHeight="23.0" prefWidth="101.0" text="username" />
       <TextArea fx:id="captionTextField" layoutX="18.0" layoutY="43.0" prefHeight="70.0" prefWidth="277.0" />
@@ -18,12 +17,12 @@
             <Font size="17.0" />
          </font>
       </Label>
-      <ImageView fx:id="blackLikeButton" fitHeight="35.0" fitWidth="35.0" layoutX="55.0" layoutY="377.0" onMouseClicked="#like" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="likeButton" fitHeight="35.0" fitWidth="35.0" layoutX="55.0" layoutY="377.0" onMouseClicked="#like" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/buttons/like_black.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="redLikeButton" fitHeight="35.0" fitWidth="35.0" layoutX="55.0" layoutY="375.0" onMouseClicked="#disLike" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="disLikeButton" fitHeight="35.0" fitWidth="35.0" layoutX="55.0" layoutY="375.0" onMouseClicked="#disLike" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../Images/buttons/like_red.png" />
          </image>
@@ -38,7 +37,7 @@
             <Image url="@../Images/buttons/repost.png" />
          </image>
       </ImageView>
-      <Label fx:id="likesCounterLable" layoutX="25.0" layoutY="417.0" text="counter likes" />
+      <Label fx:id="likesCounterLabel" layoutX="25.0" layoutY="417.0" text="counter likes" />
       <Label fx:id="repostsCounterLabel" layoutX="276.0" layoutY="417.0" text="counter reposts" />
       <Label fx:id="writerNameLabel" layoutX="297.0" layoutY="16.0" prefHeight="17.0" prefWidth="101.0" text="writer name" />
       <Label fx:id="dateAndTimeLabel" layoutX="19.0" layoutY="113.0" text="date &amp; time" />
