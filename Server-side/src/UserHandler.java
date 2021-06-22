@@ -1,6 +1,8 @@
 import Messages.ClientMessages.*;
+import Messages.ClientMessages.HomePageMessages.AskPublishPostMessage;
 import Messages.ClientMessages.HomePageMessages.AskSetProfileInformationMessage;
 import Messages.Message;
+import Messages.ServerMessages.HomePageMessages.PublishPostMessage;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -55,6 +57,8 @@ public class UserHandler implements Runnable {
                 answer = MessageHandler.changeProfileHandler((ChangeProfileMessage) message, username);
             } else if (message instanceof AskSetProfileInformationMessage){
                 answer = MessageHandler.setProfileInformation(username);
+            } else if(message instanceof AskPublishPostMessage){
+                answer  = MessageHandler.setPublishedPost((AskPublishPostMessage) message , username);
             }
 
 

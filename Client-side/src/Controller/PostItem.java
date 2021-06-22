@@ -3,7 +3,6 @@ package Controller;
 import Posts.Post;
 import javafx.scene.control.ListCell;
 
-import java.io.IOException;
 
 public class PostItem extends ListCell<Post> {
 
@@ -11,11 +10,7 @@ public class PostItem extends ListCell<Post> {
     public void updateItem(Post post, boolean empty) {
         super.updateItem(post, empty);
         if (post != null) {
-            try {
-                setGraphic(new PostItemController(post).init());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            setGraphic(new PostItemController(post).init());
         }
     }
 }

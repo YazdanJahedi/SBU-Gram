@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.nio.file.Paths;
 
 public class PostItemController {
-    private Post post;
+    private Post post ;
 
     @FXML
     public AnchorPane root;
@@ -33,8 +33,13 @@ public class PostItemController {
     public ImageView likeButton;
     public ImageView disLikeButton;
 
-    public PostItemController(Post post) throws IOException {
-        new PageLoader().load("postItem", this);
+    public PostItemController(Post post) {
+        try {
+            new PageLoader().load("PostItem", this);
+        } catch (IOException e) {
+            System.err.println("~ ERROR: PostItem is not found");
+            return;
+        }
         this.post = post;
     }
 

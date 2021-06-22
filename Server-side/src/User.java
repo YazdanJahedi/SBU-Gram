@@ -17,6 +17,9 @@ public class User {
     }
 
 
+    //
+
+
     private String profileImage = "";
     private String firstName = "";
     private String lastName = "";
@@ -80,8 +83,11 @@ public class User {
     }
 
 
+    //
+
+
     private final List<Post> allPosts = new ArrayList<>();
-    private final List<Post> userPost = new ArrayList<>();
+    private final List<Post> userPosts = new ArrayList<>();
 
     // todo : better to use concurrent List instead of using synchronized word in this methods
     public synchronized void addPostToAllPosts(Post post){
@@ -89,15 +95,15 @@ public class User {
     }
 
     public synchronized void addPostToUserPosts(Post post){
-        userPost.add(post);
+        userPosts.add(post);
     }
 
     public List<Post> getAllPosts() {
         return allPosts;
     }
 
-    public List<Post> getUserPost() {
-        return userPost;
+    public List<Post> getUserPosts() {
+        return userPosts;
     }
 
 

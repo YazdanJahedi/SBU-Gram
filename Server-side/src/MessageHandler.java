@@ -1,7 +1,10 @@
+import Messages.ClientMessages.HomePageMessages.AskPublishPostMessage;
 import Messages.Message;
 import Messages.ClientMessages.*;
 import Messages.ServerMessages.*;
+import Messages.ServerMessages.HomePageMessages.PublishPostMessage;
 import Messages.ServerMessages.HomePageMessages.SetProfileInformationMessage;
+import Posts.Post;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -107,7 +110,8 @@ public class MessageHandler {
 
     public static synchronized Message setProfileInformation(String username) {
         User user = dataBase.getData().get(username);
-        return new SetProfileInformationMessage(
+
+        SetProfileInformationMessage answer = new SetProfileInformationMessage(
                 user.getUsername(),
                 user.getProfileImage(),
                 user.getFirstName(),
@@ -117,5 +121,23 @@ public class MessageHandler {
                 Integer.toString(user.followers.size()),
                 Integer.toString(user.followings.size())
         );
+        answer.setUserPosts(user.getUserPosts());
+
+        return answer;
+    }
+
+    public static synchronized Message setPublishedPost(AskPublishPostMessage askPublishPostMessage,String username ){
+        Post post = askPublishPostMessage.getPost();
+        User user = dataBase.getData().get(username);
+        if(user != null) {
+            post.setProfileImagePath(user.getProfileImage());
+            post.setUsername(username);
+            post.setWriter(user.getFirstName());
+            post.setDateAndTime(dateFormatter.format(LocalDateTime.now()));
+
+            user.addPostToUserPosts(post);
+            return new PublishPostMessage(true);
+        }
+        return new PublishPostMessage(false);
     }
 }

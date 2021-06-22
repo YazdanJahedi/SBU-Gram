@@ -1,6 +1,8 @@
 package Controller;
 
+import Messages.ClientMessages.HomePageMessages.AskPublishPostMessage;
 import Messages.ClientMessages.HomePageMessages.AskSetProfileInformationMessage;
+import Messages.ServerMessages.HomePageMessages.PublishPostMessage;
 import Messages.ServerMessages.HomePageMessages.SetProfileInformationMessage;
 import Model.Main;
 import Model.PageLoader;
@@ -89,10 +91,28 @@ public class HomePageController {
         currentPost.setCaption(captionTextField.getText());
         currentPost.setPostImagePath(postImage.getImage().getUrl());
 
+        try {
+            OUT.writeObject(new AskPublishPostMessage(currentPost));
+        } catch (IOException e) {
+            System.err.println("~ ERROR: AskPublishPostMessage is not sent");
+        }
 
-        // todo ....
-        //save the post in arraylist
-//        posts.add(currentPost);
+        PublishPostMessage answer = null;
+        try {
+            answer = (PublishPostMessage)IN.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("~ ERROR: AnkPublishPostMessage answer is not received");
+        }
+
+        Alert alert;
+
+        assert answer != null;
+        if(answer.isPostPublished()){
+            alert = new Alert(Alert.AlertType.INFORMATION , "Your post is published!" , ButtonType.OK);
+        } else{
+            alert = new Alert(Alert.AlertType.ERROR , "Your post is not published because a problem!" , ButtonType.OK);
+        }
+        alert.showAndWait();
 
 
         currentPost = new Post();
@@ -181,8 +201,8 @@ public class HomePageController {
         bioLabel.setText(answer.getBio());
 
         //show the arraylist in listview
-//        userPostsList.setItems(FXCollections.observableArrayList(posts));
-//        userPostsList.setCellFactory(postList -> new PostItem());
+        userPostsList.setItems(FXCollections.observableArrayList(answer.getUserPosts()));
+        userPostsList.setCellFactory(postList -> new PostItem());
 
 
     }

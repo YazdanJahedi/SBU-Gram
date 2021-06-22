@@ -63,21 +63,14 @@ public class SetProfileInformationMessage implements Message {
 
 
     private List<Post> userPosts = new ArrayList<>();
-    private List<Post> allPosts = new ArrayList<>();
 
     public List<Post> getUserPosts() {
         return userPosts;
-    }
-
-    public List<Post> getAllPosts() {
-        return allPosts;
     }
 
     public void setUserPosts(List<Post> userPosts) {
         this.userPosts = userPosts;
     }
 
-    public void setAllPosts(List<Post> allPosts) {
-        this.allPosts = allPosts;
-    }
+
 }
