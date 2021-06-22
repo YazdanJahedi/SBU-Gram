@@ -1,0 +1,91 @@
+package Posts;
+
+public class Post {
+    private String profileImagePath ;
+    private String postImagePath;
+    private String title;
+    private String writer;
+    private String username;
+    private String caption;
+    private String dateAndTime;
+    private Integer likesCounter = 0;
+    private Integer repostsCounter = 0;
+
+    // todo : comments
+
+
+    public Post() {
+    }
+
+    public void setProfileImagePath(String profileImagePath) {
+        this.profileImagePath = profileImagePath;
+    }
+
+    public void setPostImagePath(String postImagePath) {
+        this.postImagePath = postImagePath;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setWriter(String writer) {
+        this.writer = writer;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setCaption(String caption) {
+        this.caption = caption;
+    }
+
+    public void setDateAndTime(String dateAndTime) {
+        this.dateAndTime = dateAndTime;
+    }
+
+    public void setLikesCounter(Integer likesCounter) {
+        this.likesCounter = likesCounter;
+    }
+
+    public void setRepostsCounter(Integer repostsCounter) {
+        this.repostsCounter = repostsCounter;
+    }
+
+    public String getProfileImagePath() {
+        return profileImagePath;
+    }
+
+    public String getPostImagePath() {
+        return postImagePath;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getWriter() {
+        return writer;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getCaption() {
+        return caption;
+    }
+
+    public String getDateAndTime() {
+        return dateAndTime;
+    }
+
+    public Integer getLikesCounter() {
+        return likesCounter;
+    }
+
+    public Integer getRepostsCounter() {
+        return repostsCounter;
+    }
+}
