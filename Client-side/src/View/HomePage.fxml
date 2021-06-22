@@ -84,7 +84,7 @@
         <content>
             <Pane style="-fx-background-color: #D7EBFF;">
                <children>
-                  <ImageView fx:id="profileImage" fitHeight="110.0" fitWidth="110.0" layoutX="22.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="profileImage" fitHeight="110.0" fitWidth="110.0" layoutX="22.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true" />
                   <Label fx:id="usernameLabel" layoutX="22.0" layoutY="46.0" prefHeight="22.0" prefWidth="269.0" text="username" textFill="#30307c">
                      <font>
                         <Font size="17.0" />
