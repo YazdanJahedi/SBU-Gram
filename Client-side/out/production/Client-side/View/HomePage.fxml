@@ -1,19 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <TabPane maxHeight="600.0" maxWidth="400.0" minHeight="600.0" minWidth="400.0" prefHeight="600.0" prefWidth="400.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.HomePageController">
   <tabs>
     <Tab fx:id="homeTab" closable="false" onSelectionChanged="#goToHomeTab" text="Home">
       <content>
-            <Pane style="-fx-background-color: #D7EBFF;" />
+            <Pane style="-fx-background-color: #D7EBFF;">
+               <children>
+                  <Label layoutX="157.0" layoutY="10.0" text="Time Line" textFill="#1616c6">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+                  <ListView layoutY="44.0" maxHeight="525.0" maxWidth="400.0" minHeight="525.0" minWidth="400.0" prefHeight="525.0" prefWidth="400.0" />
+                  <Line endX="362.0" layoutX="38.0" layoutY="44.0" startX="-100.0" />
+               </children></Pane>
       </content>
     </Tab>
       <Tab fx:id="directTab" closable="false" onSelectionChanged="#goToDirectTab" text="Direct message">
@@ -25,53 +39,86 @@
             </Pane>
         </content>
       </Tab>
-      <Tab fx:id="newPostTab" closable="false" onSelectionChanged="#goToNewPostTab" text="New post">
+      <Tab fx:id="sendPostTab" closable="false" onSelectionChanged="#goToNewPostTab" text="send post">
         <content>
-            <Pane style="-fx-background-color: #D7EBFF;" />
+            <Pane style="-fx-background-color: #D7EBFF;">
+               <children>
+                  <ImageView fx:id="postImage" fitHeight="300.0" fitWidth="350.0" layoutX="50.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true">
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
+                     <image>
+                        <Image url="@../Images/blank-profile/blankPic.png" />
+                     </image></ImageView>
+                  <Button fx:id="choosePostImageButton" layoutX="141.0" layoutY="509.0" mnemonicParsing="false" onMouseClicked="#chooseImage" text="Choose a photo" />
+                  <Button fx:id="publishPostButton" layoutX="284.0" layoutY="509.0" mnemonicParsing="false" onMouseClicked="#publishPost" text="Publish" textFill="#0d11d0" />
+                  <TextArea fx:id="captionTextField" layoutX="48.0" layoutY="401.0" maxHeight="100.0" maxWidth="300.0" minHeight="100.0" minWidth="300.0" prefHeight="100.0" prefWidth="300.0" promptText="Add caption ..." />
+                  <Label layoutX="160.0" layoutY="7.0" text="New Post" textFill="#140ed3">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="clearButton" layoutX="50.0" layoutY="509.0" mnemonicParsing="false" onMouseClicked="#clearPage" prefHeight="25.0" prefWidth="63.0" text="Clear" textFill="#eb1e1e" />
+                  <Line endX="277.0" layoutX="123.0" layoutY="33.0" startX="-122.99999237060547" />
+                  <TextField fx:id="postTitleField" layoutX="102.0" layoutY="52.0" maxHeight="25.0" maxWidth="200.0" minHeight="25.0" minWidth="200.0" prefHeight="25.0" prefWidth="200.0" promptText="Post's title" />
+               </children></Pane>
         </content>
       </Tab>
       <Tab fx:id="searchTab" closable="false" onSelectionChanged="#goToSearchTab" text="Search">
         <content>
             <Pane style="-fx-background-color: #D7EBFF;">
                <children>
-                  <TextField layoutX="28.0" layoutY="40.0" prefHeight="25.0" prefWidth="265.0" />
-                  <Button layoutX="309.0" layoutY="40.0" mnemonicParsing="false" text="Search" />
+                  <TextField layoutX="28.0" layoutY="64.0" prefHeight="25.0" prefWidth="265.0" promptText="Search" />
+                  <Button layoutX="309.0" layoutY="64.0" mnemonicParsing="false" text="Search" />
+                  <Line endX="232.0" layoutX="168.0" layoutY="32.0" startX="-168.0" />
+                  <Label layoutX="167.0" layoutY="4.0" text="Search" textFill="#102cb5">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
         </content>
       </Tab>
-      <Tab fx:id="MyProfileTab" closable="false" onSelectionChanged="#goToMyProfileTab" text="My profile">
+      <Tab fx:id="myProfileTab" closable="false" onSelectionChanged="#goToMyProfileTab" text="My profile">
         <content>
             <Pane style="-fx-background-color: #D7EBFF;">
                <children>
                   <ImageView fx:id="profileImage" fitHeight="110.0" fitWidth="110.0" layoutX="22.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="usernameLabel" layoutX="22.0" layoutY="16.0" prefHeight="22.0" prefWidth="269.0" text="username" textFill="#0e0ec3">
+                  <Label fx:id="usernameLabel" layoutX="22.0" layoutY="46.0" prefHeight="22.0" prefWidth="269.0" text="username" textFill="#30307c">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Label>
-                  <Label fx:id="nameLabel" layoutX="22.0" layoutY="152.0" prefHeight="17.0" prefWidth="196.0" text="name" />
-                  <Label fx:id="birthDateLabel" layoutX="272.0" layoutY="152.0" prefHeight="17.0" prefWidth="109.0" text="birth date" />
-                  <Label fx:id="bioLabel" layoutX="22.0" layoutY="174.0" prefHeight="18.0" prefWidth="358.0" text="bio">
+                  <Label fx:id="nameLabel" layoutX="22.0" layoutY="182.0" prefHeight="17.0" prefWidth="196.0" text="name" />
+                  <Label fx:id="birthDateLabel" layoutX="272.0" layoutY="182.0" prefHeight="17.0" prefWidth="109.0" text="birth date" />
+                  <Label fx:id="bioLabel" layoutX="22.0" layoutY="204.0" prefHeight="18.0" prefWidth="358.0" text="bio">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="172.0" layoutY="72.0" text="Followers" textFill="#0e0ec3">
+                  <Label layoutX="172.0" layoutY="102.0" text="Followers" textFill="#0e0ec3">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="292.0" layoutY="72.0" text="Followings" textFill="#0e0ec3">
+                  <Label layoutX="292.0" layoutY="102.0" text="Followings" textFill="#0e0ec3">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="followersNumberLabel" layoutX="171.0" layoutY="100.0" prefHeight="17.0" prefWidth="68.0" text="num1" />
-                  <Label fx:id="followingsNumberLabel" layoutX="292.0" layoutY="100.0" prefHeight="17.0" prefWidth="74.0" text="num2" />
-                  <Button fx:id="changeProfileButton" layoutX="24.0" layoutY="206.0" mnemonicParsing="false" onMouseClicked="#changeProfile" prefHeight="25.0" prefWidth="147.0" text="Change profile" textFill="#0e0ec3" />
-                  <Button fx:id="logOutButton" layoutX="310.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#logOut" text="LOG OUT" textFill="#171212" />
-                  <Button fx:id="deleteAccountButton" layoutX="228.0" layoutY="207.0" mnemonicParsing="false" onMouseClicked="#deleteAccount" prefHeight="25.0" prefWidth="147.0" text="Delete account" textFill="#d30e0e" />
+                  <Label fx:id="followersNumberLabel" layoutX="171.0" layoutY="130.0" prefHeight="17.0" prefWidth="68.0" text="num1" />
+                  <Label fx:id="followingsNumberLabel" layoutX="292.0" layoutY="130.0" prefHeight="17.0" prefWidth="74.0" text="num2" />
+                  <Button fx:id="changeProfileButton" layoutX="24.0" layoutY="236.0" mnemonicParsing="false" onMouseClicked="#changeProfile" prefHeight="25.0" prefWidth="147.0" text="Change profile" textFill="#0e0ec3" />
+                  <Button fx:id="logOutButton" layoutX="310.0" layoutY="45.0" mnemonicParsing="false" onMouseClicked="#logOut" text="LOG OUT" textFill="#171212" />
+                  <Button fx:id="deleteAccountButton" layoutX="228.0" layoutY="237.0" mnemonicParsing="false" onMouseClicked="#deleteAccount" prefHeight="25.0" prefWidth="147.0" text="Delete account" textFill="#d30e0e" />
+                  <ListView layoutY="269.0" maxHeight="300.0" maxWidth="400.0" minHeight="300.0" minWidth="400.0" prefHeight="300.0" prefWidth="400.0" />
+                  <Label layoutX="159.0" layoutY="5.0" text="My Profile" textFill="#091fae">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+                  <Line endX="294.0" layoutX="106.0" layoutY="33.0" startX="-105.99999237060547" />
                </children>
             </Pane>
         </content>

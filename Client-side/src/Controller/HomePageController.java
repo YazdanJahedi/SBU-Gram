@@ -11,9 +11,10 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -22,7 +23,7 @@ public class HomePageController {
     private final ObjectInputStream IN = Main.getObjectInputStream();
     private final ObjectOutputStream OUT = Main.getObjectOutputStream();
 
-    // ----------------------------------------------------
+    // --------------------------------------------------------------------------------------------------
 
 
     @FXML
@@ -32,7 +33,7 @@ public class HomePageController {
     }
 
 
-    // ----------------------------------------------------
+    // --------------------------------------------------------------------------------------------------
 
 
     @FXML
@@ -42,17 +43,49 @@ public class HomePageController {
     }
 
 
-    // ----------------------------------------------------
-
+    // --------------------------------------------------------------------------------------------------
 
     @FXML
-    public Tab newPostTab;
+    public Tab sendPostTab;
+    public TextField postTitleField;
+    public ImageView postImage;
+    public Button choosePostImageButton;
+    public Button publishPostButton;
+    public TextArea captionTextField;
+    public Button clearButton;
+
+
+    public void chooseImage(MouseEvent mouseEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose your post's picture");
+
+        // todo :
+//        fileChooser.getExtensionFilters().addAll(//
+//                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+//                new FileChooser.ExtensionFilter("PNG", "*.png"));
+
+        File file = fileChooser.showOpenDialog(PageLoader.getPrimaryStage());
+
+        if (file != null) {
+            Image newProfile = new Image("file:" + file.getAbsolutePath());
+            postImage.setImage(newProfile);
+        }
+    }
+
+    public void clearPage(MouseEvent mouseEvent) {
+        postTitleField.setText("");
+        captionTextField.setText("");
+        postImage.setImage(new Image("file:/Users/macbookpro/Desktop/University/CE Term2/AP/projects/SBU-Gram/Client-side/src/Images/blank-profile/blankPic.png"));
+    }
+
+    public void publishPost(MouseEvent mouseEvent) {
+    }
 
     public void goToNewPostTab(Event event) {
     }
 
 
-    // ----------------------------------------------------
+    // --------------------------------------------------------------------------------------------------
 
 
     @FXML
@@ -62,11 +95,11 @@ public class HomePageController {
     }
 
 
-    // ----------------------------------------------------
+    // --------------------------------------------------------------------------------------------------
 
 
     @FXML
-    public Tab MyProfileTab;
+    public Tab myProfileTab;
     public ImageView profileImage;
     public Label usernameLabel;
     public Label nameLabel;
