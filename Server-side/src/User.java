@@ -1,3 +1,5 @@
+import Posts.Post;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +15,7 @@ public class User {
         this.theQuestion = theQuestion;
         this.answerOfTheQuestion = answerOfTheQuestion;
     }
+
 
     private String profileImage = "";
     private String firstName = "";
@@ -76,6 +79,27 @@ public class User {
         return profileImage;
     }
 
+
+    private final List<Post> allPosts = new ArrayList<>();
+    private final List<Post> userPost = new ArrayList<>();
+
+    // todo : better to use concurrent List instead of using synchronized word in this methods
+    public synchronized void addPostToAllPosts(Post post){
+        allPosts.add(post);
+    }
+
+    public synchronized void addPostToUserPosts(Post post){
+        userPost.add(post);
+    }
+
+    public List<Post> getAllPosts() {
+        return allPosts;
+    }
+
+    public List<Post> getUserPost() {
+        return userPost;
+    }
+    
 
     public List<User> followers = new ArrayList<>();
     public List<User> followings = new ArrayList<>();
