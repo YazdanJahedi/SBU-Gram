@@ -35,7 +35,7 @@ public class HomePageController {
 
     @FXML
     public Tab homeTab;
-    private ObjectInputStream in;
+
 
     public void goToHomeTab(Event event) {
     }
@@ -142,8 +142,57 @@ public class HomePageController {
 
     @FXML
     public Tab searchTab;
+    public ImageView searchProfileImage;
+    public Label searchUsernameLabel;
+    public Label searchFollowersLabel;
+    public TextField searchField;
+    public Button searchButton;
+    public Label searchFollowingsLabel;
+    public Label searchFollowersNumberLabel;
+    public Label searchFollowingsNumberLabel;
+    public Label searchNameLabel;
+    public Label searchBirthDateLabel;
+    public Label searchBioLabel;
+    public ListView<Post> searchPostsList;
+    public Button searchUnfollowButton;
+    public Button searchFollowButton;
+    public Button searchBlockButton;
+    public Button searchMuteButton;
+    public Label searchNotFoundLabel;
+
+
+    public void search(MouseEvent mouseEvent) {
+    }
+
+    public void follow(MouseEvent mouseEvent) {
+    }
+
+    public void unfollow(MouseEvent mouseEvent) {
+    }
+
+    public void block(MouseEvent mouseEvent) {
+    }
+
+    public void mute(MouseEvent mouseEvent) {
+    }
 
     public void goToSearchTab(Event event) {
+        searchNotFoundLabel.setVisible(false);
+        searchField.setText("");
+        searchUsernameLabel.setVisible(false);
+        searchProfileImage.setVisible(false);
+        searchNameLabel.setVisible(false);
+        searchBioLabel.setVisible(false);
+        searchBirthDateLabel.setVisible(false);
+        searchFollowersLabel.setVisible(false);
+        searchFollowingsLabel.setVisible(false);
+        searchFollowersNumberLabel.setVisible(false);
+        searchFollowingsNumberLabel.setVisible(false);
+        searchBlockButton.setVisible(false);
+        searchFollowButton.setVisible(false);
+        searchUnfollowButton.setVisible(false);
+        searchMuteButton.setVisible(false);
+        searchPostsList.setVisible(false);
     }
 
 
@@ -228,4 +277,5 @@ public class HomePageController {
 //        System.out.println("2");
 
     }
+
 }
