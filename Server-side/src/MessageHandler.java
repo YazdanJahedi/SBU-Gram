@@ -178,7 +178,8 @@ public class MessageHandler {
                 searchUser.getBio(),
                 searchUser.getBirthDate(),
                 Integer.toString(searchUser.followers.size()),
-                Integer.toString(searchUser.followings.size())
+                Integer.toString(searchUser.followings.size()),
+                new ArrayList<>(searchUser.getUserPosts())
                 );
     }
 

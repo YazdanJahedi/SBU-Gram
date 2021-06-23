@@ -90,14 +90,12 @@ public class HomePageController {
     }
 
     public void publishPost(MouseEvent mouseEvent) {
-        System.out.println("publish post button is clicked");
         currentPost.setTitle(postTitleField.getText());
         currentPost.setCaption(captionTextField.getText());
         currentPost.setPostImagePath(postImage.getImage().getUrl());
 
         try {
             OUT.writeObject(new AskPublishPostMessage(currentPost));
-            System.out.println("ask publish post is sent");
         } catch (IOException e) {
             System.err.println("~ ERROR: AskPublishPostMessage is not sent");
         }
@@ -105,7 +103,6 @@ public class HomePageController {
         PublishPostMessage answer = null;
         try {
             answer = (PublishPostMessage) IN.readObject();
-            System.out.println("answer is received");
         } catch (IOException | ClassNotFoundException e) {
             System.err.println("~ ERROR: AnkPublishPostMessage answer is not received");
         }
@@ -225,6 +222,10 @@ public class HomePageController {
 
             searchFollowingsNumberLabel.setVisible(true);
             searchFollowingsNumberLabel.setText(answer.getFollowingsNumber());
+
+            //show the arraylist in listview
+            searchPostsList.setItems(FXCollections.observableArrayList(answer.getUserPosts()));
+            searchPostsList.setCellFactory(searchPostsList -> new PostItem());
         }
     }
 
@@ -304,7 +305,6 @@ public class HomePageController {
     }
 
     public void goToMyProfileTab(Event event) {
-        System.out.println("now we are in MyProfile tab!");
         try {
             OUT.writeObject(new AskSetProfileInformationMessage());
         } catch (IOException e) {
@@ -329,22 +329,10 @@ public class HomePageController {
         birthDateLabel.setText(answer.getBirthDate());
         bioLabel.setText(answer.getBio());
 
-        System.out.println("\n!!!!!!!!!!");
-        System.out.println("answer: UserPostList size:");
-        System.out.println(answer.getUserPosts().size() + "\n");
-        System.out.println("all Posts:");
-        for (Post p: answer.getUserPosts()) {
-            System.out.println(p.toString());
-        }
-        System.out.println("!!!!!!!!\n");
-
-
 
         //show the arraylist in listview
         userPostsList.setItems(FXCollections.observableArrayList(answer.getUserPosts()));
-//        System.out.println("1");
         userPostsList.setCellFactory(userPostsList -> new PostItem());
-//        System.out.println("2");
 
     }
 

@@ -1,6 +1,9 @@
 package Messages.ServerMessages.HomePageMessages;
 
 import Messages.Message;
+import Posts.Post;
+
+import java.util.ArrayList;
 
 public class SearchMessage implements Message {
     private final boolean isUserFound;
@@ -21,10 +24,12 @@ public class SearchMessage implements Message {
     private String birthDate;
     private String followersNumber;
     private String followingsNumber;
+    private ArrayList<Post> userPosts;
 
     public SearchMessage(boolean isUserFound, String username, String profileImagePath,
                          String firstName, String lastName, String bio, String birthDate ,
-                         String followersNumber , String followingNumber) {
+                         String followersNumber , String followingNumber ,
+                        ArrayList<Post> userPosts) {
         this.isUserFound = isUserFound;
         this.username = username;
         this.profileImagePath = profileImagePath;
@@ -34,6 +39,7 @@ public class SearchMessage implements Message {
         this.birthDate = birthDate;
         this.followersNumber = followersNumber;
         this.followingsNumber = followingNumber;
+        this.userPosts = userPosts;
     }
 
     public String getUsername() {
@@ -66,5 +72,9 @@ public class SearchMessage implements Message {
 
     public String getFollowingsNumber() {
         return followingsNumber;
+    }
+
+    public ArrayList<Post> getUserPosts() {
+        return userPosts;
     }
 }

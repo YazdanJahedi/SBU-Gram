@@ -3,7 +3,6 @@ import Messages.ClientMessages.HomePageMessages.AskPublishPostMessage;
 import Messages.ClientMessages.HomePageMessages.AskSearchMessage;
 import Messages.ClientMessages.HomePageMessages.AskSetProfileInformationMessage;
 import Messages.Message;
-import Messages.ServerMessages.HomePageMessages.PublishPostMessage;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

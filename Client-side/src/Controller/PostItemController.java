@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -13,11 +14,11 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 
 public class PostItemController {
-    private Post post = new Post();
+    private Post post;
 
     @FXML
-    public AnchorPane root = new AnchorPane();
-    public Label titleLabel = new Label();
+    public AnchorPane root;
+    public Label titleLabel;
     public TextArea captionTextField;
     public Hyperlink usernameLabel;
     public Label writerNameLabel;
@@ -44,9 +45,15 @@ public class PostItemController {
 
 
     public AnchorPane init() {
-        System.out.println("! init  postItemController");
-//        usernameLabel.setText(post.getUsername());
-        titleLabel.setText("post.getTitle()");
+        titleLabel.setText(post.getTitle());
+        captionTextField.setText(post.getCaption());
+        usernameLabel.setText(post.getUsername());
+        writerNameLabel.setText(post.getWriter());
+        dateAndTimeLabel.setText(post.getDateAndTime());
+        postImage.setImage(new Image(post.getPostImagePath()));
+        profileImage.setImage(new Image(post.getProfileImagePath()));
+
+        //todo : like and repost counter
 
         //set another image dynamically
 //        if (post.getWriter().equals("ali alavi"))
@@ -55,21 +62,14 @@ public class PostItemController {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
     public void like(MouseEvent mouseEvent) {
+        likeButton.setVisible(false);
+        disLikeButton.setVisible(true);
     }
 
     public void disLike(MouseEvent mouseEvent) {
+        disLikeButton.setVisible(false);
+        likeButton.setVisible(true);
     }
 
     public void comment(MouseEvent mouseEvent) {
