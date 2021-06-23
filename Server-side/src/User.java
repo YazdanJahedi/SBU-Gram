@@ -1,7 +1,9 @@
 import Posts.Post;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 public class User {
     private final String username;
@@ -86,7 +88,7 @@ public class User {
     //-------------------------------------------------------------------------------------------
 
 
-//    private final ArrayList<Post> allPosts = new ArrayList<>();
+    //    private final ArrayList<Post> allPosts = new ArrayList<>();
     private final ArrayList<Post> userPosts = new ArrayList<>();
 
 //    public ArrayList<Post> getAllPosts() {
@@ -101,7 +103,42 @@ public class User {
     //-------------------------------------------------------------------------------------------
 
 
-    public List<User> followers = new ArrayList<>();
-    public List<User> followings = new ArrayList<>();
+    private final Set<User> followers = new HashSet<>();
+    private final Set<User> followings = new HashSet<>();
 
+    public Set<User> getFollowers() {
+        return followers;
+    }
+
+    public Set<User> getFollowings() {
+        return followings;
+    }
+
+//-------------------------------------------------------------------------------------------
+
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", posts number=" + userPosts.size() +
+                ", followers number=" + followers.size() +
+                ", followings number=" + followings.size() +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return Objects.equals(getUsername(), user.getUsername());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getUsername());
+    }
 }

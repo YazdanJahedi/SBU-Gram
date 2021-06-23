@@ -114,30 +114,18 @@ public class MessageHandler {
 
     public static synchronized Message setProfileInformation(String username) {
         User user = dataBase.getData().get(username);
-        ArrayList<Post> posts = new ArrayList<>(user.getUserPosts());
 
-        SetProfileInformationMessage answer = new SetProfileInformationMessage(
+        return new SetProfileInformationMessage(
                 user.getUsername(),
                 user.getProfileImage(),
                 user.getFirstName(),
                 user.getLastName(),
                 user.getBio(),
                 user.getBirthDate(),
-                Integer.toString(user.followers.size()),
-                Integer.toString(user.followings.size()),
-                posts
+                Integer.toString(user.getFollowers().size()),
+                Integer.toString(user.getFollowings().size()),
+                new ArrayList<>(user.getUserPosts())
         );
-
-        System.out.println("~~~~~~~~~~");
-        System.out.println("answer: UserPostList size:");
-        System.out.println(answer.getUserPosts().size());
-        System.out.println("all Posts:");
-        for (Post p : answer.getUserPosts()) {
-            System.out.println(p.toString());
-        }
-        System.out.println("~~~~~~~~~~\n");
-
-        return answer;
     }
 
     public static synchronized Message setPublishedPost(AskPublishPostMessage askPublishPostMessage, String username) {
@@ -177,8 +165,8 @@ public class MessageHandler {
                 searchUser.getLastName(),
                 searchUser.getBio(),
                 searchUser.getBirthDate(),
-                Integer.toString(searchUser.followers.size()),
-                Integer.toString(searchUser.followings.size()),
+                Integer.toString(searchUser.getFollowers().size()),
+                Integer.toString(searchUser.getFollowings().size()),
                 new ArrayList<>(searchUser.getUserPosts())
                 );
     }
