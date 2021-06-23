@@ -1,6 +1,7 @@
 package Controller;
 
 import Messages.ClientMessages.HomePageMessages.AskPublishPostMessage;
+import Messages.ClientMessages.HomePageMessages.AskSearchMessage;
 import Messages.ClientMessages.HomePageMessages.AskSetProfileInformationMessage;
 import Messages.ServerMessages.HomePageMessages.PublishPostMessage;
 import Messages.ServerMessages.HomePageMessages.SetProfileInformationMessage;
@@ -162,6 +163,11 @@ public class HomePageController {
 
 
     public void search(MouseEvent mouseEvent) {
+        try {
+            OUT.writeObject(new AskSearchMessage(searchField.getText()));
+        } catch (IOException e) {
+            System.err.println("~ ERROR: AskSearchMessage is not sent");
+        }
     }
 
     public void follow(MouseEvent mouseEvent) {
