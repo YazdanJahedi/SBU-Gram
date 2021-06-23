@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" maxHeight="450.0" maxWidth="400.0" minHeight="450.0" minWidth="400.0" prefHeight="450.0" prefWidth="400.0" style="-fx-background-color: #88ddff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.PostItemController">
+<AnchorPane fx:id="root" maxHeight="450.0" maxWidth="400.0" minHeight="450.0" minWidth="400.0" prefHeight="450.0" prefWidth="400.0" style="-fx-background-color: #88ddff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Hyperlink fx:id="usernameLabel" layoutX="297.0" layoutY="95.0" onMouseClicked="#showUserProfile" prefHeight="23.0" prefWidth="101.0" text="username" />
       <TextArea fx:id="captionTextField" layoutX="18.0" layoutY="43.0" prefHeight="70.0" prefWidth="277.0" />

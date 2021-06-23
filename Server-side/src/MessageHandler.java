@@ -10,6 +10,8 @@ import Posts.Post;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class MessageHandler {
     private final static DataBase dataBase = DataBase.getInstance();
@@ -112,6 +114,7 @@ public class MessageHandler {
 
     public static synchronized Message setProfileInformation(String username) {
         User user = dataBase.getData().get(username);
+        ArrayList<Post> posts = new ArrayList<>(user.getUserPosts());
 
         SetProfileInformationMessage answer = new SetProfileInformationMessage(
                 user.getUsername(),
@@ -122,7 +125,7 @@ public class MessageHandler {
                 user.getBirthDate(),
                 Integer.toString(user.followers.size()),
                 Integer.toString(user.followings.size()),
-                user.getUserPosts()
+                posts
         );
 
         System.out.println("~~~~~~~~~~");

@@ -24,9 +24,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 
 public class HomePageController {
     private final ObjectInputStream IN = Main.getObjectInputStream();
@@ -201,10 +198,12 @@ public class HomePageController {
             searchFollowingsLabel.setVisible(true);
             searchField.setText("");
             searchBlockButton.setVisible(true);
-            searchFollowButton.setVisible(true);
-            searchUnfollowButton.setVisible(false);
             searchMuteButton.setVisible(true);
             searchPostsList.setVisible(true);
+
+            //todo : base on the user it should be set
+            searchFollowButton.setVisible(true);
+            searchUnfollowButton.setVisible(false);
 
             searchUsernameLabel.setVisible(true);
             searchUsernameLabel.setText(answer.getUsername());
@@ -342,9 +341,9 @@ public class HomePageController {
 
 
         //show the arraylist in listview
-//        userPostsList.setItems(FXCollections.observableArrayList(answer.getUserPosts()));
+        userPostsList.setItems(FXCollections.observableArrayList(answer.getUserPosts()));
 //        System.out.println("1");
-//        userPostsList.setCellFactory(userPostsList -> new PostItem());
+        userPostsList.setCellFactory(userPostsList -> new PostItem());
 //        System.out.println("2");
 
     }
