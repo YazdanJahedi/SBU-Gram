@@ -119,9 +119,18 @@ public class MessageHandler {
                 user.getBio(),
                 user.getBirthDate(),
                 Integer.toString(user.followers.size()),
-                Integer.toString(user.followings.size())
+                Integer.toString(user.followings.size()),
+                user.getUserPosts()
         );
-        answer.setUserPosts(user.getUserPosts());
+
+        System.out.println("~~~~~~~~~~");
+        System.out.println("answer: UserPostList size:");
+        System.out.println(answer.getUserPosts().size());
+        System.out.println("all Posts:");
+        for (Post p: answer.getUserPosts()) {
+            System.out.println(p.toString());
+        }
+        System.out.println("~~~~~~~~~~\n");
 
         return answer;
     }
@@ -129,13 +138,19 @@ public class MessageHandler {
     public static synchronized Message setPublishedPost(AskPublishPostMessage askPublishPostMessage,String username ){
         Post post = askPublishPostMessage.getPost();
         User user = dataBase.getData().get(username);
+
         if(user != null) {
             post.setProfileImagePath(user.getProfileImage());
             post.setUsername(username);
             post.setWriter(user.getFirstName());
             post.setDateAndTime(dateFormatter.format(LocalDateTime.now()));
 
-            user.addPostToUserPosts(post);
+            user.getUserPosts().add(post);
+
+            System.out.println("-------------");
+            System.out.println(post.toString());
+            System.out.println("-------------\n");
+
             return new PublishPostMessage(true);
         }
         return new PublishPostMessage(false);

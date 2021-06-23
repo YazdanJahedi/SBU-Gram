@@ -16,8 +16,24 @@ public class User {
         this.answerOfTheQuestion = answerOfTheQuestion;
     }
 
+    public String getUsername() {
+        return username;
+    }
 
-    //
+    public String getPassword() {
+        return password;
+    }
+
+    public String getTheQuestion() {
+        return theQuestion;
+    }
+
+    public String getAnswerOfTheQuestion() {
+        return answerOfTheQuestion;
+    }
+
+
+    //-------------------------------------------------------------------------------------------
 
 
     private String profileImage = "";
@@ -46,22 +62,6 @@ public class User {
         this.profileImage = profileImage;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getTheQuestion() {
-        return theQuestion;
-    }
-
-    public String getAnswerOfTheQuestion() {
-        return answerOfTheQuestion;
-    }
-
     public String getFirstName() {
         return firstName;
     }
@@ -83,28 +83,22 @@ public class User {
     }
 
 
-    //
+    //-------------------------------------------------------------------------------------------
 
 
-    private final List<Post> allPosts = new ArrayList<>();
-    private final List<Post> userPosts = new ArrayList<>();
+//    private final ArrayList<Post> allPosts = new ArrayList<>();
+    private final ArrayList<Post> userPosts = new ArrayList<>();
 
-    // todo : better to use concurrent List instead of using synchronized word in this methods
-    public synchronized void addPostToAllPosts(Post post){
-        allPosts.add(post);
-    }
+//    public ArrayList<Post> getAllPosts() {
+//        return allPosts;
+//    }
 
-    public synchronized void addPostToUserPosts(Post post){
-        userPosts.add(post);
-    }
-
-    public List<Post> getAllPosts() {
-        return allPosts;
-    }
-
-    public List<Post> getUserPosts() {
+    public ArrayList<Post> getUserPosts() {
         return userPosts;
     }
+
+
+    //-------------------------------------------------------------------------------------------
 
 
     public List<User> followers = new ArrayList<>();

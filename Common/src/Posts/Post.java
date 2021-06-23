@@ -102,4 +102,19 @@ public class Post implements Serializable {
         return comments;
     }
 
+
+    // todo : this is not very good . change it ...
+
+    @Override
+    public String toString() {
+        return "Post{" +
+                "profileImagePath='" + profileImagePath + '\'' +
+                ", postImagePath='" + postImagePath + '\'' +
+                ", title='" + title + '\'' +
+                ", writer='" + writer + '\'' +
+                ", username='" + username + '\'' +
+                ", caption='" + caption + '\'' +
+                ", dateAndTime='" + dateAndTime + '\'' +
+                '}';
+    }
 }

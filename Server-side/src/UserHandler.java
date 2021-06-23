@@ -64,6 +64,7 @@ public class UserHandler implements Runnable {
 
             try {
                 out.writeObject(answer);
+                out.flush();
             } catch (IOException e) {
                 System.err.println("~ERROR: the server's answer is not sent to the client");
             }

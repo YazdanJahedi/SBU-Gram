@@ -4,7 +4,6 @@ import Messages.Message;
 import Posts.Post;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class SetProfileInformationMessage implements Message {
     private final String USER_NAME;
@@ -16,17 +15,21 @@ public class SetProfileInformationMessage implements Message {
     private final String FOLLOWERS_NUMBER;
     private final String FOLLOWINGS_NUMBER;
 
+    private final ArrayList<Post> USER_POSTS;
+
     public SetProfileInformationMessage(String username, String profileImagePath, String firstName,
                                         String lastName, String bio, String birthDate,
-                                        String followersNum, String followingsNum) {
+                                        String followersNum, String followingsNum,
+                                        ArrayList<Post> userPosts) {
         USER_NAME = username;
         PROFILE_IMAGE_PATH = profileImagePath;
         FIRST_NAME = firstName;
-        LAST_NAME =lastName;
+        LAST_NAME = lastName;
         BIO = bio;
         BIRTH_DATE = birthDate;
         FOLLOWERS_NUMBER = followersNum;
         FOLLOWINGS_NUMBER = followingsNum;
+        USER_POSTS = userPosts;
     }
 
     public String getFirstName() {
@@ -61,15 +64,8 @@ public class SetProfileInformationMessage implements Message {
         return FOLLOWINGS_NUMBER;
     }
 
-
-    private List<Post> userPosts = new ArrayList<>();
-
-    public List<Post> getUserPosts() {
-        return userPosts;
-    }
-
-    public void setUserPosts(List<Post> userPosts) {
-        this.userPosts = userPosts;
+    public ArrayList<Post> getUserPosts() {
+        return USER_POSTS;
     }
 
 

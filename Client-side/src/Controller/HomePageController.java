@@ -22,6 +22,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class HomePageController {
     private final ObjectInputStream IN = Main.getObjectInputStream();
@@ -32,6 +35,7 @@ public class HomePageController {
 
     @FXML
     public Tab homeTab;
+    private ObjectInputStream in;
 
     public void goToHomeTab(Event event) {
     }
@@ -57,9 +61,9 @@ public class HomePageController {
     public Tab sendPostTab;
     public TextField postTitleField;
     public ImageView postImage;
+    public TextArea captionTextField;
     public Button choosePostImageButton;
     public Button publishPostButton;
-    public TextArea captionTextField;
     public Button clearButton;
 
 
@@ -87,19 +91,22 @@ public class HomePageController {
     }
 
     public void publishPost(MouseEvent mouseEvent) {
+        System.out.println("publish post button is clicked");
         currentPost.setTitle(postTitleField.getText());
         currentPost.setCaption(captionTextField.getText());
         currentPost.setPostImagePath(postImage.getImage().getUrl());
 
         try {
             OUT.writeObject(new AskPublishPostMessage(currentPost));
+            System.out.println("ask publish post is sent");
         } catch (IOException e) {
             System.err.println("~ ERROR: AskPublishPostMessage is not sent");
         }
 
         PublishPostMessage answer = null;
         try {
-            answer = (PublishPostMessage)IN.readObject();
+            answer = (PublishPostMessage) IN.readObject();
+            System.out.println("answer is received");
         } catch (IOException | ClassNotFoundException e) {
             System.err.println("~ ERROR: AnkPublishPostMessage answer is not received");
         }
@@ -107,10 +114,10 @@ public class HomePageController {
         Alert alert;
 
         assert answer != null;
-        if(answer.isPostPublished()){
-            alert = new Alert(Alert.AlertType.INFORMATION , "Your post is published!" , ButtonType.OK);
-        } else{
-            alert = new Alert(Alert.AlertType.ERROR , "Your post is not published because a problem!" , ButtonType.OK);
+        if (answer.isPostPublished()) {
+            alert = new Alert(Alert.AlertType.INFORMATION, "Your post is published!", ButtonType.OK);
+        } else {
+            alert = new Alert(Alert.AlertType.ERROR, "Your post is not published because a problem!", ButtonType.OK);
         }
         alert.showAndWait();
 
@@ -119,7 +126,10 @@ public class HomePageController {
 
         postTitleField.setText("");
         captionTextField.setText("");
+        // todo : make this better :
         postImage.setImage(new Image("file:/Users/macbookpro/Desktop/University/CE Term2/AP/projects/SBU-Gram/Client-side/src/Images/blank-profile/blankPic.png"));
+
+        System.out.println("publish post method is done\n\n");
     }
 
     public void goToNewPostTab(Event event) {
@@ -155,7 +165,6 @@ public class HomePageController {
     public Button deleteAccountButton;
     public ListView<Post> userPostsList;
 
-
     public void logOut(MouseEvent mouseEvent) {
         try {
             new PageLoader().load("LoginPage");
@@ -176,6 +185,7 @@ public class HomePageController {
     }
 
     public void goToMyProfileTab(Event event) {
+        System.out.println("now we are in MyProfile tab!");
         try {
             OUT.writeObject(new AskSetProfileInformationMessage());
         } catch (IOException e) {
@@ -184,7 +194,7 @@ public class HomePageController {
 
         SetProfileInformationMessage answer = null;
         try {
-             answer = (SetProfileInformationMessage)IN.readObject();
+            answer = (SetProfileInformationMessage) IN.readObject();
         } catch (IOException | ClassNotFoundException e) {
             System.err.println("~ ERROR: answer of AskSetProfileInformationMessage is not received");
         }
@@ -200,10 +210,22 @@ public class HomePageController {
         birthDateLabel.setText(answer.getBirthDate());
         bioLabel.setText(answer.getBio());
 
-        //show the arraylist in listview
-        userPostsList.setItems(FXCollections.observableArrayList(answer.getUserPosts()));
-        userPostsList.setCellFactory(postList -> new PostItem());
+        System.out.println("\n!!!!!!!!!!");
+        System.out.println("answer: UserPostList size:");
+        System.out.println(answer.getUserPosts().size() + "\n");
+        System.out.println("all Posts:");
+        for (Post p: answer.getUserPosts()) {
+            System.out.println(p.toString());
+        }
+        System.out.println("!!!!!!!!\n");
 
+
+
+        //show the arraylist in listview
+//        userPostsList.setItems(FXCollections.observableArrayList(answer.getUserPosts()));
+//        System.out.println("1");
+//        userPostsList.setCellFactory(userPostsList -> new PostItem());
+//        System.out.println("2");
 
     }
 }

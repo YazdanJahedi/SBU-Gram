@@ -6,20 +6,18 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
-import java.nio.file.Paths;
 
 public class PostItemController {
-    private Post post ;
+    private Post post = new Post();
 
     @FXML
-    public AnchorPane root;
-    public Label titleLabel;
+    public AnchorPane root = new AnchorPane();
+    public Label titleLabel = new Label();
     public TextArea captionTextField;
     public Hyperlink usernameLabel;
     public Label writerNameLabel;
@@ -34,6 +32,7 @@ public class PostItemController {
     public ImageView disLikeButton;
 
     public PostItemController(Post post) {
+        System.out.println("new postItemController is working...");
         try {
             new PageLoader().load("PostItem", this);
         } catch (IOException e) {
@@ -43,15 +42,29 @@ public class PostItemController {
         this.post = post;
     }
 
+
     public AnchorPane init() {
-        usernameLabel.setText(post.getWriter());
-        titleLabel.setText(post.getTitle());
+        System.out.println("! init  postItemController");
+//        usernameLabel.setText(post.getUsername());
+        titleLabel.setText("post.getTitle()");
 
         //set another image dynamically
-        if (post.getWriter().equals("ali alavi"))
-            profileImage.setImage(new Image(Paths.get("images/ali_alavi.jpg").toUri().toString()));
+//        if (post.getWriter().equals("ali alavi"))
+//            profileImage.setImage(new Image(Paths.get("images/ali_alavi.jpg").toUri().toString()));
         return root;
     }
+
+
+
+
+
+
+
+
+
+
+
+
 
     public void like(MouseEvent mouseEvent) {
     }
