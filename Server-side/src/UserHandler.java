@@ -1,5 +1,6 @@
 import Messages.ClientMessages.*;
 import Messages.ClientMessages.HomePageMessages.AskPublishPostMessage;
+import Messages.ClientMessages.HomePageMessages.AskSearchMessage;
 import Messages.ClientMessages.HomePageMessages.AskSetProfileInformationMessage;
 import Messages.Message;
 import Messages.ServerMessages.HomePageMessages.PublishPostMessage;
@@ -59,6 +60,8 @@ public class UserHandler implements Runnable {
                 answer = MessageHandler.setProfileInformation(username);
             } else if(message instanceof AskPublishPostMessage){
                 answer  = MessageHandler.setPublishedPost((AskPublishPostMessage) message , username);
+            } else if (message instanceof AskSearchMessage){
+                answer = MessageHandler.setSearchedProfileInformation((AskSearchMessage) message , username);
             }
 
 

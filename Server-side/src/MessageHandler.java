@@ -1,8 +1,10 @@
 import Messages.ClientMessages.HomePageMessages.AskPublishPostMessage;
+import Messages.ClientMessages.HomePageMessages.AskSearchMessage;
 import Messages.Message;
 import Messages.ClientMessages.*;
 import Messages.ServerMessages.*;
 import Messages.ServerMessages.HomePageMessages.PublishPostMessage;
+import Messages.ServerMessages.HomePageMessages.SearchMessage;
 import Messages.ServerMessages.HomePageMessages.SetProfileInformationMessage;
 import Posts.Post;
 
@@ -127,7 +129,7 @@ public class MessageHandler {
         System.out.println("answer: UserPostList size:");
         System.out.println(answer.getUserPosts().size());
         System.out.println("all Posts:");
-        for (Post p: answer.getUserPosts()) {
+        for (Post p : answer.getUserPosts()) {
             System.out.println(p.toString());
         }
         System.out.println("~~~~~~~~~~\n");
@@ -135,11 +137,11 @@ public class MessageHandler {
         return answer;
     }
 
-    public static synchronized Message setPublishedPost(AskPublishPostMessage askPublishPostMessage,String username ){
+    public static synchronized Message setPublishedPost(AskPublishPostMessage askPublishPostMessage, String username) {
         Post post = askPublishPostMessage.getPost();
         User user = dataBase.getData().get(username);
 
-        if(user != null) {
+        if (user != null) {
             post.setProfileImagePath(user.getProfileImage());
             post.setUsername(username);
             post.setWriter(user.getFirstName());
@@ -155,4 +157,26 @@ public class MessageHandler {
         }
         return new PublishPostMessage(false);
     }
+
+    public static synchronized Message setSearchedProfileInformation(AskSearchMessage askSearchMessage, String username) {
+        if (username.equals(askSearchMessage.getSearchedUsername()))
+            return new SearchMessage(false);
+
+        User searchUser = dataBase.getData().get(askSearchMessage.getSearchedUsername());
+        if (searchUser == null)
+            return new SearchMessage(false);
+
+        return new SearchMessage(
+                true,
+                searchUser.getUsername(),
+                searchUser.getProfileImage(),
+                searchUser.getFirstName(),
+                searchUser.getLastName(),
+                searchUser.getBio(),
+                searchUser.getBirthDate(),
+                Integer.toString(searchUser.followers.size()),
+                Integer.toString(searchUser.followings.size())
+                );
+    }
+
 }

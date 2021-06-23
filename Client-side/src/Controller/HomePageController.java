@@ -4,6 +4,7 @@ import Messages.ClientMessages.HomePageMessages.AskPublishPostMessage;
 import Messages.ClientMessages.HomePageMessages.AskSearchMessage;
 import Messages.ClientMessages.HomePageMessages.AskSetProfileInformationMessage;
 import Messages.ServerMessages.HomePageMessages.PublishPostMessage;
+import Messages.ServerMessages.HomePageMessages.SearchMessage;
 import Messages.ServerMessages.HomePageMessages.SetProfileInformationMessage;
 import Model.Main;
 import Model.PageLoader;
@@ -168,12 +169,76 @@ public class HomePageController {
         } catch (IOException e) {
             System.err.println("~ ERROR: AskSearchMessage is not sent");
         }
+
+        SearchMessage answer = null;
+        try {
+            answer = (SearchMessage) IN.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("~ ERROR: answer of AskSearchMessage is not received");
+        }
+
+        assert answer != null;
+        if(!answer.isUserFound()){
+            searchNotFoundLabel.setVisible(true);
+            searchField.setText("");
+            searchUsernameLabel.setVisible(false);
+            searchProfileImage.setVisible(false);
+            searchNameLabel.setVisible(false);
+            searchBioLabel.setVisible(false);
+            searchBirthDateLabel.setVisible(false);
+            searchFollowersLabel.setVisible(false);
+            searchFollowingsLabel.setVisible(false);
+            searchFollowersNumberLabel.setVisible(false);
+            searchFollowingsNumberLabel.setVisible(false);
+            searchBlockButton.setVisible(false);
+            searchFollowButton.setVisible(false);
+            searchUnfollowButton.setVisible(false);
+            searchMuteButton.setVisible(false);
+            searchPostsList.setVisible(false);
+        } else{
+            searchNotFoundLabel.setVisible(false);
+            searchFollowersLabel.setVisible(true);
+            searchFollowingsLabel.setVisible(true);
+            searchField.setText("");
+            searchBlockButton.setVisible(true);
+            searchFollowButton.setVisible(true);
+            searchUnfollowButton.setVisible(false);
+            searchMuteButton.setVisible(true);
+            searchPostsList.setVisible(true);
+
+            searchUsernameLabel.setVisible(true);
+            searchUsernameLabel.setText(answer.getUsername());
+
+            searchProfileImage.setVisible(true);
+            searchProfileImage.setImage(new Image(answer.getProfileImagePath()));
+
+            searchNameLabel.setVisible(true);
+            searchNameLabel.setText(answer.getFirstName() + " " + answer.getLastName());
+
+            searchBioLabel.setVisible(true);
+            searchBioLabel.setText(answer.getBio());
+
+            searchBirthDateLabel.setVisible(true);
+            searchBirthDateLabel.setText(answer.getBirthDate());
+
+            searchFollowersNumberLabel.setVisible(true);
+            searchFollowersNumberLabel.setText(answer.getFollowersNumber());
+
+            searchFollowingsNumberLabel.setVisible(true);
+            searchFollowingsNumberLabel.setText(answer.getFollowingsNumber());
+        }
     }
 
     public void follow(MouseEvent mouseEvent) {
+        searchFollowButton.setVisible(false);
+        searchUnfollowButton.setVisible(true);
+        // todo ...
     }
 
     public void unfollow(MouseEvent mouseEvent) {
+        searchUnfollowButton.setVisible(false);
+        searchFollowButton.setVisible(true);
+        // todo ...
     }
 
     public void block(MouseEvent mouseEvent) {

@@ -19,9 +19,12 @@ public class SearchMessage implements Message {
     private String lastName;
     private String bio;
     private String birthDate;
+    private String followersNumber;
+    private String followingsNumber;
 
     public SearchMessage(boolean isUserFound, String username, String profileImagePath,
-                         String firstName, String lastName, String bio, String birthDate) {
+                         String firstName, String lastName, String bio, String birthDate ,
+                         String followersNumber , String followingNumber) {
         this.isUserFound = isUserFound;
         this.username = username;
         this.profileImagePath = profileImagePath;
@@ -29,6 +32,8 @@ public class SearchMessage implements Message {
         this.lastName = lastName;
         this.bio = bio;
         this.birthDate = birthDate;
+        this.followersNumber = followersNumber;
+        this.followingsNumber = followingNumber;
     }
 
     public String getUsername() {
@@ -53,5 +58,13 @@ public class SearchMessage implements Message {
 
     public String getBirthDate() {
         return birthDate;
+    }
+
+    public String getFollowersNumber() {
+        return followersNumber;
+    }
+
+    public String getFollowingsNumber() {
+        return followingsNumber;
     }
 }
