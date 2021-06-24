@@ -273,7 +273,7 @@ public class HomePageController {
         }
 
         assert answer != null;
-        if (answer.isUserFollowed()) {
+        if (answer.isUserUnfollowed()) {
             Alert followAlert = new Alert(Alert.AlertType.INFORMATION, "You Unfollowed '" + searchUsernameLabel.getText() + "'", ButtonType.OK);
             followAlert.showAndWait();
         }

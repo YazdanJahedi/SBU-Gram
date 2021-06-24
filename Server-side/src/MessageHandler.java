@@ -1,11 +1,11 @@
+import Messages.ClientMessages.HomePageMessages.AskFollowMessage;
 import Messages.ClientMessages.HomePageMessages.AskPublishPostMessage;
 import Messages.ClientMessages.HomePageMessages.AskSearchMessage;
+import Messages.ClientMessages.HomePageMessages.AskUnfollowMessage;
 import Messages.Message;
 import Messages.ClientMessages.*;
 import Messages.ServerMessages.*;
-import Messages.ServerMessages.HomePageMessages.PublishPostMessage;
-import Messages.ServerMessages.HomePageMessages.SearchMessage;
-import Messages.ServerMessages.HomePageMessages.SetProfileInformationMessage;
+import Messages.ServerMessages.HomePageMessages.*;
 import Posts.Post;
 
 import java.time.LocalDateTime;
@@ -171,4 +171,29 @@ public class MessageHandler {
                 );
     }
 
+    public static synchronized Message handleFollow(AskFollowMessage askFollowMessage, String username){
+        User user = dataBase.getData().get(username);
+        User searchedUser = dataBase.getData().get(askFollowMessage.getUsername());
+
+        if(user == null || searchedUser==null)
+            return new SetFollowMessage(false);
+
+        user.getFollowings().add(searchedUser);
+        searchedUser.getFollowers().add(user);
+
+        return new SetFollowMessage(true);
+    }
+
+    public static synchronized Message handleUnfollow(AskUnfollowMessage askUnfollowMessage , String username){
+        User user = dataBase.getData().get(username);
+        User searchedUser = dataBase.getData().get(askUnfollowMessage.getUsername());
+
+        if(user == null || searchedUser==null)
+            return new SetUnfollowMessage(false);
+
+        user.getFollowings().remove(searchedUser);
+        searchedUser.getFollowers().remove(user);
+
+        return new SetUnfollowMessage(true);
+    }
 }

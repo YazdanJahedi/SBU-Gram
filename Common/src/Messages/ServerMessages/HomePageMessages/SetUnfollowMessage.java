@@ -1,13 +1,15 @@
 package Messages.ServerMessages.HomePageMessages;
 
-public class SetUnfollowMessage {
-    private final boolean isUserFollowed;
+import Messages.Message;
+
+public class SetUnfollowMessage implements Message {
+    private final boolean isUserUnfollowed;
 
     public SetUnfollowMessage(boolean isUserFollowed) {
-        this.isUserFollowed = isUserFollowed;
+        this.isUserUnfollowed = isUserFollowed;
     }
 
-    public boolean isUserFollowed() {
-        return isUserFollowed;
+    public boolean isUserUnfollowed() {
+        return isUserUnfollowed;
     }
 }

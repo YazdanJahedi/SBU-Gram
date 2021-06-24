@@ -1,7 +1,5 @@
 import Messages.ClientMessages.*;
-import Messages.ClientMessages.HomePageMessages.AskPublishPostMessage;
-import Messages.ClientMessages.HomePageMessages.AskSearchMessage;
-import Messages.ClientMessages.HomePageMessages.AskSetProfileInformationMessage;
+import Messages.ClientMessages.HomePageMessages.*;
 import Messages.Message;
 
 import java.io.IOException;
@@ -55,12 +53,16 @@ public class UserHandler implements Runnable {
                 answer = MessageHandler.SendAnswerHandler((SendResetAnswerMessage) message, username);
             } else if (message instanceof ChangeProfileMessage) {
                 answer = MessageHandler.changeProfileHandler((ChangeProfileMessage) message, username);
-            } else if (message instanceof AskSetProfileInformationMessage){
+            } else if (message instanceof AskSetProfileInformationMessage) {
                 answer = MessageHandler.setProfileInformation(username);
-            } else if(message instanceof AskPublishPostMessage){
-                answer  = MessageHandler.setPublishedPost((AskPublishPostMessage) message , username);
-            } else if (message instanceof AskSearchMessage){
-                answer = MessageHandler.setSearchedProfileInformation((AskSearchMessage) message , username);
+            } else if (message instanceof AskPublishPostMessage) {
+                answer = MessageHandler.setPublishedPost((AskPublishPostMessage) message, username);
+            } else if (message instanceof AskSearchMessage) {
+                answer = MessageHandler.setSearchedProfileInformation((AskSearchMessage) message, username);
+            } else if (message instanceof AskFollowMessage) {
+                answer = MessageHandler.handleFollow((AskFollowMessage) message, username);
+            } else if (message instanceof AskUnfollowMessage) {
+                answer = MessageHandler.handleUnfollow((AskUnfollowMessage) message, username);
             }
 
 

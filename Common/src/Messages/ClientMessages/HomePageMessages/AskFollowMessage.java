@@ -1,6 +1,8 @@
 package Messages.ClientMessages.HomePageMessages;
 
-public class AskFollowMessage {
+import Messages.Message;
+
+public class AskFollowMessage implements Message {
     private final String username;
 
     public AskFollowMessage(String username) {

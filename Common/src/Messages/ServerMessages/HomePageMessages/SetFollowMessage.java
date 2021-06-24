@@ -1,6 +1,8 @@
 package Messages.ServerMessages.HomePageMessages;
 
-public class SetFollowMessage {
+import Messages.Message;
+
+public class SetFollowMessage implements Message {
     private final boolean isUserFollowed;
 
     public SetFollowMessage(boolean isUserFollowed) {
