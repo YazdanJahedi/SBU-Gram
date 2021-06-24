@@ -1,19 +1,25 @@
 package Controller;
 
+import Messages.ClientMessages.PostItemMessages.AskRepostMessage;
+import Messages.ServerMessages.PostItemMessages.SetRepostMessage;
+import Model.Main;
 import Model.PageLoader;
 import Posts.Post;
 import javafx.fxml.FXML;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 public class PostItemController {
+    private final ObjectInputStream IN = Main.getObjectInputStream();
+    private final ObjectOutputStream OUT = Main.getObjectOutputStream();
+
     private Post post;
 
     @FXML
@@ -77,6 +83,24 @@ public class PostItemController {
     }
 
     public void repost(MouseEvent mouseEvent) {
+        try {
+            OUT.writeObject(new AskRepostMessage(post));
+        } catch (IOException e) {
+            System.err.println("~ ERROR: AskRepostMessage is not sent");
+        }
+
+        SetRepostMessage answer = null;
+        try {
+            answer = (SetRepostMessage) IN.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("~ ERROR: answer of AskRepostMessage is not received");
+        }
+
+        assert answer != null;
+        if(answer.isReposted()){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION , "you reposted '" + post.getTitle()
+                    +"'. the post will add to your posts", ButtonType.OK);
+        }
     }
 
     public void showUserProfile(MouseEvent mouseEvent) {
