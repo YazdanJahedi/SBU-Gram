@@ -7,6 +7,7 @@ import Model.PageLoader;
 import Posts.Post;
 import javafx.animation.RotateTransition;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -61,11 +62,15 @@ public class PostItemController {
         postImage.setImage(new Image(post.getPostImagePath()));
         profileImage.setImage(new Image(post.getProfileImagePath()));
 
-        //todo : like and repost counter
+        likesCounterLabel.setText(post.getLikesCounter().toString());
+        repostsCounterLabel.setText(post.getRepostsCounter().toString());
+        likesCounterLabel.setAlignment(Pos.CENTER_RIGHT);
+        repostsCounterLabel.setAlignment(Pos.CENTER_RIGHT);
 
         //set another image dynamically
 //        if (post.getWriter().equals("ali alavi"))
 //            profileImage.setImage(new Image(Paths.get("images/ali_alavi.jpg").toUri().toString()));
+
         return root;
     }
 
@@ -103,6 +108,10 @@ public class PostItemController {
             RotateTransition logo = new RotateTransition(new Duration(500), repostButton);
             logo.setByAngle(360);
             logo.playFromStart();
+        }
+
+        synchronized (post){
+            post.repost();
         }
     }
 

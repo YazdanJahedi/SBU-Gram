@@ -239,8 +239,6 @@ public class MessageHandler {
                 0
         );
 
-        repostedPost.repost();
-
         user.getUserPosts().add(post);
         user.getAllPosts().add(post);
 
