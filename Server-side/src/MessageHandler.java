@@ -11,6 +11,7 @@ import Posts.Post;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Set;
 
 public class MessageHandler {
     private final static DataBase dataBase = DataBase.getInstance();
@@ -138,6 +139,12 @@ public class MessageHandler {
             post.setDateAndTime(dateFormatter.format(LocalDateTime.now()));
 
             user.getUserPosts().add(post);
+            user.getAllPosts().add(post);
+
+
+            for (User u : user.getFollowers()) {
+                u.getAllPosts().add(post);
+            }
 
             System.out.println("-------------");
             System.out.println(post.toString());
@@ -181,6 +188,9 @@ public class MessageHandler {
         user.getFollowings().add(searchedUser);
         searchedUser.getFollowers().add(user);
 
+        // adds users previous post to the new follower
+        user.getAllPosts().addAll(searchedUser.getUserPosts());
+
         return new SetFollowMessage(true);
     }
 
@@ -193,6 +203,9 @@ public class MessageHandler {
 
         user.getFollowings().remove(searchedUser);
         searchedUser.getFollowers().remove(user);
+
+        // deletes users all posts from the unfollowed user
+        user.getAllPosts().removeAll(searchedUser.getUserPosts());
 
         return new SetUnfollowMessage(true);
     }

@@ -88,12 +88,12 @@ public class User {
     //-------------------------------------------------------------------------------------------
 
 
-    //    private final ArrayList<Post> allPosts = new ArrayList<>();
+    private final ArrayList<Post> allPosts = new ArrayList<>();
     private final ArrayList<Post> userPosts = new ArrayList<>();
 
-//    public ArrayList<Post> getAllPosts() {
-//        return allPosts;
-//    }
+    public ArrayList<Post> getAllPosts() {
+        return allPosts;
+    }
 
     public ArrayList<Post> getUserPosts() {
         return userPosts;
