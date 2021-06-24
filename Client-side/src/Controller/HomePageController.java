@@ -1,11 +1,7 @@
 package Controller;
 
-import Messages.ClientMessages.HomePageMessages.AskPublishPostMessage;
-import Messages.ClientMessages.HomePageMessages.AskSearchMessage;
-import Messages.ClientMessages.HomePageMessages.AskSetProfileInformationMessage;
-import Messages.ServerMessages.HomePageMessages.PublishPostMessage;
-import Messages.ServerMessages.HomePageMessages.SearchMessage;
-import Messages.ServerMessages.HomePageMessages.SetProfileInformationMessage;
+import Messages.ClientMessages.HomePageMessages.*;
+import Messages.ServerMessages.HomePageMessages.*;
 import Model.Main;
 import Model.PageLoader;
 
@@ -172,7 +168,7 @@ public class HomePageController {
         }
 
         assert answer != null;
-        if(!answer.isUserFound()){
+        if (!answer.isUserFound()) {
             searchNotFoundLabel.setVisible(true);
             searchField.setText("");
             searchUsernameLabel.setVisible(false);
@@ -189,7 +185,7 @@ public class HomePageController {
             searchUnfollowButton.setVisible(false);
             searchMuteButton.setVisible(false);
             searchPostsList.setVisible(false);
-        } else{
+        } else {
             searchNotFoundLabel.setVisible(false);
             searchFollowersLabel.setVisible(true);
             searchFollowingsLabel.setVisible(true);
@@ -198,9 +194,13 @@ public class HomePageController {
             searchMuteButton.setVisible(true);
             searchPostsList.setVisible(true);
 
-            //todo : base on the user it should be set
-            searchFollowButton.setVisible(true);
-            searchUnfollowButton.setVisible(false);
+            if (!answer.WasUserFollowedBefore()) {
+                searchFollowButton.setVisible(true);
+                searchUnfollowButton.setVisible(false);
+            } else {
+                searchFollowButton.setVisible(false);
+                searchUnfollowButton.setVisible(true);
+            }
 
             searchUsernameLabel.setVisible(true);
             searchUsernameLabel.setText(answer.getUsername());
@@ -232,13 +232,51 @@ public class HomePageController {
     public void follow(MouseEvent mouseEvent) {
         searchFollowButton.setVisible(false);
         searchUnfollowButton.setVisible(true);
-        // todo ...
+
+        try {
+            OUT.writeObject(new AskFollowMessage(searchUsernameLabel.getText()));
+        } catch (IOException e) {
+            System.err.println("~ ERROR: AskFollowMessage is not sent");
+        }
+
+        SetFollowMessage answer = null;
+        try {
+            answer = (SetFollowMessage) IN.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("~ ERROR: answer of AskFollowMessage is not received");
+
+        }
+
+        assert answer != null;
+        if (answer.isUserFollowed()) {
+            Alert followAlert = new Alert(Alert.AlertType.INFORMATION, "You followed '" + searchUsernameLabel.getText() + "'", ButtonType.OK);
+            followAlert.showAndWait();
+        }
     }
 
     public void unfollow(MouseEvent mouseEvent) {
         searchUnfollowButton.setVisible(false);
         searchFollowButton.setVisible(true);
-        // todo ...
+
+        try {
+            OUT.writeObject(new AskUnfollowMessage(searchUsernameLabel.getText()));
+        } catch (IOException e) {
+            System.err.println("~ ERROR: AskUnfollowMessage is not sent");
+        }
+
+        SetUnfollowMessage answer = null;
+        try {
+            answer = (SetUnfollowMessage) IN.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("~ ERROR: answer of AskUnfollowMessage is not received");
+
+        }
+
+        assert answer != null;
+        if (answer.isUserFollowed()) {
+            Alert followAlert = new Alert(Alert.AlertType.INFORMATION, "You Unfollowed '" + searchUsernameLabel.getText() + "'", ButtonType.OK);
+            followAlert.showAndWait();
+        }
     }
 
     public void block(MouseEvent mouseEvent) {

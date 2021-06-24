@@ -11,7 +11,6 @@ import Posts.Post;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class MessageHandler {
     private final static DataBase dataBase = DataBase.getInstance();
@@ -167,7 +166,8 @@ public class MessageHandler {
                 searchUser.getBirthDate(),
                 Integer.toString(searchUser.getFollowers().size()),
                 Integer.toString(searchUser.getFollowings().size()),
-                new ArrayList<>(searchUser.getUserPosts())
+                new ArrayList<>(searchUser.getUserPosts()) ,
+                searchUser.getFollowings().contains(new User(askSearchMessage.getSearchedUsername() , "" , "" , ""))
                 );
     }
 

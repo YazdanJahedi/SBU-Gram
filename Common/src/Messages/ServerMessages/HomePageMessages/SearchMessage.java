@@ -25,11 +25,12 @@ public class SearchMessage implements Message {
     private String followersNumber;
     private String followingsNumber;
     private ArrayList<Post> userPosts;
+    private boolean wasUserFollowedBefore;
 
     public SearchMessage(boolean isUserFound, String username, String profileImagePath,
                          String firstName, String lastName, String bio, String birthDate ,
                          String followersNumber , String followingNumber ,
-                        ArrayList<Post> userPosts) {
+                        ArrayList<Post> userPosts , boolean wasUserFollowedBefore) {
         this.isUserFound = isUserFound;
         this.username = username;
         this.profileImagePath = profileImagePath;
@@ -40,6 +41,8 @@ public class SearchMessage implements Message {
         this.followersNumber = followersNumber;
         this.followingsNumber = followingNumber;
         this.userPosts = userPosts;
+        this.wasUserFollowedBefore = wasUserFollowedBefore;
+
     }
 
     public String getUsername() {
@@ -76,5 +79,9 @@ public class SearchMessage implements Message {
 
     public ArrayList<Post> getUserPosts() {
         return userPosts;
+    }
+
+    public boolean WasUserFollowedBefore() {
+        return wasUserFollowedBefore;
     }
 }

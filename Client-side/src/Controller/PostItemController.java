@@ -65,6 +65,7 @@ public class PostItemController {
     public void like(MouseEvent mouseEvent) {
         likeButton.setVisible(false);
         disLikeButton.setVisible(true);
+
     }
 
     public void disLike(MouseEvent mouseEvent) {
