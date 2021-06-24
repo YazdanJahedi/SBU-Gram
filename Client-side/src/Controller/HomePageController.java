@@ -25,13 +25,27 @@ public class HomePageController {
     private final ObjectInputStream IN = Main.getObjectInputStream();
     private final ObjectOutputStream OUT = Main.getObjectOutputStream();
 
+    @FXML
+    public TabPane tabPane;
+
+
+    @FXML
+    public void initialize(){
+        tabPane.getSelectionModel().select(myProfileTab);
+    }
+
     // ------------------------------------------------------------------------------------------------
     // TIME LINE TAB :
 
     @FXML
     public Tab homeTab;
     public ListView<Post> timeLinePostsList;
+    public Button refreshButton;
 
+    public void refreshTimeLine(MouseEvent mouseEvent) {
+        tabPane.getSelectionModel().select(sendPostTab);
+        tabPane.getSelectionModel().select(homeTab);
+    }
 
     public void goToHomeTab(Event event) {
         try {
