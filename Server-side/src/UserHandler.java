@@ -1,5 +1,6 @@
 import Messages.ClientMessages.*;
 import Messages.ClientMessages.HomePageMessages.*;
+import Messages.ClientMessages.PostItemMessages.AskRepostMessage;
 import Messages.Message;
 
 import java.io.IOException;
@@ -65,6 +66,8 @@ public class UserHandler implements Runnable {
                 answer = MessageHandler.handleUnfollow((AskUnfollowMessage) message, username);
             } else if (message instanceof AskTimeLinePostsMessage){
                 answer = MessageHandler.setTimeLinePosts(username);
+            } else if (message instanceof AskRepostMessage){
+                answer = MessageHandler.handleRepost((AskRepostMessage) message , username);
             }
 
 

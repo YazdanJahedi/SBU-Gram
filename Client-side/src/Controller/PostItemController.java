@@ -5,12 +5,14 @@ import Messages.ServerMessages.PostItemMessages.SetRepostMessage;
 import Model.Main;
 import Model.PageLoader;
 import Posts.Post;
+import javafx.animation.RotateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -98,8 +100,9 @@ public class PostItemController {
 
         assert answer != null;
         if(answer.isReposted()){
-            Alert alert = new Alert(Alert.AlertType.INFORMATION , "you reposted '" + post.getTitle()
-                    +"'. the post will add to your posts", ButtonType.OK);
+            RotateTransition logo = new RotateTransition(new Duration(500), repostButton);
+            logo.setByAngle(360);
+            logo.playFromStart();
         }
     }
 

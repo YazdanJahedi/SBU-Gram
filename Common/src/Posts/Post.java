@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Post implements Serializable {
-    private String profileImagePath ;
+    private String profileImagePath;
     private String postImagePath;
     private String title;
     private String writer;
@@ -20,6 +20,20 @@ public class Post implements Serializable {
 
 
     public Post() {
+    }
+
+    public Post(String profileImagePath, String postImagePath, String title, String writer,
+                String username, String caption, String dateAndTime, Integer likesCounter,
+                Integer repostsCounter) {
+        this.profileImagePath = profileImagePath;
+        this.postImagePath = postImagePath;
+        this.title = title;
+        this.writer = writer;
+        this.username = username;
+        this.caption = caption;
+        this.dateAndTime = dateAndTime;
+        this.likesCounter = likesCounter;
+        this.repostsCounter = repostsCounter;
     }
 
     public void setProfileImagePath(String profileImagePath) {
@@ -96,6 +110,14 @@ public class Post implements Serializable {
 
     public Integer getRepostsCounter() {
         return repostsCounter;
+    }
+
+    public void like(){
+        likesCounter++;
+    }
+
+    public void repost(){
+        repostsCounter++;
     }
 
     public List<String> getComments() {

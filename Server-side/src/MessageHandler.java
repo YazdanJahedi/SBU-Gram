@@ -2,10 +2,12 @@ import Messages.ClientMessages.HomePageMessages.AskFollowMessage;
 import Messages.ClientMessages.HomePageMessages.AskPublishPostMessage;
 import Messages.ClientMessages.HomePageMessages.AskSearchMessage;
 import Messages.ClientMessages.HomePageMessages.AskUnfollowMessage;
+import Messages.ClientMessages.PostItemMessages.AskRepostMessage;
 import Messages.Message;
 import Messages.ClientMessages.*;
 import Messages.ServerMessages.*;
 import Messages.ServerMessages.HomePageMessages.*;
+import Messages.ServerMessages.PostItemMessages.SetRepostMessage;
 import Posts.Post;
 
 import java.time.LocalDateTime;
@@ -209,9 +211,43 @@ public class MessageHandler {
         return new SetUnfollowMessage(true);
     }
 
-    public static synchronized Message setTimeLinePosts(String username){
+    public static synchronized Message setTimeLinePosts(String username) {
         User user = dataBase.getData().get(username);
 
         return new SetTimeLinePostsMessage(new ArrayList<>(user.getAllPosts()));
+    }
+
+    public static synchronized Message handleRepost(AskRepostMessage askRepostMessage, String username) {
+        User user = dataBase.getData().get(username);
+        Post repostedPost = askRepostMessage.getRepostedPost();
+
+        System.out.println("@@@@");
+        System.out.println(repostedPost);
+
+        if (user == null || repostedPost == null || repostedPost.getUsername().equals(username))
+            return new SetRepostMessage(false);
+
+        Post post = new Post(
+                user.getProfileImage(),
+                repostedPost.getPostImagePath(),
+                repostedPost.getTitle(),
+                repostedPost.getWriter(),
+                user.getUsername(),
+                repostedPost.getCaption(),
+                dateFormatter.format(LocalDateTime.now()),
+                0,
+                0
+        );
+
+        repostedPost.repost();
+
+        user.getUserPosts().add(post);
+        user.getAllPosts().add(post);
+
+        for (User u : user.getFollowers()) {
+            u.getAllPosts().add(post);
+        }
+
+        return new SetRepostMessage(true);
     }
 }
