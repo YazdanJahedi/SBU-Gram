@@ -63,6 +63,8 @@ public class UserHandler implements Runnable {
                 answer = MessageHandler.handleFollow((AskFollowMessage) message, username);
             } else if (message instanceof AskUnfollowMessage) {
                 answer = MessageHandler.handleUnfollow((AskUnfollowMessage) message, username);
+            } else if (message instanceof AskTimeLinePostsMessage){
+                answer = MessageHandler.setTimeLinePosts(username);
             }
 
 

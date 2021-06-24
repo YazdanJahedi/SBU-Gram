@@ -25,7 +25,7 @@
                         <Font size="19.0" />
                      </font>
                   </Label>
-                  <ListView layoutY="44.0" maxHeight="525.0" maxWidth="400.0" minHeight="525.0" minWidth="400.0" prefHeight="525.0" prefWidth="400.0" />
+                  <ListView fx:id="timeLinePostsList" layoutY="44.0" maxHeight="525.0" maxWidth="400.0" minHeight="525.0" minWidth="400.0" prefHeight="525.0" prefWidth="400.0" />
                   <Line endX="362.0" layoutX="38.0" layoutY="44.0" startX="-100.0" />
                </children></Pane>
       </content>

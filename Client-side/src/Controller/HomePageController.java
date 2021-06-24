@@ -30,9 +30,29 @@ public class HomePageController {
 
     @FXML
     public Tab homeTab;
+    public ListView<Post> timeLinePostsList;
 
 
     public void goToHomeTab(Event event) {
+        try {
+            OUT.writeObject(new AskTimeLinePostsMessage());
+        } catch (IOException e) {
+            System.err.println("~ ERROR: AskTimeLinePostsMessage is not sent");
+        }
+
+        SetTimeLinePostsMessage answer = null;
+        try {
+            answer =(SetTimeLinePostsMessage) IN.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("~ ERROR: answer of AskTimeLinePostsMessage is not received");
+        }
+
+
+        assert answer != null;
+        //show the arraylist in listview
+        timeLinePostsList.setItems(FXCollections.observableArrayList(answer.getAllPosts()));
+        timeLinePostsList.setCellFactory(timeLinePostsList -> new PostItem());
+
     }
 
 

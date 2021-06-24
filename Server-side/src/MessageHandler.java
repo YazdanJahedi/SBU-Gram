@@ -11,7 +11,6 @@ import Posts.Post;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Set;
 
 public class MessageHandler {
     private final static DataBase dataBase = DataBase.getInstance();
@@ -173,16 +172,16 @@ public class MessageHandler {
                 searchUser.getBirthDate(),
                 Integer.toString(searchUser.getFollowers().size()),
                 Integer.toString(searchUser.getFollowings().size()),
-                new ArrayList<>(searchUser.getUserPosts()) ,
-                dataBase.getData().get(username).getFollowings().contains(new User(askSearchMessage.getSearchedUsername() , "" , "" , ""))
-                );
+                new ArrayList<>(searchUser.getUserPosts()),
+                dataBase.getData().get(username).getFollowings().contains(new User(askSearchMessage.getSearchedUsername(), "", "", ""))
+        );
     }
 
-    public static synchronized Message handleFollow(AskFollowMessage askFollowMessage, String username){
+    public static synchronized Message handleFollow(AskFollowMessage askFollowMessage, String username) {
         User user = dataBase.getData().get(username);
         User searchedUser = dataBase.getData().get(askFollowMessage.getUsername());
 
-        if(user == null || searchedUser==null)
+        if (user == null || searchedUser == null)
             return new SetFollowMessage(false);
 
         user.getFollowings().add(searchedUser);
@@ -194,11 +193,11 @@ public class MessageHandler {
         return new SetFollowMessage(true);
     }
 
-    public static synchronized Message handleUnfollow(AskUnfollowMessage askUnfollowMessage , String username){
+    public static synchronized Message handleUnfollow(AskUnfollowMessage askUnfollowMessage, String username) {
         User user = dataBase.getData().get(username);
         User searchedUser = dataBase.getData().get(askUnfollowMessage.getUsername());
 
-        if(user == null || searchedUser==null)
+        if (user == null || searchedUser == null)
             return new SetUnfollowMessage(false);
 
         user.getFollowings().remove(searchedUser);
@@ -208,5 +207,11 @@ public class MessageHandler {
         user.getAllPosts().removeAll(searchedUser.getUserPosts());
 
         return new SetUnfollowMessage(true);
+    }
+
+    public static synchronized Message setTimeLinePosts(String username){
+        User user = dataBase.getData().get(username);
+
+        return new SetTimeLinePostsMessage(new ArrayList<>(user.getAllPosts()));
     }
 }
