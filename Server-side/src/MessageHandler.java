@@ -167,7 +167,7 @@ public class MessageHandler {
                 Integer.toString(searchUser.getFollowers().size()),
                 Integer.toString(searchUser.getFollowings().size()),
                 new ArrayList<>(searchUser.getUserPosts()) ,
-                searchUser.getFollowings().contains(new User(askSearchMessage.getSearchedUsername() , "" , "" , ""))
+                dataBase.getData().get(username).getFollowings().contains(new User(askSearchMessage.getSearchedUsername() , "" , "" , ""))
                 );
     }
 

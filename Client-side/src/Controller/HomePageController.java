@@ -194,12 +194,12 @@ public class HomePageController {
             searchMuteButton.setVisible(true);
             searchPostsList.setVisible(true);
 
-            if (!answer.WasUserFollowedBefore()) {
-                searchFollowButton.setVisible(true);
-                searchUnfollowButton.setVisible(false);
-            } else {
+            if (answer.WasUserFollowedBefore()) {
                 searchFollowButton.setVisible(false);
                 searchUnfollowButton.setVisible(true);
+            } else {
+                searchFollowButton.setVisible(true);
+                searchUnfollowButton.setVisible(false);
             }
 
             searchUsernameLabel.setVisible(true);
