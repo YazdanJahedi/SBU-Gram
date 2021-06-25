@@ -1,5 +1,6 @@
 package Controller;
 
+import Messages.ClientMessages.PostItemMessages.AskAddCommentMessage;
 import Messages.ClientMessages.PostItemMessages.AskRepostMessage;
 import Messages.ServerMessages.PostItemMessages.SetRepostMessage;
 import Model.Main;
@@ -87,6 +88,13 @@ public class PostItemController {
     }
 
     public void comment(MouseEvent mouseEvent) {
+        try {
+            OUT.writeObject(new AskAddCommentMessage(post));
+            System.out.println("message is sent!");
+        } catch (IOException e) {
+            System.err.println("~ ERROR: AskAddCommentMessage is not sent");
+        }
+
         try {
             new PageLoader().load("CommentPage");
         } catch (IOException e) {

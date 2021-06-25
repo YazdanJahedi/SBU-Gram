@@ -1,5 +1,6 @@
 import Messages.ClientMessages.*;
 import Messages.ClientMessages.HomePageMessages.*;
+import Messages.ClientMessages.PostItemMessages.AskAddCommentMessage;
 import Messages.ClientMessages.PostItemMessages.AskRepostMessage;
 import Messages.Message;
 
@@ -68,6 +69,9 @@ public class UserHandler implements Runnable {
                 answer = MessageHandler.setTimeLinePosts(username);
             } else if (message instanceof AskRepostMessage){
                 answer = MessageHandler.handleRepost((AskRepostMessage) message , username);
+            } else if (message instanceof AskAddCommentMessage){
+                answer = message;
+                System.out.println("answer is sent :)");
             }
 
 

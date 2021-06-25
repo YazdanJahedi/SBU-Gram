@@ -221,8 +221,6 @@ public class MessageHandler {
         User user = dataBase.getData().get(username);
         Post repostedPost = askRepostMessage.getRepostedPost();
 
-        System.out.println("@@@@");
-        System.out.println(repostedPost);
 
         if (user == null || repostedPost == null || repostedPost.getUsername().equals(username))
             return new SetRepostMessage(false);
