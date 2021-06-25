@@ -29,11 +29,6 @@ public class HomePageController {
     public TabPane tabPane;
 
 
-    @FXML
-    public void initialize(){
-        tabPane.getSelectionModel().select(myProfileTab);
-    }
-
     // ------------------------------------------------------------------------------------------------
     // TIME LINE TAB :
 
@@ -56,7 +51,7 @@ public class HomePageController {
 
         SetTimeLinePostsMessage answer = null;
         try {
-            answer =(SetTimeLinePostsMessage) IN.readObject();
+            answer = (SetTimeLinePostsMessage) IN.readObject();
         } catch (IOException | ClassNotFoundException e) {
             System.err.println("~ ERROR: answer of AskTimeLinePostsMessage is not received");
         }
