@@ -87,6 +87,11 @@ public class PostItemController {
     }
 
     public void comment(MouseEvent mouseEvent) {
+        try {
+            new PageLoader().load("CommentPage");
+        } catch (IOException e) {
+            System.err.println("~ ERROR: CommentPage is not found");
+        }
     }
 
     public void repost(MouseEvent mouseEvent) {
