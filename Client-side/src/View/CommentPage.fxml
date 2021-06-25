@@ -4,14 +4,15 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
-
 
 <Pane maxHeight="600.0" maxWidth="400.0" minHeight="600.0" minWidth="400.0" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #bed7ae;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CommentPageController">
    <children>
       <ListView fx:id="commentsList" layoutX="14.0" layoutY="75.0" prefHeight="410.0" prefWidth="373.0" />
-      <Label fx:id="postTitleLabel" layoutX="14.0" layoutY="15.0" text="Post's title" textFill="#37ad76">
+      <Label fx:id="postTitleLabel" layoutX="14.0" layoutY="15.0" prefHeight="26.0" prefWidth="327.0" text="Post's title" textFill="#37ad76">
          <font>
             <Font size="20.0" />
          </font>
@@ -20,5 +21,15 @@
       <TextArea fx:id="commentTextField" layoutX="14.0" layoutY="499.0" prefHeight="64.0" prefWidth="315.0" promptText="Add a comment..." />
       <Button fx:id="sendButton" layoutX="336.0" layoutY="537.0" mnemonicParsing="false" onMouseClicked="#sendComment" prefHeight="25.0" prefWidth="53.0" text="Send" textFill="#37ad76" />
       <Button fx:id="clearButton" layoutX="335.0" layoutY="500.0" mnemonicParsing="false" onMouseClicked="#clear" prefHeight="25.0" prefWidth="53.0" text="Clear" textFill="#c61717" />
+      <ImageView fx:id="blackBackButton" fitHeight="35.0" fitWidth="35.0" layoutX="354.0" layoutY="9.0" onMouseEntered="#showRedBackButton" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/buttons/back-button.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="redBackButton" fitHeight="35.0" fitWidth="35.0" layoutX="354.0" layoutY="9.0" onMouseClicked="#goBack" onMouseExited="#showBlackBackButton" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../Images/buttons/back-red.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
