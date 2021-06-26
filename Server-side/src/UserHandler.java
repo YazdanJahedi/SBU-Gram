@@ -1,7 +1,6 @@
 import Messages.ClientMessages.*;
 import Messages.ClientMessages.HomePageMessages.*;
-import Messages.ClientMessages.PostItemMessages.AskAddCommentMessage;
-import Messages.ClientMessages.PostItemMessages.AskRepostMessage;
+import Messages.ClientMessages.PostItemMessages.*;
 import Messages.Message;
 
 import java.io.IOException;
@@ -69,9 +68,10 @@ public class UserHandler implements Runnable {
                 answer = MessageHandler.setTimeLinePosts(username);
             } else if (message instanceof AskRepostMessage){
                 answer = MessageHandler.handleRepost((AskRepostMessage) message , username);
-            } else if (message instanceof AskAddCommentMessage){
+            } else if (message instanceof AskSetCommentPageMessage){
                 answer = message;
-                System.out.println("answer is sent :)");
+            } else if (message instanceof AskAddCommentMessage){
+                answer = MessageHandler.handleAddComment((AskAddCommentMessage) message, username);
             }
 
 

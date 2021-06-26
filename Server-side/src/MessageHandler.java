@@ -2,11 +2,13 @@ import Messages.ClientMessages.HomePageMessages.AskFollowMessage;
 import Messages.ClientMessages.HomePageMessages.AskPublishPostMessage;
 import Messages.ClientMessages.HomePageMessages.AskSearchMessage;
 import Messages.ClientMessages.HomePageMessages.AskUnfollowMessage;
+import Messages.ClientMessages.PostItemMessages.AskAddCommentMessage;
 import Messages.ClientMessages.PostItemMessages.AskRepostMessage;
 import Messages.Message;
 import Messages.ClientMessages.*;
 import Messages.ServerMessages.*;
 import Messages.ServerMessages.HomePageMessages.*;
+import Messages.ServerMessages.PostItemMessages.AddCommentMessage;
 import Messages.ServerMessages.PostItemMessages.SetRepostMessage;
 import Posts.Post;
 
@@ -267,5 +269,21 @@ public class MessageHandler {
         repostedPost.repost();
 
         return new SetRepostMessage(true);
+    }
+
+    public static synchronized Message handleAddComment(AskAddCommentMessage askAddCommentMessage , String username){
+        User user = dataBase.getData().get(username);
+        Post post = null;
+        for (int i = 0; i < user.getAllPosts().size(); i++) {
+            if(user.getAllPosts().get(i).equals(askAddCommentMessage.getPost())){
+                post = user.getAllPosts().get(i);
+                break;
+            }
+        }
+
+        assert post != null;
+        post.getComments().add(username + ": \n" + askAddCommentMessage.getComment());
+
+        return new AddCommentMessage(post);
     }
 }

@@ -1,12 +1,12 @@
-package Messages.ServerMessages.PostItemMessages;
+package Messages.ClientMessages.PostItemMessages;
 
 import Messages.Message;
 import Posts.Post;
 
-public class AddCommentMessage implements Message {
+public class AskSetCommentPageMessage implements Message {
     private final Post post;
 
-    public AddCommentMessage(Post post) {
+    public AskSetCommentPageMessage(Post post) {
         this.post = post;
     }
 
