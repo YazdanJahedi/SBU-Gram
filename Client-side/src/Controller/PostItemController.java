@@ -42,7 +42,6 @@ public class PostItemController {
     public ImageView disLikeButton;
 
     public PostItemController(Post post) {
-        System.out.println("new postItemController is working...");
         try {
             new PageLoader().load("PostItem", this);
         } catch (IOException e) {
