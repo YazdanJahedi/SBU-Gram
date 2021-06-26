@@ -1,11 +1,14 @@
+package UserAndProfile;
+
 import Posts.Post;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class User {
+public class User implements Serializable {
     private final String username;
     private final String password;
     private final String theQuestion;
@@ -119,7 +122,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "UserAndProfile.User{" +
                 "username='" + username + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +

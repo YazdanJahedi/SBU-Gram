@@ -1,3 +1,4 @@
+import DB.DataBase;
 import Messages.ClientMessages.HomePageMessages.AskFollowMessage;
 import Messages.ClientMessages.HomePageMessages.AskPublishPostMessage;
 import Messages.ClientMessages.HomePageMessages.AskSearchMessage;
@@ -11,6 +12,7 @@ import Messages.ServerMessages.HomePageMessages.*;
 import Messages.ServerMessages.PostItemMessages.AddCommentMessage;
 import Messages.ServerMessages.PostItemMessages.SetRepostMessage;
 import Posts.Post;
+import UserAndProfile.User;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

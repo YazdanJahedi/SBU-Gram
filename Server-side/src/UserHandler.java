@@ -1,3 +1,4 @@
+import DB.DataBaseManager;
 import Messages.ClientMessages.*;
 import Messages.ClientMessages.HomePageMessages.*;
 import Messages.ClientMessages.PostItemMessages.*;
@@ -79,6 +80,9 @@ public class UserHandler implements Runnable {
                 out.writeObject(answer);
                 out.reset();
                 out.flush();
+
+                DataBaseManager.updateDataBase();
+
             } catch (IOException e) {
                 System.err.println("~ERROR: the server's answer is not sent to the client");
             }

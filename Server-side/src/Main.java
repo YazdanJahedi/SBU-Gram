@@ -1,3 +1,5 @@
+import DB.DataBaseManager;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -14,6 +16,8 @@ public class Main {
             System.err.println("~ Please try again to open the server");
             return;
         }
+
+        DataBaseManager.setupDataBase();
 
         System.out.println("*** the server socket is opened!\n\n");
         while (true) {

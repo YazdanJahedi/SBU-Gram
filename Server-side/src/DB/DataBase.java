@@ -1,5 +1,8 @@
+package DB;
+
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import UserAndProfile.*;
 
 public class DataBase {
     private static DataBase DATA_BASE;
