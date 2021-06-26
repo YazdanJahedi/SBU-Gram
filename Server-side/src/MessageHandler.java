@@ -116,6 +116,9 @@ public class MessageHandler {
     public static synchronized Message setProfileInformation(String username) {
         User user = dataBase.getData().get(username);
 
+        System.out.println(username+ " wants to get his/her profile information...");
+        System.out.println("time : " + dateFormatter.format(LocalDateTime.now()) + "\n");
+
         return new SetProfileInformationMessage(
                 user.getUsername(),
                 user.getProfileImage(),
@@ -133,6 +136,7 @@ public class MessageHandler {
         Post post = askPublishPostMessage.getPost();
         User user = dataBase.getData().get(username);
 
+        System.out.println(username + " wants to publish a new post:");
         if (user != null) {
             post.setProfileImagePath(user.getProfileImage());
             post.setUsername(username);
@@ -147,16 +151,20 @@ public class MessageHandler {
                 u.getAllPosts().add(post);
             }
 
-            System.out.println("-------------");
-            System.out.println(post.toString());
-            System.out.println("-------------\n");
+            System.out.println(post);
+            System.out.println("time : " + dateFormatter.format(LocalDateTime.now()) + "\n");
 
             return new PublishPostMessage(true);
         }
+
+        System.out.println("time : " + dateFormatter.format(LocalDateTime.now()) + "\n");
         return new PublishPostMessage(false);
     }
 
     public static synchronized Message setSearchedProfileInformation(AskSearchMessage askSearchMessage, String username) {
+        System.out.println(username + " is searching for : " + askSearchMessage.getSearchedUsername());
+        System.out.println("time : " + dateFormatter.format(LocalDateTime.now()) + "\n");
+
         if (username.equals(askSearchMessage.getSearchedUsername()))
             return new SearchMessage(false);
 
@@ -180,6 +188,9 @@ public class MessageHandler {
     }
 
     public static synchronized Message handleFollow(AskFollowMessage askFollowMessage, String username) {
+        System.out.println(username + " followed " +  askFollowMessage.getUsername());
+        System.out.println("time : " + dateFormatter.format(LocalDateTime.now()) + "\n");
+
         User user = dataBase.getData().get(username);
         User searchedUser = dataBase.getData().get(askFollowMessage.getUsername());
 
@@ -196,6 +207,9 @@ public class MessageHandler {
     }
 
     public static synchronized Message handleUnfollow(AskUnfollowMessage askUnfollowMessage, String username) {
+        System.out.println(username + " unfollow " + askUnfollowMessage.getUsername());
+        System.out.println("time : " + dateFormatter.format(LocalDateTime.now()) + "\n");
+
         User user = dataBase.getData().get(username);
         User searchedUser = dataBase.getData().get(askUnfollowMessage.getUsername());
 
