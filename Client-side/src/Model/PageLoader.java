@@ -26,7 +26,6 @@ public class PageLoader {
         stage.initStyle(StageStyle.DECORATED); // the three buttons on top of stage will be shown
         stage.setResizable(false); // you can't change the Stage size!
         stage.getIcons().add(new Image(Paths.get("src/Images/logos/S-logo.png").toUri().toString()));
-
     }
 
     public void setRoot(String fxml) throws IOException {

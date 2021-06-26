@@ -63,8 +63,8 @@ public class PostItemController {
         postImage.setImage(new Image(post.getPostImagePath()));
         profileImage.setImage(new Image(post.getProfileImagePath()));
 
-        likesCounterLabel.setText(post.getLikesCounter().toString());
-        repostsCounterLabel.setText(post.getRepostsCounter().toString());
+        likesCounterLabel.setText(Integer.toString(post.getLikesCounter()));
+        repostsCounterLabel.setText(Integer.toString(post.getRepostsCounter()));
         likesCounterLabel.setAlignment(Pos.CENTER_RIGHT);
         repostsCounterLabel.setAlignment(Pos.CENTER_RIGHT);
 

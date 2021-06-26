@@ -14,8 +14,8 @@ public class Post implements Serializable {
     private String caption;
     private String dateAndTime;
 
-    private Integer likesCounter = 0;
-    private Integer repostsCounter = 0;
+    private int likesCounter = 0;
+    private int repostsCounter = 0;
 
     private List<String> comments = new ArrayList<>();
 
@@ -105,11 +105,11 @@ public class Post implements Serializable {
         return dateAndTime;
     }
 
-    public Integer getLikesCounter() {
+    public int getLikesCounter() {
         return likesCounter;
     }
 
-    public Integer getRepostsCounter() {
+    public int getRepostsCounter() {
         return repostsCounter;
     }
 
@@ -125,8 +125,6 @@ public class Post implements Serializable {
         return comments;
     }
 
-
-    // todo : this is not very good . change it ...
 
     @Override
     public String toString() {

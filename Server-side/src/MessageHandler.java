@@ -233,9 +233,16 @@ public class MessageHandler {
 
     public static synchronized Message handleRepost(AskRepostMessage askRepostMessage, String username) {
         User user = dataBase.getData().get(username);
-        Post repostedPost = askRepostMessage.getRepostedPost();
 
-        if (user == null || repostedPost == null || repostedPost.getUsername().equals(username))
+        Post repostedPost = null;
+        for (int i = 0; i < user.getAllPosts().size(); i++) {
+            if(user.getAllPosts().get(i).equals(askRepostMessage.getRepostedPost())) {
+                repostedPost = user.getAllPosts().get(i);
+                break;
+            }
+        }
+
+        if (repostedPost == null || repostedPost.getUsername().equals(username))
             return new SetRepostMessage(false);
 
         Post post = new Post(
@@ -257,16 +264,7 @@ public class MessageHandler {
             u.getAllPosts().add(post);
         }
 
-
-        for (int i = 0; i < dataBase.getData().get(repostedPost.getUsername()).getAllPosts().size(); i++) {
-            if (dataBase.getData().get(repostedPost.getUsername()).getAllPosts().get(i).equals(repostedPost)) {
-                dataBase.getData().get(repostedPost.getUsername()).getAllPosts().get(i).repost();
-
-                System.out.println("post is found!!!");
-                System.out.println(dataBase.getData().get(repostedPost.getUsername()).getAllPosts().get(i));
-                break;
-            }
-        }
+        repostedPost.repost();
 
         return new SetRepostMessage(true);
     }
