@@ -118,7 +118,7 @@ public class MessageHandler {
     public static synchronized Message setProfileInformation(String username) {
         User user = dataBase.getData().get(username);
 
-        System.out.println(username+ " wants to get his/her profile information...");
+        System.out.println(username + " wants to get his/her profile information...");
         System.out.println("time : " + dateFormatter.format(LocalDateTime.now()) + "\n");
 
         return new SetProfileInformationMessage(
@@ -190,7 +190,7 @@ public class MessageHandler {
     }
 
     public static synchronized Message handleFollow(AskFollowMessage askFollowMessage, String username) {
-        System.out.println(username + " followed " +  askFollowMessage.getUsername());
+        System.out.println(username + " followed " + askFollowMessage.getUsername());
         System.out.println("time : " + dateFormatter.format(LocalDateTime.now()) + "\n");
 
         User user = dataBase.getData().get(username);
@@ -235,10 +235,10 @@ public class MessageHandler {
 
     public static synchronized Message handleRepost(AskRepostMessage askRepostMessage, String username) {
         User user = dataBase.getData().get(username);
-
         Post repostedPost = null;
+
         for (int i = 0; i < user.getAllPosts().size(); i++) {
-            if(user.getAllPosts().get(i).equals(askRepostMessage.getRepostedPost())) {
+            if (user.getAllPosts().get(i).equals(askRepostMessage.getRepostedPost())) {
                 repostedPost = user.getAllPosts().get(i);
                 break;
             }
@@ -268,14 +268,17 @@ public class MessageHandler {
 
         repostedPost.repost();
 
+        System.out.println(username + " wants to repost " + askRepostMessage.getRepostedPost().getUsername() + " 's post");
+        System.out.println("time : " + dateFormatter.format(LocalDateTime.now()) + "\n");
+
         return new SetRepostMessage(true);
     }
 
-    public static synchronized Message handleAddComment(AskAddCommentMessage askAddCommentMessage , String username){
+    public static synchronized Message handleAddComment(AskAddCommentMessage askAddCommentMessage, String username) {
         User user = dataBase.getData().get(username);
         Post post = null;
         for (int i = 0; i < user.getAllPosts().size(); i++) {
-            if(user.getAllPosts().get(i).equals(askAddCommentMessage.getPost())){
+            if (user.getAllPosts().get(i).equals(askAddCommentMessage.getPost())) {
                 post = user.getAllPosts().get(i);
                 break;
             }
@@ -283,6 +286,9 @@ public class MessageHandler {
 
         assert post != null;
         post.getComments().add(username + ": \n" + askAddCommentMessage.getComment());
+
+        System.out.println(username + " commented for the " + post.getUsername() + " 's post");
+        System.out.println("time : " + dateFormatter.format(LocalDateTime.now()) + "\n");
 
         return new AddCommentMessage(post);
     }
