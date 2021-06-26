@@ -65,8 +65,6 @@ public class PostItemController {
 
         likesCounterLabel.setText(Integer.toString(post.getLikesCounter()));
         repostsCounterLabel.setText(Integer.toString(post.getRepostsCounter()));
-        likesCounterLabel.setAlignment(Pos.CENTER_RIGHT);
-        repostsCounterLabel.setAlignment(Pos.CENTER_RIGHT);
 
         //set another image dynamically
 //        if (post.getWriter().equals("ali alavi"))

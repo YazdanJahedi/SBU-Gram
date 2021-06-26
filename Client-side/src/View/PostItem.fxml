@@ -38,8 +38,8 @@
             <Image url="@../Images/buttons/repost.png" />
          </image>
       </ImageView>
-      <Label fx:id="likesCounterLabel" layoutX="13.0" layoutY="404.0" text="number" />
-      <Label fx:id="repostsCounterLabel" layoutX="247.0" layoutY="404.0" prefHeight="17.0" prefWidth="50.0" text="number" />
+      <Label fx:id="likesCounterLabel" layoutX="61.0" layoutY="404.0" text="number" />
+      <Label fx:id="repostsCounterLabel" layoutX="308.0" layoutY="404.0" prefHeight="17.0" prefWidth="50.0" text="number" />
       <Label fx:id="writerNameLabel" layoutX="307.0" layoutY="16.0" prefHeight="17.0" prefWidth="56.0" text="writer name" />
       <Label fx:id="dateAndTimeLabel" layoutX="11.0" layoutY="115.0" text="date &amp; time">
          <font>
@@ -54,12 +54,12 @@
             <Font size="9.0" />
          </font>
       </Label>
-      <Label layoutX="62.0" layoutY="407.0" text="likes">
+      <Label layoutX="35.0" layoutY="407.0" text="likes:">
          <font>
             <Font size="10.0" />
          </font>
       </Label>
-      <Label layoutX="299.0" layoutY="407.0" text="reposts">
+      <Label layoutX="268.0" layoutY="407.0" text="reposts:">
          <font>
             <Font size="10.0" />
          </font>

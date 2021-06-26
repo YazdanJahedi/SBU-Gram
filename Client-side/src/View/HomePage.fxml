@@ -102,7 +102,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <ListView fx:id="searchPostsList" layoutY="307.0" prefHeight="261.0" prefWidth="400.0" />
+                  <ListView fx:id="searchPostsList" layoutY="307.0" prefHeight="248.0" prefWidth="400.0" />
                   <Button fx:id="searchUnfollowButton" layoutX="30.0" layoutY="269.0" mnemonicParsing="false" onMouseClicked="#unfollow" prefHeight="25.0" prefWidth="90.0" text="Unfollow" textFill="#bf1313" visible="false" />
                   <Button fx:id="searchFollowButton" layoutX="30.0" layoutY="269.0" mnemonicParsing="false" onMouseClicked="#follow" prefHeight="25.0" prefWidth="90.0" text="Follow" textFill="#4c0edd" />
                   <Button fx:id="searchBlockButton" layoutX="156.0" layoutY="269.0" mnemonicParsing="false" onMouseClicked="#block" prefWidth="90.0" text="Block" />
