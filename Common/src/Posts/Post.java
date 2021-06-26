@@ -3,6 +3,7 @@ package Posts;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Post implements Serializable {
     private String profileImagePath;
@@ -112,11 +113,11 @@ public class Post implements Serializable {
         return repostsCounter;
     }
 
-    public void like(){
+    public void like() {
         likesCounter++;
     }
 
-    public void repost(){
+    public void repost() {
         repostsCounter++;
     }
 
@@ -130,13 +131,37 @@ public class Post implements Serializable {
     @Override
     public String toString() {
         return "Post{" +
-                "profileImagePath='" + profileImagePath + '\'' +
-                ", postImagePath='" + postImagePath + '\'' +
                 ", title='" + title + '\'' +
                 ", writer='" + writer + '\'' +
                 ", username='" + username + '\'' +
                 ", caption='" + caption + '\'' +
+                ", number of reposts= '" + repostsCounter + '\''+
+                ", number of likes= '" + likesCounter + '\''+
                 ", dateAndTime='" + dateAndTime + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Post)) return false;
+        Post post = (Post) o;
+        return Objects.equals(getProfileImagePath(), post.getProfileImagePath()) &&
+                Objects.equals(getPostImagePath(), post.getPostImagePath()) &&
+                Objects.equals(getTitle(), post.getTitle()) &&
+                Objects.equals(getWriter(), post.getWriter()) &&
+                Objects.equals(getUsername(), post.getUsername()) &&
+                Objects.equals(getCaption(), post.getCaption()) &&
+                Objects.equals(getDateAndTime(), post.getDateAndTime()) &&
+                Objects.equals(getLikesCounter(), post.getLikesCounter()) &&
+                Objects.equals(getRepostsCounter(), post.getRepostsCounter()) &&
+                Objects.equals(getComments(), post.getComments());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getProfileImagePath(), getPostImagePath(), getTitle(),
+                getWriter(), getUsername(), getCaption(), getDateAndTime(),
+                getLikesCounter(), getRepostsCounter(), getComments());
     }
 }

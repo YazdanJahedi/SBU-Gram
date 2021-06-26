@@ -123,9 +123,6 @@ public class PostItemController {
             logo.playFromStart();
         }
 
-        synchronized (post){
-            post.repost();
-        }
     }
 
     public void showUserProfile(MouseEvent mouseEvent) {

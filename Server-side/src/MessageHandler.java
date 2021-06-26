@@ -221,7 +221,6 @@ public class MessageHandler {
         User user = dataBase.getData().get(username);
         Post repostedPost = askRepostMessage.getRepostedPost();
 
-
         if (user == null || repostedPost == null || repostedPost.getUsername().equals(username))
             return new SetRepostMessage(false);
 
@@ -242,6 +241,17 @@ public class MessageHandler {
 
         for (User u : user.getFollowers()) {
             u.getAllPosts().add(post);
+        }
+
+
+        for (int i = 0; i < dataBase.getData().get(repostedPost.getUsername()).getAllPosts().size(); i++) {
+            if (dataBase.getData().get(repostedPost.getUsername()).getAllPosts().get(i).equals(repostedPost)) {
+                dataBase.getData().get(repostedPost.getUsername()).getAllPosts().get(i).repost();
+
+                System.out.println("post is found!!!");
+                System.out.println(dataBase.getData().get(repostedPost.getUsername()).getAllPosts().get(i));
+                break;
+            }
         }
 
         return new SetRepostMessage(true);
