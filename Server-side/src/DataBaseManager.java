@@ -1,9 +1,5 @@
-package DB;
-
 import java.io.*;
 import java.util.concurrent.ConcurrentHashMap;
-
-import UserAndProfile.*;
 
 public class DataBaseManager {
     private static final DataBase dataBase = DataBase.getInstance();

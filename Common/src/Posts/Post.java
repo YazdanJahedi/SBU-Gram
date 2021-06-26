@@ -1,6 +1,7 @@
 package Posts;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -19,6 +20,8 @@ public class Post implements Serializable {
 
     private List<String> comments = new ArrayList<>();
 
+
+    private LocalDateTime dateTime;
 
     public Post() {
     }
@@ -77,6 +80,10 @@ public class Post implements Serializable {
         this.comments = comments;
     }
 
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
+    }
+
     public String getProfileImagePath() {
         return profileImagePath;
     }
@@ -125,6 +132,9 @@ public class Post implements Serializable {
         return comments;
     }
 
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
 
     @Override
     public String toString() {

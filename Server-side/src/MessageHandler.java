@@ -1,4 +1,3 @@
-import DB.DataBase;
 import Messages.ClientMessages.HomePageMessages.AskFollowMessage;
 import Messages.ClientMessages.HomePageMessages.AskPublishPostMessage;
 import Messages.ClientMessages.HomePageMessages.AskSearchMessage;
@@ -12,11 +11,11 @@ import Messages.ServerMessages.HomePageMessages.*;
 import Messages.ServerMessages.PostItemMessages.AddCommentMessage;
 import Messages.ServerMessages.PostItemMessages.SetRepostMessage;
 import Posts.Post;
-import UserAndProfile.User;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class MessageHandler {
     private final static DataBase dataBase = DataBase.getInstance();
@@ -146,6 +145,7 @@ public class MessageHandler {
             post.setUsername(username);
             post.setWriter(user.getFirstName());
             post.setDateAndTime(dateFormatter.format(LocalDateTime.now()));
+            post.setDateTime(LocalDateTime.now());
 
             user.getUserPosts().add(post);
             user.getAllPosts().add(post);
@@ -232,7 +232,7 @@ public class MessageHandler {
     public static synchronized Message setTimeLinePosts(String username) {
         User user = dataBase.getData().get(username);
 
-        return new SetTimeLinePostsMessage(new ArrayList<>(user.getAllPosts()));
+        return new SetTimeLinePostsMessage(new ArrayList<>(user.getAllPosts().stream().sorted((p1 , p2) -> p1.getDateTime().compareTo(p2.getDateTime())).collect(Collectors.toList())));
     }
 
     public static synchronized Message handleRepost(AskRepostMessage askRepostMessage, String username) {

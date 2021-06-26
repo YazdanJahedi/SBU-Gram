@@ -1,5 +1,3 @@
-package UserAndProfile;
-
 import Posts.Post;
 
 import java.io.Serializable;
@@ -122,7 +120,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "UserAndProfile.User{" +
+        return "User{" +
                 "username='" + username + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
