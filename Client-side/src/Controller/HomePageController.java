@@ -222,6 +222,8 @@ public class HomePageController {
             searchBlockButton.setVisible(true);
             searchMuteButton.setVisible(true);
             searchPostsList.setVisible(true);
+            followersNumberLabel.setAlignment(Pos.CENTER);
+            followingsNumberLabel.setAlignment(Pos.CENTER);
 
             if (answer.WasUserFollowedBefore()) {
                 searchFollowButton.setVisible(false);

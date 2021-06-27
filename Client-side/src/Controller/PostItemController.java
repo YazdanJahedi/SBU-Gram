@@ -8,6 +8,7 @@ import Model.PageLoader;
 import Posts.Post;
 import javafx.animation.RotateTransition;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -53,6 +54,9 @@ public class PostItemController {
 
 
     public AnchorPane init() {
+        writerNameLabel.setAlignment(Pos.CENTER);
+        usernameLabel.setAlignment(Pos.CENTER);
+
         titleLabel.setText(post.getTitle());
         captionTextField.setText(post.getCaption());
         usernameLabel.setText(post.getUsername());

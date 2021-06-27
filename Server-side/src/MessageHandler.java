@@ -246,8 +246,10 @@ public class MessageHandler {
             }
         }
 
+
         if (repostedPost == null || repostedPost.getUsername().equals(username))
             return new SetRepostMessage(false);
+
 
         Post post = new Post(
                 user.getProfileImage(),
@@ -260,6 +262,8 @@ public class MessageHandler {
                 0,
                 0
         );
+
+        post.setDateTime(LocalDateTime.now());
 
         user.getUserPosts().add(post);
         user.getAllPosts().add(post);

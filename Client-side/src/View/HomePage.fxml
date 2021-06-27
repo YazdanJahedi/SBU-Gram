@@ -44,7 +44,7 @@
         <content>
             <Pane style="-fx-background-color: #D7EBFF;">
                <children>
-                  <ImageView fx:id="postImage" fitHeight="300.0" fitWidth="350.0" layoutX="50.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="postImage" fitHeight="250.0" fitWidth="350.0" layoutX="25.0" layoutY="117.0" pickOnBounds="true">
                      <viewport>
                         <Rectangle2D />
                      </viewport>
